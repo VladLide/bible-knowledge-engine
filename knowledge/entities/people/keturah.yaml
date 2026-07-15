@@ -1,0 +1,9 @@
+id: person.keturah
+type: person
+subtype: matriarch
+# Abraham's wife after Sarah's death (Gen 25:1); mother of six sons (deferred).
+immutable:
+  presumed_existing: true
+  married_to: [person.abraham]
+sources:
+  - reference.genesis.25.1

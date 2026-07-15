@@ -1,0 +1,9 @@
+id: person.abimelech
+type: person
+subtype: king
+# King of Gerar (of the Philistines) in the days of Abraham (Gen 20) and Isaac
+# (Gen 26) — "Abimelech" may be a royal title borne by more than one king.
+immutable:
+  presumed_existing: true
+sources:
+  - reference.genesis.20.2

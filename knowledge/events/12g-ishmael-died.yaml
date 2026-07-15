@@ -1,0 +1,9 @@
+id: event.ishmael-died
+type: PersonDied
+# Gen 25:17 — Ishmael lived 137 years and died. -1943 (born -2080 + 137). His 12
+# sons (Gen 25:13-16) are deferred.
+time: { edtf: "-1943" }
+person: person.ishmael
+place: place.beersheba
+confidence: tradition
+sources: [reference.genesis.25.17]

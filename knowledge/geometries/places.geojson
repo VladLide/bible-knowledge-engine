@@ -1,22 +1,321 @@
 {
   "type": "FeatureCollection",
   "features": [
-    { "type": "Feature", "id": "geometry.ur",      "properties": { "name_id": "place.ur" },      "geometry": { "type": "Point", "coordinates": [46.1030, 30.9626] } },
-    { "type": "Feature", "id": "geometry.haran",   "properties": { "name_id": "place.haran" },   "geometry": { "type": "Point", "coordinates": [39.0306, 36.8639] } },
-    { "type": "Feature", "id": "geometry.canaan",  "properties": { "name_id": "place.canaan" },  "geometry": { "type": "Point", "coordinates": [35.2800, 32.2100] } },
-    { "type": "Feature", "id": "geometry.shechem", "properties": { "name_id": "place.shechem" }, "geometry": { "type": "Point", "coordinates": [35.2810, 32.2137] } },
-    { "type": "Feature", "id": "geometry.hebron",  "properties": { "name_id": "place.hebron" },  "geometry": { "type": "Point", "coordinates": [35.0998, 31.5326] } },
-    { "type": "Feature", "id": "geometry.egypt",   "properties": { "name_id": "place.egypt" },   "geometry": { "type": "Point", "coordinates": [31.2000, 30.0000] } },
-    { "type": "Feature", "id": "geometry.sodom",     "properties": { "name_id": "place.sodom" },     "geometry": { "type": "Point", "coordinates": [35.5000, 31.2500] } },
-    { "type": "Feature", "id": "geometry.gomorrah",  "properties": { "name_id": "place.gomorrah" },  "geometry": { "type": "Point", "coordinates": [35.4700, 31.2000] } },
-    { "type": "Feature", "id": "geometry.zoar",      "properties": { "name_id": "place.zoar" },      "geometry": { "type": "Point", "coordinates": [35.5000, 31.0500] } },
-    { "type": "Feature", "id": "geometry.moriah",    "properties": { "name_id": "place.moriah" },    "geometry": { "type": "Point", "coordinates": [35.2354, 31.7780] } },
-    { "type": "Feature", "id": "geometry.machpelah", "properties": { "name_id": "place.machpelah" }, "geometry": { "type": "Point", "coordinates": [35.1050, 31.5245] } },
-    { "type": "Feature", "id": "geometry.beersheba", "properties": { "name_id": "place.beersheba" }, "geometry": { "type": "Point", "coordinates": [34.7913, 31.2518] } },
-    { "type": "Feature", "id": "geometry.earth-preflood", "properties": { "name_id": "place.earth", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Polygon", "coordinates": [[[-15,10],[10,4],[45,7],[70,20],[76,40],[55,51],[28,53],[2,49],[-13,38],[-19,22],[-15,10]]] } },
-    { "type": "Feature", "id": "geometry.eden", "properties": { "name_id": "place.eden", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Point", "coordinates": [47.4000, 31.0000] } },
-    { "type": "Feature", "id": "geometry.nod", "properties": { "name_id": "place.nod", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Point", "coordinates": [50.5000, 31.5000] } },
-    { "type": "Feature", "id": "geometry.ararat", "properties": { "name_id": "place.ararat" }, "geometry": { "type": "Point", "coordinates": [44.3000, 39.7000] } },
-    { "type": "Feature", "id": "geometry.babel", "properties": { "name_id": "place.babel" }, "geometry": { "type": "Point", "coordinates": [44.4200, 32.5400] } }
+    {
+      "type": "Feature",
+      "id": "geometry.ur",
+      "properties": {
+        "name_id": "place.ur"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          46.103,
+          30.9626
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.haran",
+      "properties": {
+        "name_id": "place.haran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.0306,
+          36.8639
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.canaan",
+      "properties": {
+        "name_id": "place.canaan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.28,
+          32.21
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.shechem",
+      "properties": {
+        "name_id": "place.shechem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.281,
+          32.2137
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.hebron",
+      "properties": {
+        "name_id": "place.hebron"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0998,
+          31.5326
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.egypt",
+      "properties": {
+        "name_id": "place.egypt"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2,
+          30.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.sodom",
+      "properties": {
+        "name_id": "place.sodom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5,
+          31.25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gomorrah",
+      "properties": {
+        "name_id": "place.gomorrah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.47,
+          31.2
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.zoar",
+      "properties": {
+        "name_id": "place.zoar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5,
+          31.05
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.moriah",
+      "properties": {
+        "name_id": "place.moriah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2354,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.machpelah",
+      "properties": {
+        "name_id": "place.machpelah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.105,
+          31.5245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.beersheba",
+      "properties": {
+        "name_id": "place.beersheba"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.7913,
+          31.2518
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.earth-preflood",
+      "properties": {
+        "name_id": "place.earth",
+        "valid_from": "-4004",
+        "valid_until": "-2348"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -15,
+              10
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              45,
+              7
+            ],
+            [
+              70,
+              20
+            ],
+            [
+              76,
+              40
+            ],
+            [
+              55,
+              51
+            ],
+            [
+              28,
+              53
+            ],
+            [
+              2,
+              49
+            ],
+            [
+              -13,
+              38
+            ],
+            [
+              -19,
+              22
+            ],
+            [
+              -15,
+              10
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.eden",
+      "properties": {
+        "name_id": "place.eden",
+        "valid_from": "-4004",
+        "valid_until": "-2348"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.4,
+          31.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.nod",
+      "properties": {
+        "name_id": "place.nod",
+        "valid_from": "-4004",
+        "valid_until": "-2348"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.5,
+          31.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.ararat",
+      "properties": {
+        "name_id": "place.ararat"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.3,
+          39.7
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.babel",
+      "properties": {
+        "name_id": "place.babel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          44.42,
+          32.54
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.salem",
+      "properties": {
+        "name_id": "place.salem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.233,
+          31.778
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gerar",
+      "properties": {
+        "name_id": "place.gerar"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.55,
+          31.4
+        ]
+      }
+    }
   ]
 }
