@@ -1,0 +1,11 @@
+id: event.lot-to-zoar
+type: Migration
+# Gen 19:22,30 — Lot flees the doomed Sodom to Zoar (then the hills).
+time:
+  edtf: "-2067?"
+subjects: [person.lot]
+from: place.sodom
+to: place.zoar
+confidence: tradition
+sources:
+  - reference.genesis.19.30

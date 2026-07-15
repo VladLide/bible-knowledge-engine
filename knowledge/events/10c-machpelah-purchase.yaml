@@ -1,0 +1,12 @@
+id: event.machpelah-purchase
+type: LandAcquired
+# Gen 23 — Abraham buys the field & cave of Machpelah from Ephron to bury Sarah;
+# the first land the patriarchs own in Canaan.
+time:
+  edtf: "-2029?"
+land: place.machpelah
+owner: person.abraham
+from: person.ephron
+confidence: tradition
+sources:
+  - reference.genesis.23.16

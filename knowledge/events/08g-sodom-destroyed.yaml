@@ -1,0 +1,9 @@
+id: event.sodom-destroyed
+type: CityDestroyed
+# Gen 19:24-25 — Sodom overthrown.
+time:
+  edtf: "-2067?"
+city: place.sodom
+confidence: tradition
+sources:
+  - reference.genesis.19.24

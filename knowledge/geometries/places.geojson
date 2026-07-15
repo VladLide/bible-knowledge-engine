@@ -7,6 +7,11 @@
     { "type": "Feature", "id": "geometry.shechem", "properties": { "name_id": "place.shechem" }, "geometry": { "type": "Point", "coordinates": [35.2810, 32.2137] } },
     { "type": "Feature", "id": "geometry.hebron",  "properties": { "name_id": "place.hebron" },  "geometry": { "type": "Point", "coordinates": [35.0998, 31.5326] } },
     { "type": "Feature", "id": "geometry.egypt",   "properties": { "name_id": "place.egypt" },   "geometry": { "type": "Point", "coordinates": [31.2000, 30.0000] } },
-    { "type": "Feature", "id": "geometry.sodom",   "properties": { "name_id": "place.sodom" },   "geometry": { "type": "Point", "coordinates": [35.5000, 31.2500] } }
+    { "type": "Feature", "id": "geometry.sodom",     "properties": { "name_id": "place.sodom" },     "geometry": { "type": "Point", "coordinates": [35.5000, 31.2500] } },
+    { "type": "Feature", "id": "geometry.gomorrah",  "properties": { "name_id": "place.gomorrah" },  "geometry": { "type": "Point", "coordinates": [35.4700, 31.2000] } },
+    { "type": "Feature", "id": "geometry.zoar",      "properties": { "name_id": "place.zoar" },      "geometry": { "type": "Point", "coordinates": [35.5000, 31.0500] } },
+    { "type": "Feature", "id": "geometry.moriah",    "properties": { "name_id": "place.moriah" },    "geometry": { "type": "Point", "coordinates": [35.2354, 31.7780] } },
+    { "type": "Feature", "id": "geometry.machpelah", "properties": { "name_id": "place.machpelah" }, "geometry": { "type": "Point", "coordinates": [35.1050, 31.5245] } },
+    { "type": "Feature", "id": "geometry.beersheba", "properties": { "name_id": "place.beersheba" }, "geometry": { "type": "Point", "coordinates": [34.7913, 31.2518] } }
   ]
 }

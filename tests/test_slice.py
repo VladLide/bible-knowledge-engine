@@ -146,11 +146,13 @@ def test_rejects_grant_to_unborn():
     assert any("not alive" in e for e in errors), errors
 
 
-def test_lot_separates_to_sodom():
-    """After Gen 13, Lot ends at Sodom — not with Abraham at Hebron."""
+def test_lot_separates_then_flees():
+    """Gen 13 → Lot settles at Sodom; Gen 19 → he flees to Zoar before the end."""
     events, entities = load_events(), load_entities()
-    end = state_at_year(events, entities, "conservative", -1991)["persons"]
-    assert end["person.lot"]["location"] == "place.sodom"
+    at = lambda y: state_at_year(events, entities, "conservative", y)["persons"]
+    assert at(-2075)["person.lot"]["location"] == "place.sodom"   # after separation, before flight
+    end = at(-1991)
+    assert end["person.lot"]["location"] == "place.zoar"          # fled the overthrow (Gen 19)
     assert end["person.abraham"]["location"] == "place.hebron"
 
 
@@ -182,7 +184,7 @@ def test_genealogy_stays_off_the_map():
     """Event-less people (not presumed_existing) never get a location → not on map."""
     events, entities = load_events(), load_entities()
     persons = state_at_year(events, entities, "conservative", -1900)["persons"]
-    for pid in ["person.ishmael", "person.laban", "person.nahor", "person.haran"]:
+    for pid in ["person.laban", "person.nahor", "person.haran"]:   # Ishmael now has a birth → on map
         assert persons[pid]["location"] is None, pid
 
 
@@ -271,6 +273,47 @@ def test_occurrence_enters_graph():
              participants=["person.a"], place="place.moriah")
     edges = {(e["source"], e["rel"], e["target"]) for e in build_graph(entities, [ev])["edges"]}
     assert ("person.a", "present_at", "place.moriah") in edges
+
+
+def test_ishmael_born_and_relocates():
+    """Gen 16:15 birth places Ishmael on the map; Gen 21 sends him to Beersheba."""
+    events, entities = load_events(), load_entities()
+    at = lambda y: state_at_year(events, entities, "conservative", y)["persons"]
+    assert at(-2075)["person.ishmael"]["alive"]                       # born -2080
+    assert at(-2075)["person.ishmael"]["location"] == "place.hebron"
+    assert at(-1991)["person.ishmael"]["location"] == "place.beersheba"
+
+
+def test_sodom_and_gomorrah_destroyed():
+    events, entities = load_events(), load_entities()
+    places = lambda y: state_at_year(events, entities, "conservative", y)["places"]
+    assert places(-2075)["place.sodom"]["destroyed"] is False        # before Gen 19
+    end = places(-1991)
+    assert end["place.sodom"]["destroyed"] is True
+    assert end["place.gomorrah"]["destroyed"] is True
+
+
+def test_machpelah_owned_by_abraham():
+    events, entities = load_events(), load_entities()
+    places = lambda y: state_at_year(events, entities, "conservative", y)["places"]
+    assert places(-2030)["place.machpelah"]["owner"] is None          # before the purchase
+    assert places(-2028)["place.machpelah"]["owner"] == "person.abraham"
+
+
+def test_binding_is_stateless_occurrence():
+    """The Akedah is recorded on the timeline but changes no world state."""
+    events, entities = load_events(), load_entities()
+    before = state_at_year(events, entities, "conservative", -2051)
+    after = state_at_year(events, entities, "conservative", -2049)   # binding at -2050
+    assert before == after
+
+
+def test_new_event_graph_edges():
+    from compiler.site import build_graph
+    edges = {(e["source"], e["rel"], e["target"]) for e in build_graph(load_entities(), load_events())["edges"]}
+    assert ("person.abraham", "acquired", "place.machpelah") in edges
+    assert ("person.abraham", "present_at", "place.moriah") in edges
+    assert ("person.isaac", "present_at", "place.moriah") in edges
 
 
 def _run_all():

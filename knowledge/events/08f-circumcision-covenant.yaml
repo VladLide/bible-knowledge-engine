@@ -1,0 +1,12 @@
+id: event.circumcision-covenant
+type: CovenantMade
+# Gen 17 — covenant of circumcision, distinct from the call (Gen 12) and the
+# land covenant (Gen 15).
+time:
+  edtf: "-2067?"
+name: circumcision
+parties: [person.abraham]
+place: place.hebron
+confidence: tradition
+sources:
+  - reference.genesis.17.10

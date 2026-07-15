@@ -1,0 +1,12 @@
+id: event.ishmael-to-beersheba
+type: Migration
+# Gen 21:14,21 — Hagar and Ishmael sent away; he dwells in the wilderness
+# (Beersheba / Paran). Modeled as Ishmael's relocation.
+time:
+  edtf: "-2063?"
+subjects: [person.ishmael]
+from: place.hebron
+to: place.beersheba
+confidence: tradition
+sources:
+  - reference.genesis.21.14

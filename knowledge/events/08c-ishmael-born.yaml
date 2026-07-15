@@ -1,0 +1,11 @@
+id: event.ishmael-born
+type: PersonBorn
+# Gen 16:16 — Abram was 86 → c. -2080.
+time:
+  edtf: "-2080?"
+person: person.ishmael
+place: place.hebron
+parents: [person.abraham, person.hagar]
+confidence: tradition
+sources:
+  - reference.genesis.16.15
