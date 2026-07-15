@@ -1,0 +1,10 @@
+id: event.sabbatical-and-jubilee
+type: Occurrence
+# Lev 25 — the sabbatical year and the year of Jubilee: the land rests, debts and
+# bondage are released, and property returns to its family.
+time: { edtf: "-1445" }
+kind: law
+participants: [person.moses]
+place: place.sinai
+confidence: tradition
+sources: [reference.leviticus.25.10]

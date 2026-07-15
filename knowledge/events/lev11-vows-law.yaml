@@ -1,0 +1,9 @@
+id: event.vows-and-tithes
+type: Occurrence
+# Lev 27 — laws of vows, valuations, and the tithe that is holy to the LORD.
+time: { edtf: "-1445" }
+kind: law
+participants: [person.moses]
+place: place.sinai
+confidence: tradition
+sources: [reference.leviticus.27.30]

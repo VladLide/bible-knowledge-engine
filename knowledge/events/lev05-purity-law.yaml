@@ -1,0 +1,10 @@
+id: event.levitical-purity-law
+type: Occurrence
+# Lev 11-15 — laws of clean and unclean: foods, childbirth, skin disease and mildew,
+# and bodily discharges, with rites of cleansing.
+time: { edtf: "-1445" }
+kind: law
+participants: [person.moses]
+place: place.sinai
+confidence: tradition
+sources: [reference.leviticus.11.1]
