@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:LandAcquired",
+  "title": "LandAcquired",
+  "description": "A person comes to own a specific plot/place (purchase, gift, inheritance). Reducer: the place's `owner` becomes the acquirer. `from` is the prior holder, if named.",
+  "type": "object",
+  "properties": {
+    "land": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" },
+    "owner": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" },
+    "from": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+  },
+  "required": ["land", "owner"]
+}

@@ -164,7 +164,7 @@ def validate(entities, events, canon, translations, geometry_ids):
         for pid in (handler.persons(ev) if handler else []):
             if pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
-        for key in ("place", "from", "to", "territory"):
+        for key in ("place", "from", "to", "territory", "city", "land"):
             pid = ev.payload.get(key)
             if pid and pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
@@ -257,14 +257,16 @@ def dependency_graph(events, entities, model):
 # ---------------------------------------------------------------- reduction
 
 def initial_state(entities) -> dict:
-    persons, territories = {}, {}
+    persons, territories, places = {}, {}, {}
     for e in entities.values():
         if e.type == "person":
             presumed = bool(e.immutable.get("presumed_existing"))
             persons[e.id] = {"alive": presumed, "location": None, "covenants": [], "spouse": None}
         elif e.type == "place" and e.subtype == "region":
             territories[e.id] = {"active": False, "granted_to": None}
-    return {"persons": persons, "territories": territories}
+        elif e.type == "place":                       # settlements/plots carry destroyed/owner state
+            places[e.id] = {"destroyed": False, "owner": None}
+    return {"persons": persons, "territories": territories, "places": places}
 
 
 def ordered_events(events, model) -> list[Event]:
@@ -373,6 +375,12 @@ def _fmt_state(state, entities, labels):
             name = labels.get("en", {}).get(tid, tid)
             to = labels.get("en", {}).get(t["granted_to"], t["granted_to"])
             lines.append(f"  [territory] {name} granted to {to}")
+    for pid, pl in sorted(state.get("places", {}).items()):
+        if pl["destroyed"] or pl["owner"]:
+            name = labels.get("en", {}).get(pid, pid)
+            note = "destroyed" if pl["destroyed"] else \
+                f"owned by {labels.get('en', {}).get(pl['owner'], pl['owner'])}"
+            lines.append(f"  [place] {name} {note}")
     return "\n".join(lines)
 
 

@@ -28,6 +28,10 @@ def _territory(state, tid):
     return state["territories"].setdefault(tid, {"active": False, "granted_to": None})
 
 
+def _place(state, pid):
+    return state["places"].setdefault(pid, {"destroyed": False, "owner": None})
+
+
 class PersonBorn:
     schema = "PersonBorn"
 
@@ -188,6 +192,76 @@ class TerritoryGranted:
         return [b] if b else []
 
 
+class CityDestroyed:
+    schema = "CityDestroyed"
+
+    @staticmethod
+    def persons(ev: Event):
+        a = ev.payload.get("agent")
+        return [a] if a else []
+
+    @staticmethod
+    def check(state, ev: Event):
+        if _place(state, ev.payload["city"])["destroyed"]:
+            return [f"WARN {ev.id}: {ev.payload['city']} is already destroyed"]
+        return []
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        _place(state, ev.payload["city"])["destroyed"] = True
+
+    @staticmethod
+    def deps(ev: Event, born):
+        b = born.get(ev.payload.get("agent"))
+        return [b] if b else []
+
+
+class LandAcquired:
+    schema = "LandAcquired"
+
+    @staticmethod
+    def persons(ev: Event):
+        return [ev.payload["owner"]] + ([ev.payload["from"]] if ev.payload.get("from") else [])
+
+    @staticmethod
+    def check(state, ev: Event):
+        if not _person(state, ev.payload["owner"])["alive"]:
+            return [f"{ev.id}: acquirer {ev.payload['owner']} is not alive"]
+        return []
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        _place(state, ev.payload["land"])["owner"] = ev.payload["owner"]
+
+    @staticmethod
+    def deps(ev: Event, born):
+        return [born[p] for p in LandAcquired.persons(ev) if p in born]
+
+
+class Occurrence:
+    """Escape hatch — records a cited event that changes no tracked state, so it
+    still lives in the timeline and graph. No reducer effect by design."""
+    schema = "Occurrence"
+
+    @staticmethod
+    def persons(ev: Event):
+        return list(ev.payload.get("participants", []))
+
+    @staticmethod
+    def check(state, ev: Event):
+        return [f"{ev.id}: participant {p} is not alive"
+                for p in ev.payload.get("participants", [])
+                if not _person(state, p)["alive"]]
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        pass  # by design: an Occurrence changes no world state
+
+    @staticmethod
+    def deps(ev: Event, born):
+        return [born[p] for p in ev.payload.get("participants", []) if p in born]
+
+
 REGISTRY = {
     "PersonBorn": PersonBorn,
     "PersonDied": PersonDied,
@@ -195,4 +269,7 @@ REGISTRY = {
     "CovenantMade": CovenantMade,
     "Marriage": Marriage,
     "TerritoryGranted": TerritoryGranted,
+    "CityDestroyed": CityDestroyed,
+    "LandAcquired": LandAcquired,
+    "Occurrence": Occurrence,
 }

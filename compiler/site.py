@@ -41,7 +41,7 @@ def _era_bucket(year) -> int:
     return (int(year) // ERA_SIZE) * ERA_SIZE
 
 
-NAMESPACES = ("persons", "territories")
+NAMESPACES = ("persons", "territories", "places")
 
 
 def _delta(pre: dict, post: dict) -> dict:
@@ -105,7 +105,8 @@ def build_graph(entities, events):
 
     verb = {"PersonBorn": ("person", "place", "born_at"),
             "PersonDied": ("person", "place", "died_at"),
-            "TerritoryGranted": ("grantee", "territory", "granted")}
+            "TerritoryGranted": ("grantee", "territory", "granted"),
+            "LandAcquired": ("owner", "land", "acquired")}
     for ev in events:
         if ev.type in verb:
             src_k, dst_k, rel = verb[ev.type]
@@ -113,6 +114,9 @@ def build_graph(entities, events):
         if ev.type == "Migration":
             for s in ev.payload["subjects"]:           # deduped per (person, place)
                 edges.add((s, ev.payload["to"], "traveled_to"))
+        if ev.type == "Occurrence" and ev.payload.get("place"):
+            for p in ev.payload.get("participants", []):   # escape-hatch events still enter the graph
+                edges.add((p, ev.payload["place"], "present_at"))
 
     return {
         "nodes": nodes,

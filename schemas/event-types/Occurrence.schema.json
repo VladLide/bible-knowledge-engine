@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:Occurrence",
+  "title": "Occurrence",
+  "description": "Escape hatch: a real, cited historical event that changes no tracked world state (a binding, blessing, deliverance, rename, dream, famine, birth of a nation…). It produces NO map delta, but is recorded so it lives in the timeline and knowledge graph. `kind` is a short controlled tag; graduate a kind to its own typed event once it recurs (~3x) and earns a reducer.",
+  "type": "object",
+  "properties": {
+    "kind": { "type": "string", "pattern": "^[a-z][a-z_]*$" },
+    "participants": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+    },
+    "place": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" }
+  },
+  "required": ["kind"],
+  "anyOf": [
+    { "required": ["participants"] },
+    { "required": ["place"] }
+  ]
+}

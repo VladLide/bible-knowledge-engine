@@ -54,8 +54,12 @@ Registered event types and their payloads (see `schemas/event-types/`):
 | `PersonBorn` | `person`, `place`, opt `parents[]` | person alive, located at place |
 | `PersonDied` | `person`, `place` | person dead, located at place |
 | `Migration` | `subjects[]`, `from`, `to` | each living subject → `to` |
+| `Marriage` | `spouses[2]`, opt `place` | each spouse's `spouse` = the other |
 | `CovenantMade` | `parties[]`, opt `place`, `name` | records covenant on parties |
 | `TerritoryGranted` | `territory`, `grantee` | region becomes active, held by grantee |
+| `CityDestroyed` | `city`, opt `agent` | place's `destroyed` = true |
+| `LandAcquired` | `land`, `owner`, opt `from` | place's `owner` = acquirer |
+| `Occurrence` | `kind`, `participants[]` and/or `place` | **none** (escape hatch — see below) |
 
 Immutable person relations: `father_of` / `mother_of` / `married_to` (lists),
 `father` / `mother` (scalar). Every target must resolve to a real entity.
@@ -64,9 +68,31 @@ because their birth isn't modelled (so `PersonDied`/`Migration` don't fail).
 
 ## Workflow
 
-### 1. Read the source and list the facts
-Extract only what the source actually states. For each fact note: who/what,
-where, when, relationships, and the exact citation (book chapter:verse).
+### 1. Build the coverage ledger — extract *everything*, then decide
+
+The failure mode this step exists to kill: silently dropping events because they
+don't move a token on the map. **Knowledge-event ≠ map-delta.** A binding, a
+blessing, a purchase, a rename, a city's fall all belong in the knowledge base
+even when they change no tracked world state. Extract them all; the reducer
+decides which produce a map delta, the rest still live in the graph and timeline.
+
+Go through the passage **unit by unit** (pericope, or verse-range) and write a
+ledger — one row per candidate fact, nothing skipped implicitly:
+
+```
+verse(s) | who / what happens | → decision
+Gen 22:1-19 | God tests Abraham; he binds Isaac on Moriah | Occurrence(kind: binding) @ moriah
+Gen 23:1-20 | Abraham buys the cave of Machpelah from Ephron | LandAcquired(machpelah, abraham, from: ephron)
+Gen 24:29   | Laban, Rebekah's brother, is named          | entity person.laban (+ relation), no event
+Gen 24:1-27 | the servant's oath and the sign at the well  | NOT-EVENT (narrative detail, no world fact)
+```
+
+Every row ends in exactly one decision: **a typed event**, an **`Occurrence`**
+(escape hatch), a **new entity/relation**, **DEFER(reason)**, or
+**NOT-EVENT(reason)**. A skip is only legitimate if it's a *written* row with a
+reason. Also enumerate every **named person and place** and every **relationship**
+stated in the passage — those are data too (this is how Laban and Ishmael's birth
+got missed before). Keep the ledger; it goes in the PR as the coverage record.
 
 ### 2. Inventory what exists — never duplicate
 ```
@@ -81,15 +107,24 @@ Reuse existing IDs. New IDs must be unique and follow the naming pattern.
 - A change in the world (birth, death, move, covenant, grant, …) → a typed event.
 - A timeless relation (X is father of Y) → an immutable attribute on the entity.
 
-### 4. Choosing an event type
-- **Fits a registered type** → use it.
-- **Doesn't fit** → prefer adding a *new typed event* (it keeps data declarative):
-  create `schemas/event-types/<Type>.schema.json`, a handler class in
-  `compiler/events.py` (`persons`, `check`, `reduce`, `deps`) + `REGISTRY` entry,
-  and one test. **This is code, not just data — call it out to the user.**
-  Rule of three: a one-off oddity can wait; a pattern seen ~3× earns a type.
-- Never invent a new payload field on an existing type to smuggle in a different
-  meaning.
+### 4. Choosing an event type — nothing gets dropped
+Decide in this order:
+1. **Fits a registered type** → use it.
+2. **Doesn't fit, but it changes tracked world state** (a person's life/location/
+   spouse, a territory, a place's `destroyed`/`owner`) → add a *new typed event*:
+   `schemas/event-types/<Type>.schema.json`, a handler in `compiler/events.py`
+   (`persons`, `check`, `reduce`, `deps`) + `REGISTRY` entry, and one test.
+   **This is code, not just data — call it out to the user.** Rule of three: a
+   one-off can wait, a pattern seen ~3× earns a type.
+3. **Doesn't fit and changes no tracked state** → `Occurrence` with a short
+   `kind` (`binding`, `blessing`, `deliverance`, `rename`, `dream`, `famine`…).
+   This is the escape hatch: it produces no map delta but keeps the fact in the
+   timeline and graph. **Never DEFER a real, cited event to nothing — an
+   `Occurrence` is always available.** When a `kind` recurs ~3× and clearly wants
+   a reducer, graduate it to its own typed event (step 2).
+
+Never invent a new payload field on an existing type to smuggle in a different
+meaning.
 
 ### 5. Write the YAML
 - Entities: `id`, `type`, opt `subtype`, opt `geometry`, opt `immutable:` block.
@@ -135,6 +170,8 @@ was added and the sources, and open a PR for review. Scholarly claims are the
 user's to approve — present, don't merge silently.
 
 ## Definition of done
+- [ ] **coverage:** every verse-range of the source is a row in the ledger — mapped
+      to an event/entity or explicitly DEFER/NOT-EVENT with a reason (no silent skips)
 - [ ] `compiler check` passes (default **and** every declared model)
 - [ ] `tests/test_slice.py` passes
 - [ ] every new entity has uk/en/he labels; every new place has geometry

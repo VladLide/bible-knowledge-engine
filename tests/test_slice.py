@@ -211,6 +211,68 @@ def test_detects_dependency_cycle():
     assert any("cycle" in e for e in errors), errors
 
 
+def _place_ent(id, subtype="city"):
+    return Entity(id, "place", subtype, None, {})
+
+
+def test_city_destroyed():
+    entities = {"place.sodom": _place_ent("place.sodom")}
+    ev = _ev("event.d", "CityDestroyed", {"edtf": "-2000"}, city="place.sodom")
+    state, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert not errors, errors
+    assert state["places"]["place.sodom"]["destroyed"] is True
+
+
+def test_land_acquired():
+    entities = {"person.abraham": _ent("person.abraham", presumed_existing=True),
+                "place.machpelah": _place_ent("place.machpelah", "field")}
+    ev = _ev("event.buy", "LandAcquired", {"edtf": "-2000"},
+             land="place.machpelah", owner="person.abraham")
+    state, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert not errors, errors
+    assert state["places"]["place.machpelah"]["owner"] == "person.abraham"
+
+
+def test_rejects_land_acquired_by_unborn():
+    entities = {"person.x": _ent("person.x"),                 # never born, not presumed
+                "place.machpelah": _place_ent("place.machpelah", "field")}
+    ev = _ev("event.buy", "LandAcquired", {"edtf": "-2000"},
+             land="place.machpelah", owner="person.x")
+    _, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert any("not alive" in e for e in errors), errors
+
+
+def test_occurrence_changes_no_state():
+    """Escape-hatch event is recorded but touches no tracked world state."""
+    entities = {"person.a": _ent("person.a", presumed_existing=True),
+                "place.moriah": _place_ent("place.moriah", "mountain")}
+    before = initial_state(entities)
+    ev = _ev("event.akedah", "Occurrence", {"edtf": "-2000"}, kind="binding",
+             participants=["person.a"], place="place.moriah")
+    state, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert not errors, errors
+    assert state["persons"] == before["persons"]
+    assert state["places"] == before["places"]
+
+
+def test_rejects_occurrence_with_unborn_participant():
+    entities = {"person.x": _ent("person.x")}                 # never born
+    ev = _ev("event.o", "Occurrence", {"edtf": "-2000"},
+             kind="blessing", participants=["person.x"])
+    _, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert any("not alive" in e for e in errors), errors
+
+
+def test_occurrence_enters_graph():
+    """A stateless Occurrence still contributes a participant→place edge."""
+    from compiler.site import build_graph
+    entities = {"person.a": _ent("person.a"), "place.moriah": _place_ent("place.moriah", "mountain")}
+    ev = _ev("event.akedah", "Occurrence", {"edtf": "-2000"}, kind="binding",
+             participants=["person.a"], place="place.moriah")
+    edges = {(e["source"], e["rel"], e["target"]) for e in build_graph(entities, [ev])["edges"]}
+    assert ("person.a", "present_at", "place.moriah") in edges
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0

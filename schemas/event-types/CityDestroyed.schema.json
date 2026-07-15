@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:CityDestroyed",
+  "title": "CityDestroyed",
+  "description": "A settlement ceases to stand (razed, overthrown, abandoned). Reducer: the place's `destroyed` flag becomes true. `agent`, if named, is who did it.",
+  "type": "object",
+  "properties": {
+    "city": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" },
+    "agent": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+  },
+  "required": ["city"]
+}
