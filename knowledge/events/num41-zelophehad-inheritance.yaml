@@ -1,0 +1,11 @@
+id: event.zelophehad-inheritance
+type: Occurrence
+# Num 27:1-11; 36 — Zelophehad's daughters ask for their father's inheritance; the
+# LORD grants it and establishes the law of daughters' inheritance (they must marry
+# within their tribe, Num 36).
+time: { edtf: "-1406" }
+kind: inheritance
+participants: [person.mahlah, person.noah-daughter, person.hoglah, person.milcah-daughter, person.tirzah]
+place: place.moab
+confidence: tradition
+sources: [reference.numbers.27.7]

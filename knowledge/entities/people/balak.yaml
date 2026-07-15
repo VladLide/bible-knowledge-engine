@@ -1,0 +1,6 @@
+id: person.balak
+type: person
+# King of Moab who hired Balaam (Num 22:4).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.22.4]

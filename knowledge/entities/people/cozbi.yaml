@@ -1,0 +1,6 @@
+id: person.cozbi
+type: person
+# A Midianite woman, daughter of Zur, slain with Zimri (Num 25:15).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.25.15]

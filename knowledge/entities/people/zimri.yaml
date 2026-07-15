@@ -1,0 +1,6 @@
+id: person.zimri
+type: person
+# A Simeonite chief slain by Phinehas at Peor (Num 25:14).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.25.14]

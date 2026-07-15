@@ -1,0 +1,10 @@
+id: event.aaron-died
+type: PersonDied
+# Num 20:23-29 — on Mount Hor Aaron's garments are put on Eleazar, and Aaron dies
+# there at 123; Israel mourns him thirty days. Eleazar becomes high priest.
+time: { edtf: "-1407" }
+person: person.aaron
+place: place.mount-hor
+confidence: tradition
+requires: [event.kadesh-to-mount-hor]
+sources: [reference.numbers.20.28]

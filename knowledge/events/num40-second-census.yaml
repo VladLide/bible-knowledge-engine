@@ -1,0 +1,11 @@
+id: event.second-census
+type: Occurrence
+# Num 26 — on the plains of Moab a new census of the generation born in the
+# wilderness: 601,730 men of war; none remain of those numbered at Sinai except
+# Caleb and Joshua.
+time: { edtf: "-1406" }
+kind: census
+participants: [person.moses, person.eleazar]
+place: place.moab
+confidence: tradition
+sources: [reference.numbers.26.51]

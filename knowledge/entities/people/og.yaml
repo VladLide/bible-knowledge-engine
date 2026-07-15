@@ -1,0 +1,6 @@
+id: person.og
+type: person
+# King of Bashan (Num 21:33).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.21.33]

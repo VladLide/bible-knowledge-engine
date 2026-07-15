@@ -1,0 +1,10 @@
+id: event.offerings-and-vows-law
+type: Occurrence
+# Num 28-30 — the calendar of daily, Sabbath, monthly, and festival offerings, and
+# the law of vows, especially women's vows.
+time: { edtf: "-1406" }
+kind: law
+participants: [person.moses]
+place: place.moab
+confidence: tradition
+sources: [reference.numbers.28.2]

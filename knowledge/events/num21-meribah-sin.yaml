@@ -1,0 +1,11 @@
+id: event.meribah-sin
+type: Occurrence
+# Num 20:2-13 — at the waters of Meribah Moses strikes the rock twice instead of
+# speaking to it; for failing to hallow the LORD, he and Aaron are barred from
+# bringing Israel into the land.
+time: { edtf: "-1407" }
+kind: sin
+participants: [person.moses, person.aaron]
+place: place.kadesh
+confidence: tradition
+sources: [reference.numbers.20.12]

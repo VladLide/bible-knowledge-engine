@@ -1,0 +1,7 @@
+id: person.zelophehad
+type: person
+# Of the tribe of Manasseh; died in the wilderness leaving only daughters, whose
+# petition set the law that daughters inherit when there is no son (Num 27:1-11).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.27.1]
