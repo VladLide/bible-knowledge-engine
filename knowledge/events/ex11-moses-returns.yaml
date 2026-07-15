@@ -1,0 +1,11 @@
+id: event.moses-returns-to-egypt
+type: Migration
+# Ex 4:18-20 — Moses returns from Midian to Egypt with his staff; Aaron meets him
+# at the mountain of God.
+time: { edtf: "-1446" }
+subjects: [person.moses]
+from: place.midian
+to: place.egypt
+confidence: tradition
+requires: [event.burning-bush]
+sources: [reference.exodus.4.20]

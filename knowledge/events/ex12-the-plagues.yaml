@@ -1,0 +1,12 @@
+id: event.the-plagues
+type: Occurrence
+# Ex 7-11 — the ten plagues upon Egypt (blood, frogs, gnats, flies, livestock,
+# boils, hail, locusts, darkness, and the death of the firstborn) as Pharaoh
+# repeatedly hardens his heart.
+time: { edtf: "-1446" }
+kind: plague
+participants: [person.moses, person.aaron, person.pharaoh-exodus]
+place: place.egypt
+confidence: tradition
+requires: [event.moses-returns-to-egypt]
+sources: [reference.exodus.7.14]

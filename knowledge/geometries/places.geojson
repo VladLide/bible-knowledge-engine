@@ -386,6 +386,34 @@
           28.5
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.sinai",
+      "properties": {
+        "name_id": "place.sinai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.975,
+          28.54
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.red-sea",
+      "properties": {
+        "name_id": "place.red-sea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.55,
+          30.0
+        ]
+      }
     }
   ]
 }
