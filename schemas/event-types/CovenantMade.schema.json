@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:CovenantMade",
+  "title": "CovenantMade",
+  "description": "A covenant is established with one or more parties. Reducer: records a covenant on each living party.",
+  "type": "object",
+  "properties": {
+    "parties": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+    },
+    "place": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" },
+    "name": { "type": "string" }
+  },
+  "required": ["parties"]
+}

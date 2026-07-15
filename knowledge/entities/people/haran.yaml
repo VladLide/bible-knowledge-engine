@@ -1,0 +1,8 @@
+# NOTE: person.haran (Abraham's brother, Lot's father) is a DIFFERENT object
+# from place.haran (the city). Stable language-independent IDs make the
+# collision a non-issue — this is exactly why free-text names are banned.
+id: person.haran
+type: person
+immutable:
+  presumed_existing: true
+  father_of: [person.lot]

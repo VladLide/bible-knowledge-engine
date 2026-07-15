@@ -1,0 +1,9 @@
+id: event.abraham-died
+type: PersonDied
+time:
+  edtf: "-1991?"
+person: person.abraham
+place: place.hebron
+confidence: tradition
+sources:
+  - reference.genesis.25.8

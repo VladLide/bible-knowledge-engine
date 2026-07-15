@@ -1,0 +1,18 @@
+# Reference versification — Protestant canon.
+# This is the CANONICAL versification for reference IDs (reference.<book>.<ch>.<v>).
+# IDs are forever, so this scheme is fixed. Other canons (catholic/orthodox/lxx)
+# will live beside this file and map their numbering onto these IDs.
+#
+# Only chapters actually cited by current data are listed. Citing an unlisted
+# chapter/verse is a build error (proves reference validation). Extend as data grows.
+id: canon.protestant
+books:
+  genesis:
+    # chapter: verse_count
+    11: 32
+    12: 20
+    13: 18
+    15: 21
+    21: 34
+    23: 20
+    25: 34

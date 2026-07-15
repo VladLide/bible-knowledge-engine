@@ -1,0 +1,8 @@
+id: person.abraham
+type: person
+subtype: patriarch
+# Renamed Abram -> Abraham (Gen 17). The id is stable regardless; the rename
+# is a fact for a future PersonRenamed event, not an entity attribute.
+immutable:
+  father_of: [person.isaac]
+  married_to: [person.sarah]

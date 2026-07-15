@@ -1,0 +1,9 @@
+id: event.sarah-died
+type: PersonDied
+time:
+  edtf: "-2029?"
+person: person.sarah
+place: place.hebron
+confidence: tradition
+sources:
+  - reference.genesis.23.2

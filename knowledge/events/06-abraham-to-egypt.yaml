@@ -1,0 +1,10 @@
+id: event.abraham-to-egypt
+type: Migration
+time:
+  edtf: "-2090?"
+subjects: [person.abraham, person.sarah, person.lot]
+from: place.shechem
+to: place.egypt
+confidence: possible
+sources:
+  - reference.genesis.12.10

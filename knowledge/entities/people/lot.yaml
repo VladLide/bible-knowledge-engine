@@ -1,0 +1,5 @@
+id: person.lot
+type: person
+immutable:
+  presumed_existing: true
+  father: person.haran

@@ -1,0 +1,11 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "id": "geometry.ur",      "properties": { "name_id": "place.ur" },      "geometry": { "type": "Point", "coordinates": [46.1030, 30.9626] } },
+    { "type": "Feature", "id": "geometry.haran",   "properties": { "name_id": "place.haran" },   "geometry": { "type": "Point", "coordinates": [39.0306, 36.8639] } },
+    { "type": "Feature", "id": "geometry.canaan",  "properties": { "name_id": "place.canaan" },  "geometry": { "type": "Point", "coordinates": [35.2800, 32.2100] } },
+    { "type": "Feature", "id": "geometry.shechem", "properties": { "name_id": "place.shechem" }, "geometry": { "type": "Point", "coordinates": [35.2810, 32.2137] } },
+    { "type": "Feature", "id": "geometry.hebron",  "properties": { "name_id": "place.hebron" },  "geometry": { "type": "Point", "coordinates": [35.0998, 31.5326] } },
+    { "type": "Feature", "id": "geometry.egypt",   "properties": { "name_id": "place.egypt" },   "geometry": { "type": "Point", "coordinates": [31.2000, 30.0000] } }
+  ]
+}

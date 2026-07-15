@@ -1,0 +1,4 @@
+id: place.hebron
+type: place
+subtype: city
+geometry: geometry.hebron

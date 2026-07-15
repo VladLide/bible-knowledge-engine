@@ -1,0 +1,4 @@
+id: person.nahor
+type: person
+immutable:
+  presumed_existing: true

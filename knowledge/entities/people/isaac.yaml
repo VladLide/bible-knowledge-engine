@@ -1,0 +1,6 @@
+id: person.isaac
+type: person
+subtype: patriarch
+immutable:
+  father: person.abraham
+  mother: person.sarah

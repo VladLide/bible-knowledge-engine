@@ -1,0 +1,10 @@
+id: event.isaac-born
+type: PersonBorn
+time:
+  edtf: "-2066?"
+person: person.isaac
+place: place.hebron
+parents: [person.abraham, person.sarah]
+confidence: tradition
+sources:
+  - reference.genesis.21.2

@@ -1,0 +1,15 @@
+id: event.abraham-born
+type: PersonBorn
+# Per-model dating: the same event, different chronologies. Timeline resolves
+# by chosen model (default: conservative). Events with a single `edtf` apply to all.
+time:
+  variants:
+    - model: conservative
+      edtf: "-2166?"
+    - model: critical
+      edtf: "-2130?"
+person: person.abraham
+place: place.ur
+confidence: tradition
+sources:
+  - reference.genesis.11.26

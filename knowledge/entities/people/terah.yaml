@@ -1,0 +1,8 @@
+id: person.terah
+type: person
+subtype: patriarch
+immutable:
+  # We don't model his birth; treat as existing from timeline start so PersonDied
+  # for him doesn't fail the "must have existed" constraint. Honest to the data.
+  presumed_existing: true
+  father_of: [person.abraham, person.nahor, person.haran]

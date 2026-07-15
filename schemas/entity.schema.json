@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:entity",
+  "title": "Entity",
+  "description": "An immutable object in the biblical world. Carries no historical state — state is derived from events.",
+  "type": "object",
+  "required": ["id", "type"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^(person|place|group|work|geometry|period)\\.[a-z0-9_-]+$"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["person", "place", "group", "work", "geometry", "period"]
+    },
+    "subtype": { "type": "string" },
+    "geometry": { "type": "string", "pattern": "^geometry\\.[a-z0-9_-]+$" },
+    "immutable": {
+      "type": "object",
+      "description": "Timeless attributes only. No dates, no status, no location.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

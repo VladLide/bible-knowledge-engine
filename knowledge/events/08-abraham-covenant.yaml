@@ -1,0 +1,10 @@
+id: event.abraham-covenant
+type: CovenantMade
+time:
+  edtf: "-2081?"
+parties: [person.abraham]
+place: place.hebron
+name: abrahamic
+confidence: tradition
+sources:
+  - reference.genesis.15.6

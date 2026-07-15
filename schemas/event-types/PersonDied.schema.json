@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:PersonDied",
+  "title": "PersonDied",
+  "description": "A person ceases to exist, at a place. Reducer: person.alive=false, location=place. Requires prior existence.",
+  "type": "object",
+  "properties": {
+    "person": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" },
+    "place": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" }
+  },
+  "required": ["person", "place"]
+}
