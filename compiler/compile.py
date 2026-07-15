@@ -371,6 +371,13 @@ def main(argv):
               f"{len(result['entities'])} entities → {out.relative_to(ROOT)}")
         return 0
 
+    if cmd == "site":
+        compile_all(model=model, strict=True)          # never emit invalid data
+        from .site import build_site_data
+        out = build_site_data(model=model)
+        print(f"OK — site data → {out.relative_to(ROOT)}")
+        return 0
+
     if cmd == "state":
         year = int(argv[1])
         result = compile_all(model=model, strict=True)

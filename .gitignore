@@ -4,3 +4,6 @@
 .venv/
 __pycache__/
 *.pyc
+
+# Generated site data — produced by `python -m compiler site`, deployed by CI
+/site/data/

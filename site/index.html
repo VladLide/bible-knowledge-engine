@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bible Knowledge Engine — Abraham</title>
+  <link rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside id="panel">
+    <h1>Bible Knowledge Engine</h1>
+    <p class="sub">The Abraham vertical slice — one canonical model, rendered as a map projection.</p>
+
+    <div class="readout">
+      <div class="year" id="year">—</div>
+      <div class="event" id="event-label">Move the slider to begin.</div>
+    </div>
+
+    <div class="row">
+      <label>Language
+        <select id="lang"><option value="en">English</option>
+          <option value="uk">Українська</option><option value="he">עברית</option></select>
+      </label>
+    </div>
+
+    <ul id="people" class="people"></ul>
+
+    <div class="legend">
+      <span><i class="dot alive"></i>alive</span>
+      <span><i class="dot dead"></i>dead</span>
+      <span><i class="dot route"></i>journey</span>
+    </div>
+    <p class="foot">Data is precompiled by the BKE compiler. The browser applies
+      state deltas — it never re-interprets events.</p>
+  </aside>
+
+  <main>
+    <div id="map"></div>
+    <div id="controls">
+      <button id="prev" title="Previous">◀</button>
+      <button id="play" title="Play">▶</button>
+      <button id="next" title="Next">▶▶</button>
+      <input type="range" id="slider" min="0" max="0" value="0" step="1">
+      <span id="counter" class="counter">0 / 0</span>
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+  <script src="app.js"></script>
+</body>
+</html>
