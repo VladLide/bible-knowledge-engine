@@ -1,0 +1,10 @@
+id: event.abihu-died
+type: PersonDied
+# Lev 10:1-2 — Abihu, with his brother Nadab, offers strange fire and is consumed;
+# Eleazar and Ithamar remain to serve as priests.
+time: { edtf: "-1445" }
+person: person.abihu
+place: place.sinai
+confidence: tradition
+requires: [event.priests-ordained]
+sources: [reference.leviticus.10.2]
