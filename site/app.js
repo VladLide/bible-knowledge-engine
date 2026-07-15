@@ -4,7 +4,7 @@
 // Event type/payload is used only to decide how to *animate* a change.
 
 const state = { timeline: null, labels: null, coords: {}, lang: 'en',
-                idx: 0, tokens: {}, playing: null };
+                idx: 0, tokens: {}, placeMarkers: {}, playing: null };
 
 const map = L.map('map', { zoomControl: true, minZoom: 4, maxZoom: 10 })
   .setView([33.5, 40], 5);
@@ -145,9 +145,9 @@ Promise.all([
     const [lon, lat] = feat.geometry.coordinates;
     const pid = feat.properties.name_id;
     state.coords[pid] = [lat, lon];
-    L.circleMarker([lat, lon], { radius: 3, color: '#8a93a0', weight: 1,
-      fillColor: '#8a93a0', fillOpacity: 0.6 })
-      .bindTooltip(() => label(pid), { permanent: true, direction: 'right',
+    state.placeMarkers[pid] = L.circleMarker([lat, lon], { radius: 3, color: '#8a93a0',
+      weight: 1, fillColor: '#8a93a0', fillOpacity: 0.6 })
+      .bindTooltip(label(pid), { permanent: true, direction: 'right',
         className: 'place-label', offset: [6, 0] }).addTo(map);
   }
 
@@ -157,7 +157,12 @@ Promise.all([
   document.getElementById('prev').onclick = () => { stop(); go(state.idx - 1, true); };
   document.getElementById('next').onclick = () => { stop(); go(state.idx + 1, true); };
   document.getElementById('play').onclick = play;
-  document.getElementById('lang').onchange = e => { state.lang = e.target.value; render(state.idx, false); };
+  document.getElementById('lang').onchange = e => {
+    state.lang = e.target.value;
+    // permanent place tooltips are cached by Leaflet — update them explicitly
+    for (const [pid, m] of Object.entries(state.placeMarkers)) m.setTooltipContent(label(pid));
+    render(state.idx, false);  // panel roster + person tooltips + readout
+  };
 
   render(0, false);
 });
