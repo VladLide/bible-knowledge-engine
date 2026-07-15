@@ -1,0 +1,14 @@
+id: event.creation-day1
+type: CreationAct
+# Gen 1:1-5. "In the beginning God created the heavens and the earth" frames the
+# week (a merism realized across days 2-3); day 1 itself: light, separated from
+# darkness, named day and night. Light is not an individuated entity → kinds.
+# Date: -4004 (Ussher); all six days share the year, filename prefix orders them.
+time:
+  edtf: "-4004"
+day: 1
+kinds: [light]
+confidence: tradition
+sources:
+  - reference.genesis.1.1
+  - reference.genesis.1.3

@@ -1,0 +1,7 @@
+id: person.mankind
+type: person
+subtype: humanity
+# Humankind, created male and female in God's image — Gen 1:27. A collective
+# origin node; the individuals Adam & Eve enter with Gen 2-3.
+sources:
+  - reference.genesis.1.27

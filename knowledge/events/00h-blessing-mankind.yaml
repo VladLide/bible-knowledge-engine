@@ -1,0 +1,12 @@
+id: event.blessing-mankind
+type: Occurrence
+# Gen 1:28. God blesses mankind: be fruitful, multiply, fill the earth and have
+# dominion. Follows the creation of mankind on day 6.
+time:
+  edtf: "-4004"
+kind: blessing
+participants: [person.mankind]
+confidence: tradition
+requires: [event.creation-day6]
+sources:
+  - reference.genesis.1.28

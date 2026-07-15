@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:CreationAct",
+  "title": "CreationAct",
+  "description": "Genesis 1 creation week: God brings things into existence. `creates` lists the cosmic entities individuated as such (heavens, earth, seas, luminaries, mankind) — a place becomes `created`, a person (mankind) becomes alive. `kinds` lists categories of created life NOT tracked as individual entities (light, vegetation, birds, land_animals…); like an Occurrence tag it has no reducer effect. `day` (1-6) is the ordinal day of the week. At least one of `creates`/`kinds` is required.",
+  "type": "object",
+  "properties": {
+    "creates": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^(place|person)\\.[a-z0-9_-]+$" }
+    },
+    "kinds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z][a-z_]*$" }
+    },
+    "day": { "type": "integer", "minimum": 1, "maximum": 6 }
+  },
+  "anyOf": [
+    { "required": ["creates"] },
+    { "required": ["kinds"] }
+  ]
+}

@@ -1,0 +1,9 @@
+id: place.earth
+type: place
+subtype: cosmos
+# The dry land, named "earth" — Gen 1:9-10. Before the flood the waters were
+# gathered to one place and the land was one mass; that united landmass is the
+# geometry here (valid until the flood). See geometry.earth-preflood.
+geometry: geometry.earth-preflood
+sources:
+  - reference.genesis.1.10
