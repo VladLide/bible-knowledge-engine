@@ -65,10 +65,7 @@ document.getElementById('lang').onchange = e => {
   g.nodes.update(buildNodes());   // relabel nodes in the new language
 };
 
-Promise.all([
-  fetch('data/graph.json').then(r => r.json()),
-  fetch('data/labels.json').then(r => r.json()),
-]).then(([graph, labels]) => {
+window.bkeLoad().then(({ graph, labels }) => {
   g.graph = graph; g.labels = labels;
   boot();
   window.__bkeGraph = g;   // debug/test hook

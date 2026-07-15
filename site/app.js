@@ -171,11 +171,7 @@ function stop() {
 }
 
 // ---- boot ----
-Promise.all([
-  fetch('data/timeline.json').then(r => r.json()),
-  fetch('data/labels.json').then(r => r.json()),
-  fetch('data/places.geojson').then(r => r.json()),
-]).then(([timeline, labels, geo]) => {
+window.bkeLoad().then(({ timeline, labels, geo }) => {
   state.timeline = timeline; state.labels = labels;
 
   for (const feat of geo.features) {

@@ -18,15 +18,27 @@ when a file actually gets heavy, not before.
 from __future__ import annotations
 import copy
 import json
-import shutil
+import os
 
 from .compile import (
-    ROOT, KNOW, load_entities, load_events, load_translations,
+    ROOT, KNOW, SCHEMA_VERSION, load_entities, load_events, load_translations,
     ordered_events, initial_state,
 )
 from .events import REGISTRY
 
-SITE_DATA = ROOT / "site" / "data"
+# The published data API (repo A's GitHub Pages root). Versioned so a breaking
+# schema change becomes /v2 without disturbing /v1 consumers.
+DIST = ROOT / "public" / "v1"
+
+# Years per timeline chunk. The format supports arbitrarily many chunks; we emit
+# only those the data fills. Clients load chunks via the manifest, so growing to
+# 100k events across hundreds of chunks needs no client change — only lazy
+# per-era loading, which is a client optimisation for when chunk count is large.
+ERA_SIZE = 1000
+
+
+def _era_bucket(year) -> int:
+    return (int(year) // ERA_SIZE) * ERA_SIZE
 
 
 NAMESPACES = ("persons", "territories")
@@ -105,26 +117,81 @@ def build_graph(entities, events):
     }
 
 
+def _write(rel: str, obj) -> None:
+    path = DIST / rel
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def build_site_data(model="conservative"):
+    """Emit the versioned, chunk-ready data API into public/v1/.
+
+    Layout (all listed by manifest.json — the single entry point clients read):
+        manifest.json
+        timeline/initial.json      world state before any event
+        timeline/<era>.json         per-era frame chunks (deltas)
+        graph.json  places.geojson  labels.json
+    """
     entities = load_entities()
     events = load_events()
     translations = load_translations()
+    tl = build_timeline(events, entities, model)   # {model, years, initial, frames}
 
-    SITE_DATA.mkdir(parents=True, exist_ok=True)
-    (SITE_DATA / "timeline.json").write_text(
-        json.dumps(build_timeline(events, entities, model), ensure_ascii=False, indent=2),
-        encoding="utf-8")
-    (SITE_DATA / "labels.json").write_text(
-        json.dumps(translations, ensure_ascii=False, indent=2), encoding="utf-8")
-    (SITE_DATA / "graph.json").write_text(
-        json.dumps(build_graph(entities, events), ensure_ascii=False, indent=2), encoding="utf-8")
+    _write("timeline/initial.json", tl["initial"])
+    eras_by_bucket: dict[int, list] = {}
+    for f in tl["frames"]:
+        eras_by_bucket.setdefault(_era_bucket(f["year"]), []).append(f)
+    eras = []
+    for bucket in sorted(eras_by_bucket):
+        rel = f"timeline/{bucket}.json"
+        _write(rel, eras_by_bucket[bucket])
+        eras.append({"from": bucket, "to": bucket + ERA_SIZE, "file": rel})
 
-    # geometry layer: concatenate every .geojson into one FeatureCollection
+    _write("graph.json", build_graph(entities, events))
+    _write("labels.json", translations)
+
     features = []
     for path in sorted((KNOW / "geometries").glob("*.geojson")):
         features += json.loads(path.read_text(encoding="utf-8")).get("features", [])
-    (SITE_DATA / "places.geojson").write_text(
-        json.dumps({"type": "FeatureCollection", "features": features},
-                   ensure_ascii=False, indent=2), encoding="utf-8")
+    _write("places.geojson", {"type": "FeatureCollection", "features": features})
 
-    return SITE_DATA
+    manifest = {
+        "schema_version": SCHEMA_VERSION,
+        "model": model,
+        "years": tl["years"],
+        "timeline": {"initial": "timeline/initial.json", "eras": eras},
+        "graph": "graph.json",
+        "geometry": "places.geojson",
+        "labels": "labels.json",
+    }
+    rev = os.environ.get("BKE_BUILD_REV")   # CI stamps the commit; absent → deterministic
+    if rev:
+        manifest["rev"] = rev
+    _write("manifest.json", manifest)
+
+    # landing page at the API root, so a bare visit to repo A's Pages is informative
+    (DIST.parent / "index.html").write_text(_LANDING, encoding="utf-8")
+    return DIST
+
+
+_LANDING = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bible Knowledge Engine — Data API</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:44rem;margin:3rem auto;padding:0 1rem;
+background:#14171c;color:#e8e6e1}a{color:#4a9eff}code{background:#232833;padding:.1em .3em;border-radius:4px}
+h1{font-size:1.5rem}li{margin:.3rem 0}</style></head><body>
+<h1>Bible Knowledge Engine — Data API</h1>
+<p>Canonical, precompiled data for the Bible Knowledge Engine: a static,
+versioned, CORS-enabled JSON API. Any application may consume it — the web app
+below is just one client.</p>
+<ul>
+<li>Entry point: <a href="v1/manifest.json"><code>v1/manifest.json</code></a> — read it first, then fetch the artifacts it lists.</li>
+<li>Web app (map · timeline · knowledge graph): <a href="https://vladlide.github.io/bke-web/">bke-web</a></li>
+<li>Source &amp; documentation: <a href="https://github.com/VladLide/bible-knowledge-engine">GitHub</a></li>
+</ul>
+<p>The data is generated from canonical YAML by the compiler; nothing here is
+hand-edited. Breaking schema changes move to <code>/v2</code>, leaving
+<code>/v1</code> stable for existing consumers.</p>
+</body></html>
+"""
