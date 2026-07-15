@@ -1,0 +1,8 @@
+id: event.jacob-died
+type: PersonDied
+# Gen 49:33 — Jacob draws up his feet and dies in Egypt, aged 147. -1859.
+time: { edtf: "-1859" }
+person: person.jacob
+place: place.goshen
+confidence: tradition
+sources: [reference.genesis.49.33]

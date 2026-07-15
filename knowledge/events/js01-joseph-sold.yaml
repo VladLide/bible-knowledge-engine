@@ -1,0 +1,10 @@
+id: event.joseph-sold
+type: Occurrence
+# Gen 37:18-28 — Joseph's brothers, resenting his dreams, strip him and sell him to
+# passing Ishmaelite/Midianite traders bound for Egypt; Jacob is told he is dead.
+time: { edtf: "-1898?" }
+kind: betrayal
+participants: [person.joseph, person.judah, person.reuben]
+place: place.shechem
+confidence: tradition
+sources: [reference.genesis.37.28]

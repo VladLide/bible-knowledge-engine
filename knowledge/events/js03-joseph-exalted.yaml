@@ -1,0 +1,11 @@
+id: event.joseph-exalted
+type: Occurrence
+# Gen 41:14-45 — Joseph interprets Pharaoh's dreams of seven plenty and seven
+# famine years and is set over all Egypt as vizier at age 30.
+time: { edtf: "-1885?" }
+kind: exaltation
+participants: [person.joseph, person.pharaoh-joseph]
+place: place.egypt
+confidence: tradition
+requires: [event.joseph-to-egypt]
+sources: [reference.genesis.41.41]

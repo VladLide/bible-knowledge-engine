@@ -1,0 +1,7 @@
+id: place.goshen
+type: place
+subtype: land
+# The land of Goshen in the eastern Nile delta, where Jacob's household settled in
+# Egypt (Gen 46:28-34; 47:27).
+geometry: geometry.goshen
+sources: [reference.genesis.46.28]

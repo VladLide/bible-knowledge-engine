@@ -358,6 +358,20 @@
           31.7
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.goshen",
+      "properties": {
+        "name_id": "place.goshen"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.8,
+          30.8
+        ]
+      }
     }
   ]
 }

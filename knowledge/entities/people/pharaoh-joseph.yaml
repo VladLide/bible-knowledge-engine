@@ -1,0 +1,8 @@
+id: person.pharaoh-joseph
+type: person
+subtype: king
+# The Pharaoh of Joseph's day, who raised him to be vizier over Egypt (Gen 41).
+# "Pharaoh" is a title; this id fixes the individual, distinct from later Pharaohs.
+immutable:
+  presumed_existing: true
+sources: [reference.genesis.41.14]
