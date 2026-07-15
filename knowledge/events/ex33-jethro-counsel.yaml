@@ -1,0 +1,11 @@
+id: event.jethro-counsel
+type: Occurrence
+# Ex 18 — Jethro brings Zipporah and her two sons to Moses, rejoices in the LORD's
+# deliverance, and advises Moses to appoint judges over the people.
+time: { edtf: "-1446" }
+kind: counsel
+participants: [person.moses, person.jethro]
+place: place.rephidim
+confidence: tradition
+requires: [event.israel-to-rephidim]
+sources: [reference.exodus.18.24]

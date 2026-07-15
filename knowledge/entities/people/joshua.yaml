@@ -1,0 +1,8 @@
+id: person.joshua
+type: person
+subtype: prophet
+# Joshua son of Nun, of Ephraim; Moses' minister who led the fight against Amalek
+# (Ex 17:9) and later succeeded Moses.
+immutable:
+  presumed_existing: true
+sources: [reference.exodus.17.9]

@@ -414,6 +414,20 @@
           30.0
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.rephidim",
+      "properties": {
+        "name_id": "place.rephidim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.7,
+          28.75
+        ]
+      }
     }
   ]
 }

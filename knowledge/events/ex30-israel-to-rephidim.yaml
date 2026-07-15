@@ -1,0 +1,12 @@
+id: event.israel-to-rephidim
+type: Migration
+# Ex 15:22 - 17:1 — from the sea Israel journeys through the wilderness (Marah,
+# Elim, the wilderness of Sin) and camps at Rephidim. (Intermediate waypoints
+# deferred.)
+time: { edtf: "-1446" }
+subjects: [person.moses, person.aaron, person.miriam]
+from: place.red-sea
+to: place.rephidim
+confidence: tradition
+requires: [event.red-sea-crossing]
+sources: [reference.exodus.17.1]
