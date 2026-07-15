@@ -1,0 +1,12 @@
+id: event.sinai-covenant
+type: CovenantMade
+# Ex 24:3-8 — Moses reads the Book of the Covenant; the people vow "all that the
+# LORD has spoken we will do"; the covenant is sealed with blood, and Moses goes up
+# into the cloud for forty days.
+time: { edtf: "-1446" }
+parties: [person.moses, person.aaron]
+place: place.sinai
+name: mosaic
+confidence: tradition
+requires: [event.israel-to-sinai]
+sources: [reference.exodus.24.8]

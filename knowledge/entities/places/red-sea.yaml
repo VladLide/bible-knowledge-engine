@@ -1,0 +1,7 @@
+id: place.red-sea
+type: place
+subtype: sea
+# The Red Sea (Yam Suph), which Israel crossed on dry ground while Pharaoh's army
+# was drowned (Ex 14).
+geometry: geometry.red-sea
+sources: [reference.exodus.14.21]

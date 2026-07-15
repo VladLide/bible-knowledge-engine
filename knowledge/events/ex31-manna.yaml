@@ -1,0 +1,11 @@
+id: event.manna-and-quail
+type: Occurrence
+# Ex 16 — in the wilderness the LORD rains bread from heaven (manna) each morning
+# and quail at evening, with a double portion before the Sabbath.
+time: { edtf: "-1446" }
+kind: provision
+participants: [person.moses, person.aaron]
+place: place.rephidim
+confidence: tradition
+requires: [event.israel-to-rephidim]
+sources: [reference.exodus.16.15]

@@ -1,0 +1,10 @@
+id: event.eliezer-born
+type: PersonBorn
+# Ex 18:4 — Moses' second son by Zipporah, born in Midian before the return to
+# Egypt. c. -1483.
+time: { edtf: "-1483?" }
+person: person.eliezer
+place: place.midian
+parents: [person.moses, person.zipporah]
+confidence: tradition
+sources: [reference.exodus.18.4]

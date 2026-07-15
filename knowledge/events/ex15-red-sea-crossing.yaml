@@ -1,0 +1,11 @@
+id: event.red-sea-crossing
+type: Occurrence
+# Ex 14-15 — the LORD divides the sea; Israel passes over on dry ground and the
+# pursuing Egyptian army is drowned. Moses and Miriam sing the song of the sea.
+time: { edtf: "-1446" }
+kind: deliverance
+participants: [person.moses, person.aaron, person.miriam]
+place: place.red-sea
+confidence: tradition
+requires: [event.exodus-from-egypt]
+sources: [reference.exodus.14.27]

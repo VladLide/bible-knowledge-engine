@@ -1,0 +1,9 @@
+id: person.jochebed
+type: person
+# A daughter of Levi (Ex 6:20; Num 26:59), wife of Amram; mother of Aaron, Moses,
+# and Miriam.
+immutable:
+  presumed_existing: true
+  father: person.levi
+  married_to: [person.amram]
+sources: [reference.exodus.6.20]

@@ -1,0 +1,11 @@
+id: event.golden-calf
+type: Occurrence
+# Ex 32 — while Moses delays, the people persuade Aaron to make a golden calf; Moses
+# descends, breaks the tablets, and the Levites rally to him; a plague follows.
+time: { edtf: "-1446" }
+kind: apostasy
+participants: [person.aaron, person.moses]
+place: place.sinai
+confidence: tradition
+requires: [event.tabernacle-instructions]
+sources: [reference.exodus.32.19]

@@ -1,0 +1,11 @@
+id: event.sinai-covenant-renewed
+type: Occurrence
+# Ex 34 — the LORD proclaims his name and mercy, Moses cuts two new tablets, and the
+# covenant is renewed; Moses' face shines as he comes down.
+time: { edtf: "-1446" }
+kind: renewal
+participants: [person.moses]
+place: place.sinai
+confidence: tradition
+requires: [event.golden-calf]
+sources: [reference.exodus.34.10]

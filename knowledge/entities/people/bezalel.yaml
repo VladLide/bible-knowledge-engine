@@ -1,0 +1,8 @@
+id: person.bezalel
+type: person
+# Son of Uri, son of Hur, of Judah; filled with the Spirit of God, chief craftsman
+# of the tabernacle (Ex 31:2-5).
+immutable:
+  presumed_existing: true
+  father: person.uri
+sources: [reference.exodus.31.2]

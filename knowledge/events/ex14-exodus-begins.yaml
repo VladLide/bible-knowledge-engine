@@ -1,0 +1,12 @@
+id: event.exodus-from-egypt
+type: Migration
+# Ex 12:37-42; 13 — Israel goes out from Rameses, about six hundred thousand men
+# besides women and children, after 430 years; God leads them by pillar of cloud
+# and fire toward the sea. (Leaders shown as subjects; the nation moves with them.)
+time: { edtf: "-1446" }
+subjects: [person.moses, person.aaron, person.miriam]
+from: place.goshen
+to: place.red-sea
+confidence: tradition
+requires: [event.passover]
+sources: [reference.exodus.12.37]

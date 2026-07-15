@@ -1,0 +1,7 @@
+id: person.aholiab
+type: person
+# Son of Ahisamach, of Dan; Bezalel's fellow craftsman and skilled weaver of the
+# tabernacle (Ex 31:6).
+immutable:
+  presumed_existing: true
+sources: [reference.exodus.31.6]

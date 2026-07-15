@@ -1,0 +1,11 @@
+id: event.rephidim-water-and-amalek
+type: Occurrence
+# Ex 17 — Moses strikes the rock at Horeb and water flows (Massah and Meribah);
+# Joshua fights Amalek while Aaron and Hur hold up Moses' hands until sunset.
+time: { edtf: "-1446" }
+kind: battle
+participants: [person.moses, person.aaron, person.joshua, person.hur]
+place: place.rephidim
+confidence: tradition
+requires: [event.israel-to-rephidim]
+sources: [reference.exodus.17.11]

@@ -1,0 +1,8 @@
+id: person.gershom
+type: person
+# Firstborn son of Moses and Zipporah, born in Midian: "I have been a sojourner in
+# a foreign land" (Ex 2:22).
+immutable:
+  father: person.moses
+  mother: person.zipporah
+sources: [reference.exodus.2.22]

@@ -1,0 +1,11 @@
+id: event.israel-to-sinai
+type: Migration
+# Ex 19:1-2 — in the third month Israel comes to the wilderness of Sinai and camps
+# before the mountain.
+time: { edtf: "-1446" }
+subjects: [person.moses, person.aaron, person.miriam]
+from: place.rephidim
+to: place.sinai
+confidence: tradition
+requires: [event.israel-to-rephidim]
+sources: [reference.exodus.19.2]
