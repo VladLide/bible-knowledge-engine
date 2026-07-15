@@ -8,8 +8,10 @@ const state = { timeline: null, labels: null, coords: {}, lang: 'en',
 
 const map = L.map('map', { zoomControl: true, minZoom: 4, maxZoom: 10 })
   .setView([33.5, 40], 5);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '&copy; OpenStreetMap contributors', maxZoom: 10
+// Muted dark basemap without labels — historical overlays are the focus, and
+// modern city names are noise on a 2000 BC map. Our own place labels sit on top.
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO', subdomains: 'abcd', maxZoom: 10
 }).addTo(map);
 
 const routeLayer = L.layerGroup().addTo(map);
@@ -81,9 +83,10 @@ function render(k, animate) {
   for (let i = 0; i < k; i++) {
     const f = state.timeline.frames[i];
     if (f.type === 'Migration' && state.coords[f.payload.from] && state.coords[f.payload.to]) {
+      const cur = i === k - 1;
       L.polyline([state.coords[f.payload.from], state.coords[f.payload.to]],
-        { color: '#e0a03a', weight: i === k - 1 ? 3 : 1.5,
-          opacity: i === k - 1 ? 0.9 : 0.35, dashArray: '4 6' }).addTo(routeLayer);
+        { color: '#f0a830', weight: cur ? 4 : 2.5,
+          opacity: cur ? 1 : 0.65, dashArray: cur ? null : '5 6' }).addTo(routeLayer);
     }
   }
 
@@ -109,7 +112,7 @@ function render(k, animate) {
   }
 }
 
-const TERRITORY_FILL = 0.18;
+const TERRITORY_FILL = 0.16;
 
 function renderTerritories(territories, animate) {
   for (const [tid, rec] of Object.entries(territories || {})) {
@@ -119,7 +122,7 @@ function renderTerritories(territories, animate) {
       if (!map.hasLayer(layer)) {
         layer.addTo(map).bringToBack();     // sit beneath markers & routes
         if (animate) fadeInPoly(layer, TERRITORY_FILL);
-        else layer.setStyle({ fillOpacity: TERRITORY_FILL, opacity: 0.8 });
+        else layer.setStyle({ fillOpacity: TERRITORY_FILL, opacity: 0.95 });
       }
     } else if (map.hasLayer(layer)) {
       map.removeLayer(layer);
@@ -131,7 +134,7 @@ function fadeInPoly(layer, target) {
   const t0 = performance.now(), ms = 900;
   function step(now) {
     const p = Math.min(1, (now - t0) / ms);
-    layer.setStyle({ fillOpacity: target * p, opacity: 0.3 + 0.5 * p });
+    layer.setStyle({ fillOpacity: target * p, opacity: 0.3 + 0.65 * p });
     if (p < 1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -180,15 +183,15 @@ Promise.all([
     if (feat.geometry.type === 'Point') {
       const [lon, lat] = feat.geometry.coordinates;
       state.coords[pid] = [lat, lon];
-      state.placeMarkers[pid] = L.circleMarker([lat, lon], { radius: 3, color: '#8a93a0',
-        weight: 1, fillColor: '#8a93a0', fillOpacity: 0.6 })
+      state.placeMarkers[pid] = L.circleMarker([lat, lon], { radius: 4, color: '#cbd2db',
+        weight: 1, fillColor: '#9aa2ad', fillOpacity: 0.85 })
         .bindTooltip(label(pid), { permanent: true, direction: 'right',
           className: 'place-label', offset: [6, 0] }).addTo(map);
     } else if (feat.geometry.type === 'Polygon') {
       const ring = feat.geometry.coordinates[0].map(([lon, lat]) => [lat, lon]);
       // built once, added to the map only when the territory becomes active
-      state.territoryLayers[pid] = L.polygon(ring, { color: '#7bd88f', weight: 1.5,
-        fillColor: '#7bd88f', fillOpacity: TERRITORY_FILL, dashArray: '3 5' })
+      state.territoryLayers[pid] = L.polygon(ring, { color: '#7bd88f', weight: 2.5,
+        fillColor: '#7bd88f', fillOpacity: TERRITORY_FILL, opacity: 0.95, dashArray: '6 6' })
         .bindTooltip(label(pid), { sticky: true, className: 'place-label' });
     }
   }
@@ -208,4 +211,5 @@ Promise.all([
   };
 
   render(0, false);
+  window.__bke = { state, map, routeLayer, go, render, foldState };  // debug/test hook
 });
