@@ -1,0 +1,10 @@
+id: event.jacob-marries-rachel
+type: Marriage
+# Gen 29:28 — a week later Jacob also marries Rachel, for whom he serves another
+# seven years.
+time: { edtf: "-1922?" }
+spouses: [person.jacob, person.rachel]
+place: place.haran
+confidence: tradition
+requires: [event.jacob-marries-leah]
+sources: [reference.genesis.29.28]

@@ -1,0 +1,9 @@
+id: event.gad-born
+type: PersonBorn
+# Gen 30:11 — born to Jacob and zilpah.
+time: { edtf: "-1917?" }
+person: person.gad
+place: place.haran
+parents: [person.jacob, person.zilpah]
+confidence: tradition
+sources: [reference.genesis.30.11]

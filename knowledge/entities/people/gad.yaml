@@ -1,0 +1,8 @@
+id: person.gad
+type: person
+subtype: patriarch
+# Child of Jacob by zilpah (Gen 30:11).
+immutable:
+  father: person.jacob
+  mother: person.zilpah
+sources: [reference.genesis.30.11]

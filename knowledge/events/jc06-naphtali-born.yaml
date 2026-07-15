@@ -1,0 +1,9 @@
+id: event.naphtali-born
+type: PersonBorn
+# Gen 30:8 — born to Jacob and bilhah.
+time: { edtf: "-1917?" }
+person: person.naphtali
+place: place.haran
+parents: [person.jacob, person.bilhah]
+confidence: tradition
+sources: [reference.genesis.30.8]

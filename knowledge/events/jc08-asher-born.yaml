@@ -1,0 +1,9 @@
+id: event.asher-born
+type: PersonBorn
+# Gen 30:13 — born to Jacob and zilpah.
+time: { edtf: "-1916?" }
+person: person.asher
+place: place.haran
+parents: [person.jacob, person.zilpah]
+confidence: tradition
+sources: [reference.genesis.30.13]

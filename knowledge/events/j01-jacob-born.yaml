@@ -1,0 +1,9 @@
+id: event.jacob-born
+type: PersonBorn
+# Gen 25:26 — Jacob is born grasping Esau's heel. -2006 (Isaac aged 60).
+time: { edtf: "-2006" }
+person: person.jacob
+place: place.beersheba
+parents: [person.isaac, person.rebekah]
+confidence: tradition
+sources: [reference.genesis.25.26]

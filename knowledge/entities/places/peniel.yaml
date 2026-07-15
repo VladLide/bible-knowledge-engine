@@ -1,0 +1,7 @@
+id: place.peniel
+type: place
+subtype: place
+# Peniel/Penuel, at the ford of the Jabbok, where Jacob wrestled till daybreak and
+# was named Israel (Gen 32:30).
+geometry: geometry.peniel
+sources: [reference.genesis.32.30]

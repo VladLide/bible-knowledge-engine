@@ -1,0 +1,11 @@
+id: event.birthright-sold
+type: Occurrence
+# Gen 25:29-34 — Esau sells his birthright to Jacob for a meal of bread and lentil
+# stew, despising it.
+time: { edtf: "-1980?" }
+kind: bargain
+participants: [person.esau, person.jacob]
+place: place.beersheba
+confidence: tradition
+requires: [event.jacob-born]
+sources: [reference.genesis.25.33]

@@ -1,0 +1,6 @@
+id: person.zilpah
+type: person
+# Leah's maidservant; bore Gad and Asher to Jacob (Gen 30:9-13).
+immutable:
+  presumed_existing: true
+sources: [reference.genesis.30.9]

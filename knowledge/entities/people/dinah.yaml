@@ -1,0 +1,8 @@
+id: person.dinah
+type: person
+subtype: matriarch
+# Child of Jacob by leah (Gen 30:21).
+immutable:
+  father: person.jacob
+  mother: person.leah
+sources: [reference.genesis.30.21]

@@ -1,0 +1,11 @@
+id: event.peniel-wrestling
+type: Occurrence
+# Gen 32:24-30 — at the Jabbok Jacob wrestles a man till daybreak, prevails, and
+# his hip is put out; he calls the place Peniel, "for I have seen God face to face".
+time: { edtf: "-1909?" }
+kind: wrestling
+participants: [person.jacob]
+place: place.peniel
+confidence: tradition
+requires: [event.jacob-to-haran]
+sources: [reference.genesis.32.24]

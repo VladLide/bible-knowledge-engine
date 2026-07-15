@@ -1,0 +1,10 @@
+id: event.jacob-blessing-stolen
+type: Occurrence
+# Gen 27 — at Rebekah's urging Jacob, disguised, takes the blessing meant for Esau
+# from the blind Isaac; Esau vows revenge, so Jacob must flee.
+time: { edtf: "-1929?" }
+kind: blessing
+participants: [person.isaac, person.jacob, person.esau]
+place: place.beersheba
+confidence: tradition
+sources: [reference.genesis.27.27]

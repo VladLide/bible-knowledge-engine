@@ -1,0 +1,9 @@
+id: event.dan-born
+type: PersonBorn
+# Gen 30:6 — born to Jacob and bilhah.
+time: { edtf: "-1918?" }
+person: person.dan
+place: place.haran
+parents: [person.jacob, person.bilhah]
+confidence: tradition
+sources: [reference.genesis.30.6]

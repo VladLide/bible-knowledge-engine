@@ -1,0 +1,10 @@
+id: event.isaac-to-gerar
+type: Migration
+# Gen 26:1 — a famine drives Isaac to Abimelech at Gerar; the LORD tells him not to
+# go down to Egypt and renews the covenant promise.
+time: { edtf: "-1979?" }
+subjects: [person.isaac]
+from: place.hebron
+to: place.gerar
+confidence: tradition
+sources: [reference.genesis.26.1]

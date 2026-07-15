@@ -316,6 +316,48 @@
           31.4
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.bethel",
+      "properties": {
+        "name_id": "place.bethel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.22,
+          31.93
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.peniel",
+      "properties": {
+        "name_id": "place.peniel"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.68,
+          32.19
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.bethlehem",
+      "properties": {
+        "name_id": "place.bethlehem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2,
+          31.7
+        ]
+      }
     }
   ]
 }
