@@ -428,6 +428,34 @@
           28.75
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.paran",
+      "properties": {
+        "name_id": "place.paran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4,
+          30.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.kadesh",
+      "properties": {
+        "name_id": "place.kadesh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.42,
+          30.65
+        ]
+      }
     }
   ]
 }

@@ -1,0 +1,12 @@
+id: event.korah-rebellion
+type: Occurrence
+# Num 16 — Korah, Dathan, and Abiram with 250 leaders challenge Moses and Aaron;
+# the earth opens and swallows the ringleaders, fire consumes the 250, and a plague
+# kills 14,700 before Aaron's incense stays it.
+time: { edtf: "-1443" }
+kind: rebellion
+participants: [person.moses, person.aaron, person.korah, person.dathan, person.abiram]
+place: place.paran
+confidence: tradition
+requires: [event.twelve-spies-rebellion]
+sources: [reference.numbers.16.32]

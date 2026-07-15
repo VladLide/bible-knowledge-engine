@@ -1,0 +1,10 @@
+id: event.first-census
+type: Occurrence
+# Num 1 — in the second year the LORD commands Moses to number the men of war of
+# Israel by their tribes: 603,550, besides the Levites.
+time: { edtf: "-1445" }
+kind: census
+participants: [person.moses, person.aaron]
+place: place.sinai
+confidence: tradition
+sources: [reference.numbers.1.2]

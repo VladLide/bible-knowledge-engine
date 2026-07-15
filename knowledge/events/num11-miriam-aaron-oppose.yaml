@@ -1,0 +1,11 @@
+id: event.miriam-aaron-oppose-moses
+type: Occurrence
+# Num 12 — Miriam and Aaron speak against Moses; the LORD vindicates him; Miriam is
+# struck with leprosy seven days and, at Moses' plea, is healed and restored.
+time: { edtf: "-1445" }
+kind: rebuke
+participants: [person.miriam, person.aaron, person.moses]
+place: place.paran
+confidence: tradition
+requires: [event.depart-sinai]
+sources: [reference.numbers.12.10]
