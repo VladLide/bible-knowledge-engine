@@ -1,0 +1,10 @@
+id: event.moses-marries-zipporah
+type: Marriage
+# Ex 2:21 — Moses is content to dwell with Jethro, who gives him his daughter
+# Zipporah to wife.
+time: { edtf: "-1485?" }
+spouses: [person.moses, person.zipporah]
+place: place.midian
+confidence: tradition
+requires: [event.moses-to-midian]
+sources: [reference.exodus.2.21]

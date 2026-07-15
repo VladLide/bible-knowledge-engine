@@ -372,6 +372,20 @@
           30.8
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.midian",
+      "properties": {
+        "name_id": "place.midian"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.6,
+          28.5
+        ]
+      }
     }
   ]
 }

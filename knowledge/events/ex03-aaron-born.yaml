@@ -1,0 +1,9 @@
+id: event.aaron-born
+type: PersonBorn
+# Ex 7:7 — Aaron was 83 at the exodus, three years older than Moses → c. -1529.
+time: { edtf: "-1529?" }
+person: person.aaron
+place: place.goshen
+parents: [person.amram, person.jochebed]
+confidence: tradition
+sources: [reference.exodus.6.20]

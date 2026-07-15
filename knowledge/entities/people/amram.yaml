@@ -1,0 +1,7 @@
+id: person.amram
+type: person
+# Son of Kohath (Ex 6:18); married Jochebed; father of Aaron, Moses, and Miriam.
+immutable:
+  father: person.kohath
+  married_to: [person.jochebed]
+sources: [reference.exodus.6.20]

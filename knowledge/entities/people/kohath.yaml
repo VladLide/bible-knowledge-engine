@@ -1,0 +1,7 @@
+id: person.kohath
+type: person
+subtype: patriarch
+# Son of Levi (Ex 6:16; Gen 46:11), grandfather of Moses and Aaron.
+immutable:
+  father: person.levi
+sources: [reference.exodus.6.16]

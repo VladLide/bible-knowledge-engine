@@ -1,0 +1,10 @@
+id: event.egypt-oppression
+type: Occurrence
+# Ex 1:8-22 — a new king who did not know Joseph enslaves the multiplying
+# Israelites with hard labour and orders every Hebrew boy thrown into the Nile;
+# the midwives Shiphrah and Puah defy him.
+time: { edtf: "-1540?" }
+kind: oppression
+place: place.goshen
+confidence: tradition
+sources: [reference.exodus.1.11]
