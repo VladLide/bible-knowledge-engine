@@ -1,0 +1,12 @@
+id: event.tabernacle-built
+type: Occurrence
+# Ex 35-40 — the people bring freewill offerings; Bezalel and Aholiab make all the
+# LORD commanded; on the first day of the second year the tabernacle is raised and
+# the glory of the LORD fills it. -1445.
+time: { edtf: "-1445" }
+kind: construction
+participants: [person.moses, person.bezalel, person.aholiab]
+place: place.sinai
+confidence: tradition
+requires: [event.sinai-covenant-renewed]
+sources: [reference.exodus.40.33]

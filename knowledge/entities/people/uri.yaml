@@ -1,0 +1,6 @@
+id: person.uri
+type: person
+# Son of Hur, of Judah; father of Bezalel the craftsman (Ex 31:2).
+immutable:
+  father: person.hur
+sources: [reference.exodus.31.2]
