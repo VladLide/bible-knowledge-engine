@@ -69,6 +69,8 @@ def build_timeline(events, entities, model):
             "edtf": t.raw,
             "payload": ev.payload,          # for animation (from/to, place, person…)
             "changes": _delta(pre, state),
+            "sources": list(ev.sources),    # for the click-info panel
+            "confidence": ev.confidence,
         })
     years = [f["year"] for f in frames]
     return {
@@ -87,7 +89,8 @@ def build_graph(entities, events):
     the same canonical data the map does. Undirected relations are de-duplicated
     by ordering the endpoints.
     """
-    nodes = [{"id": e.id, "type": e.type, "subtype": e.subtype} for e in entities.values()]
+    nodes = [{"id": e.id, "type": e.type, "subtype": e.subtype,
+              "sources": list(e.sources)} for e in entities.values()]
     edges = set()  # (source, target, rel)
 
     for e in entities.values():
