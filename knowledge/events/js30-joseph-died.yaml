@@ -1,0 +1,9 @@
+id: event.joseph-died
+type: PersonDied
+# Gen 50:26 — Joseph dies in Egypt, aged 110; embalmed and put in a coffin, with an
+# oath that his bones be carried up when God visits his people. -1805.
+time: { edtf: "-1805" }
+person: person.joseph
+place: place.egypt
+confidence: tradition
+sources: [reference.genesis.50.26]

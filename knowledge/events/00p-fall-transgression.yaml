@@ -1,0 +1,13 @@
+id: event.fall-transgression
+type: Occurrence
+# Gen 3:1-7 — the serpent tempts the woman; she eats of the tree of knowledge and
+# gives to the man; their eyes are opened. (The serpent is a creature, not modelled
+# as a person entity; its role is recorded here and in event.eden-judgment.)
+time:
+  edtf: "-4004"
+kind: transgression
+participants: [person.adam, person.eve]
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.3.6

@@ -1,0 +1,9 @@
+id: event.zerah-born
+type: PersonBorn
+# Gen 38:30 — born to judah and tamar.
+time: { edtf: "-1885?" }
+person: person.zerah
+place: place.canaan
+parents: [person.judah, person.tamar]
+confidence: tradition
+sources: [reference.genesis.38.30]

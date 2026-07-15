@@ -1,0 +1,10 @@
+id: event.isaac-to-beersheba
+type: Migration
+# Gen 26:23 — Isaac goes up to Beersheba, where the LORD appears to him; he builds
+# an altar and digs a well.
+time: { edtf: "-1975?" }
+subjects: [person.isaac]
+from: place.gerar
+to: place.beersheba
+confidence: tradition
+sources: [reference.genesis.26.23]

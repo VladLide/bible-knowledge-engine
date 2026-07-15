@@ -1,0 +1,7 @@
+id: place.salem
+type: place
+subtype: city
+# Salem, Melchizedek's city (Gen 14:18), traditionally identified with Jerusalem.
+geometry: geometry.salem
+sources:
+  - reference.genesis.14.18

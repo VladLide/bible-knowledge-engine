@@ -1,0 +1,9 @@
+id: event.ephraim-born
+type: PersonBorn
+# Gen 41:52 — born to joseph and asenath.
+time: { edtf: "-1881?" }
+person: person.ephraim
+place: place.egypt
+parents: [person.joseph, person.asenath]
+confidence: tradition
+sources: [reference.genesis.41.52]

@@ -1,0 +1,13 @@
+id: event.cain-cursed
+type: Occurrence
+# Gen 4:11-15 — Cain is cursed from the ground, made a fugitive and wanderer; the
+# LORD sets a mark on him lest any who find him kill him.
+time:
+  edtf: "-3900?"
+kind: curse
+participants: [person.cain]
+place: place.eden
+confidence: tradition
+requires: [event.cain-born]
+sources:
+  - reference.genesis.4.11

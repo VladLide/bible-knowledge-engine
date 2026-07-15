@@ -1,0 +1,8 @@
+id: person.ephraim
+type: person
+subtype: patriarch
+# Son of joseph by asenath (Gen 41:52).
+immutable:
+  father: person.joseph
+  mother: person.asenath
+sources: [reference.genesis.41.52]

@@ -1,0 +1,10 @@
+id: event.lot-rescued
+type: Occurrence
+# Gen 14:11-16 — the four kings sack Sodom and carry off Lot; Abram arms his men,
+# pursues, defeats them, and brings Lot and the people back.
+time: { edtf: "-2085?" }
+kind: rescue
+participants: [person.abraham, person.lot]
+place: place.sodom
+confidence: tradition
+sources: [reference.genesis.14.16]

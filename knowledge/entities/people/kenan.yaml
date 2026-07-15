@@ -1,0 +1,8 @@
+id: person.kenan
+type: person
+subtype: patriarch
+# Sethite line (Gen 5): son of enosh.
+immutable:
+  father: person.enosh
+sources:
+  - reference.genesis.5.9

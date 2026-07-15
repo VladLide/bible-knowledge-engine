@@ -1,0 +1,13 @@
+id: event.animals-named
+type: Occurrence
+# Gen 2:19-20 — God brings the animals and birds to the man to name; he names
+# them all, but among them no helper fit for him is found.
+time:
+  edtf: "-4004"
+kind: naming
+participants: [person.adam]
+place: place.eden
+confidence: tradition
+requires: [event.adam-formed]
+sources:
+  - reference.genesis.2.19

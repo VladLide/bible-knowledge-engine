@@ -1,0 +1,9 @@
+id: event.babel-dispersion
+type: Occurrence
+# Gen 11:1-9 — all the earth of one language builds a city and a tower to make a
+# name; the LORD confuses their language and scatters them over all the earth.
+time: { edtf: "-2242?" }
+kind: dispersion
+place: place.babel
+confidence: tradition
+sources: [reference.genesis.11.8]

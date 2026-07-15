@@ -1,0 +1,10 @@
+id: event.laban-covenant
+type: CovenantMade
+# Gen 31:44-55 — fleeing Laban, Jacob is overtaken in Gilead; they raise a heap of
+# witness (Galeed/Mizpah) and swear a boundary covenant.
+time: { edtf: "-1909?" }
+parties: [person.jacob, person.laban]
+place: place.haran
+name: mizpah
+confidence: tradition
+sources: [reference.genesis.31.44]

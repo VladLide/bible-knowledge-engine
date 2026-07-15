@@ -1,0 +1,9 @@
+id: event.noah-blessing
+type: Occurrence
+# Gen 9:1 — God blesses Noah and his sons: be fruitful, multiply, fill the earth.
+time: { edtf: "-2348" }
+kind: blessing
+participants: [person.noah, person.shem, person.ham, person.japheth]
+place: place.ararat
+confidence: tradition
+sources: [reference.genesis.9.1]

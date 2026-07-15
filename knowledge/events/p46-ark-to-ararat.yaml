@@ -1,0 +1,10 @@
+id: event.ark-to-ararat
+type: Migration
+# Gen 8:4,18 — the ark rests on the mountains of Ararat; Noah and his family go
+# out. Modelled as the family's relocation from the (now-lost) Eden vicinity.
+time: { edtf: "-2348" }
+subjects: [person.noah, person.shem, person.ham, person.japheth]
+from: place.eden
+to: place.ararat
+confidence: tradition
+sources: [reference.genesis.8.4]

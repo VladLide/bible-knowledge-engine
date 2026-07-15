@@ -1,0 +1,8 @@
+id: place.gerar
+type: place
+subtype: city
+# Gerar, a Philistine city of the Negev where both Abraham (Gen 20) and Isaac
+# (Gen 26) sojourned under king Abimelech.
+geometry: geometry.gerar
+sources:
+  - reference.genesis.20.1

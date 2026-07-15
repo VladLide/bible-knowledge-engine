@@ -1,0 +1,10 @@
+id: event.seth-died
+type: PersonDied
+# Gen 5:8 — Seth lived 912 years and died. -2962 (Ussher).
+time:
+  edtf: "-2962"
+person: person.seth
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.5.8

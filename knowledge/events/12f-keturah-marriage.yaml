@@ -1,0 +1,8 @@
+id: event.keturah-marriage
+type: Marriage
+# Gen 25:1 — after Sarah's death Abraham takes Keturah as wife; she bears him six
+# sons (Zimran, Jokshan, Medan, Midian, Ishbak, Shuah — deferred).
+time: { edtf: "-2025?" }
+spouses: [person.abraham, person.keturah]
+confidence: tradition
+sources: [reference.genesis.25.1]

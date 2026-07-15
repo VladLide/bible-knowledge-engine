@@ -1,0 +1,10 @@
+id: person.leah
+type: person
+subtype: matriarch
+# Laban's elder daughter, Jacob's first wife (Gen 29:23); mother of Reuben,
+# Simeon, Levi, Judah, Issachar, Zebulun, and Dinah.
+immutable:
+  presumed_existing: true
+  father: person.laban
+  married_to: [person.jacob]
+sources: [reference.genesis.29.16]

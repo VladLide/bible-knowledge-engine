@@ -1,0 +1,10 @@
+id: event.adam-died
+type: PersonDied
+# Gen 5:5 — Adam lived 930 years and died. -3074 (Ussher).
+time:
+  edtf: "-3074"
+person: person.adam
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.5.5

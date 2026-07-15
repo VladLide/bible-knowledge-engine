@@ -1,0 +1,8 @@
+id: person.asher
+type: person
+subtype: patriarch
+# Child of Jacob by zilpah (Gen 30:13).
+immutable:
+  father: person.jacob
+  mother: person.zilpah
+sources: [reference.genesis.30.13]

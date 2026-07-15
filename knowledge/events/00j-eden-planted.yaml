@@ -1,0 +1,11 @@
+id: event.eden-planted
+type: Occurrence
+# Gen 2:8-9 — God plants a garden eastward in Eden and makes every good tree
+# grow, including the tree of life and the tree of the knowledge of good and evil.
+time:
+  edtf: "-4004"
+kind: planting
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.2.8

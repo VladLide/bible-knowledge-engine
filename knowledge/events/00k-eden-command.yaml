@@ -1,0 +1,13 @@
+id: event.eden-command
+type: Occurrence
+# Gen 2:16-17 — God commands the man: eat of every tree freely, but not of the
+# tree of knowledge; the day you eat of it you shall surely die. (Set-up for Gen 3.)
+time:
+  edtf: "-4004"
+kind: command
+participants: [person.adam]
+place: place.eden
+confidence: tradition
+requires: [event.adam-formed]
+sources:
+  - reference.genesis.2.17

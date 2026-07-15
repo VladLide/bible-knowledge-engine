@@ -1,0 +1,9 @@
+id: event.rachel-died
+type: PersonDied
+# Gen 35:16-19 — Rachel dies giving birth to Benjamin on the way to Ephrath
+# (Bethlehem) and is buried there.
+time: { edtf: "-1900?" }
+person: person.rachel
+place: place.bethlehem
+confidence: tradition
+sources: [reference.genesis.35.19]

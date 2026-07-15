@@ -1,0 +1,11 @@
+id: event.mahalalel-born
+type: PersonBorn
+# Gen 5:12 — born in the line from Seth; year per Ussher chronology.
+time:
+  edtf: "-3609"
+person: person.mahalalel
+place: place.eden
+parents: [person.kenan]
+confidence: tradition
+sources:
+  - reference.genesis.5.12

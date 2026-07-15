@@ -1,0 +1,8 @@
+id: person.esau
+type: person
+# Firstborn twin of Isaac and Rebekah (Gen 25:25), a hunter; sold his birthright
+# and lost the blessing to Jacob; father of the Edomites (Gen 36, deferred).
+immutable:
+  father: person.isaac
+  mother: person.rebekah
+sources: [reference.genesis.25.25]

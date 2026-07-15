@@ -1,0 +1,8 @@
+id: person.nimrod
+type: person
+# Son of Cush (Gen 10:8); "a mighty hunter", the first potentate, whose kingdom
+# began with Babel in Shinar and reached Nineveh (Gen 10:8-12).
+immutable:
+  father: person.cush
+sources:
+  - reference.genesis.10.8

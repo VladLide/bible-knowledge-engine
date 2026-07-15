@@ -1,0 +1,12 @@
+id: event.jacob-renamed-israel
+type: Occurrence
+# Gen 32:28 — "Your name shall no longer be Jacob but Israel, for you have striven
+# with God and with men and prevailed." (The id person.jacob is stable; Israel is
+# a label/epithet, so this is a rename Occurrence, not a new entity.)
+time: { edtf: "-1909?" }
+kind: rename
+participants: [person.jacob]
+place: place.peniel
+confidence: tradition
+requires: [event.peniel-wrestling]
+sources: [reference.genesis.32.28]

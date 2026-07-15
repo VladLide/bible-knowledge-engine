@@ -1,0 +1,10 @@
+id: person.shelah
+type: person
+subtype: patriarch
+# Son of Arphaxad (Gen 11:12). Genealogy-only (no dated events): the Ussher primeval dates and the
+# repo's -2166 Abraham use different anchors, so this line connects the graph
+# without asserting a conflicting chronology.
+immutable:
+  father: person.arphaxad
+sources:
+  - reference.genesis.11.12

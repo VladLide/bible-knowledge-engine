@@ -1,0 +1,8 @@
+id: person.lamech
+type: person
+subtype: patriarch
+# Sethite line (Gen 5): son of methuselah.
+immutable:
+  father: person.methuselah
+sources:
+  - reference.genesis.5.25

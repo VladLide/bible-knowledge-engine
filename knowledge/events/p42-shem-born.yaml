@@ -1,0 +1,10 @@
+id: event.shem-born
+type: PersonBorn
+# Gen 11:10 — Shem was 100 two years after the flood → born c. -2446 (Ussher).
+# The line of Shem runs to Abraham.
+time: { edtf: "-2446" }
+person: person.shem
+place: place.eden
+parents: [person.noah]
+confidence: tradition
+sources: [reference.genesis.5.32, reference.genesis.11.10]

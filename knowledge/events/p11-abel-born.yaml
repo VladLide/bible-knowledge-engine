@@ -1,0 +1,11 @@
+id: event.abel-born
+type: PersonBorn
+# Gen 4:2 — Eve bears Abel, Cain's brother.
+time:
+  edtf: "-3950?"
+person: person.abel
+place: place.eden
+parents: [person.adam, person.eve]
+confidence: tradition
+sources:
+  - reference.genesis.4.2

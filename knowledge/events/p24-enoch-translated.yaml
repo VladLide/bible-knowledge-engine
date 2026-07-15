@@ -1,0 +1,13 @@
+id: event.enoch-translated
+type: Occurrence
+# Gen 5:24 — Enoch walked with God, and he was not, for God took him: translated,
+# he did not die. (No PersonDied by design.)
+time:
+  edtf: "-3017?"
+kind: translation
+participants: [person.enoch]
+place: place.eden
+confidence: tradition
+requires: [event.enoch-born]
+sources:
+  - reference.genesis.5.24

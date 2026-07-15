@@ -1,0 +1,10 @@
+id: event.isaac-promised
+type: Occurrence
+# Gen 18:1-15 — the LORD appears to Abraham by the oaks of Mamre; the promise that
+# Sarah will bear a son within the year; Sarah laughs.
+time: { edtf: "-2067?" }
+kind: theophany
+participants: [person.abraham, person.sarah]
+place: place.hebron
+confidence: tradition
+sources: [reference.genesis.18.10]

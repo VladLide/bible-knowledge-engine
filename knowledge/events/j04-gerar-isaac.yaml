@@ -1,0 +1,11 @@
+id: event.gerar-isaac
+type: Occurrence
+# Gen 26:6-11 — Isaac calls Rebekah his sister; Abimelech discovers the truth and
+# forbids his people to touch them.
+time: { edtf: "-1979?" }
+kind: deception
+participants: [person.isaac, person.rebekah, person.abimelech]
+place: place.gerar
+confidence: tradition
+requires: [event.isaac-to-gerar]
+sources: [reference.genesis.26.7]

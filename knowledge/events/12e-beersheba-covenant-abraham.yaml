@@ -1,0 +1,10 @@
+id: event.beersheba-covenant-abraham
+type: CovenantMade
+# Gen 21:22-34 — Abraham and Abimelech swear an oath over a well at Beersheba;
+# Abraham plants a tamarisk and calls on the everlasting God.
+time: { edtf: "-2062?" }
+parties: [person.abraham, person.abimelech]
+place: place.beersheba
+name: beersheba-oath
+confidence: tradition
+sources: [reference.genesis.21.31]

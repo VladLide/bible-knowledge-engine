@@ -1,0 +1,8 @@
+id: person.reuben
+type: person
+subtype: patriarch
+# Child of Jacob by leah (Gen 29:32).
+immutable:
+  father: person.jacob
+  mother: person.leah
+sources: [reference.genesis.29.32]

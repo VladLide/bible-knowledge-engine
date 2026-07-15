@@ -1,0 +1,8 @@
+id: person.benjamin
+type: person
+subtype: patriarch
+# Child of Jacob by rachel (Gen 35:18).
+immutable:
+  father: person.jacob
+  mother: person.rachel
+sources: [reference.genesis.35.18]

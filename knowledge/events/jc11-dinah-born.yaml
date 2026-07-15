@@ -1,0 +1,9 @@
+id: event.dinah-born
+type: PersonBorn
+# Gen 30:21 — born to Jacob and leah.
+time: { edtf: "-1913?" }
+person: person.dinah
+place: place.haran
+parents: [person.jacob, person.leah]
+confidence: tradition
+sources: [reference.genesis.30.21]

@@ -1,0 +1,11 @@
+id: event.enosh-born
+type: PersonBorn
+# Gen 5:6 — born in the line from Seth; year per Ussher chronology.
+time:
+  edtf: "-3769"
+person: person.enosh
+place: place.eden
+parents: [person.seth]
+confidence: tradition
+sources:
+  - reference.genesis.5.6
