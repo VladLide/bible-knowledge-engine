@@ -1,0 +1,11 @@
+id: event.methuselah-born
+type: PersonBorn
+# Gen 5:21 — born in the line from Seth; year per Ussher chronology.
+time:
+  edtf: "-3317"
+person: person.methuselah
+place: place.eden
+parents: [person.enoch]
+confidence: tradition
+sources:
+  - reference.genesis.5.21

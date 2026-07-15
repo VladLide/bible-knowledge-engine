@@ -14,6 +14,9 @@
     { "type": "Feature", "id": "geometry.machpelah", "properties": { "name_id": "place.machpelah" }, "geometry": { "type": "Point", "coordinates": [35.1050, 31.5245] } },
     { "type": "Feature", "id": "geometry.beersheba", "properties": { "name_id": "place.beersheba" }, "geometry": { "type": "Point", "coordinates": [34.7913, 31.2518] } },
     { "type": "Feature", "id": "geometry.earth-preflood", "properties": { "name_id": "place.earth", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Polygon", "coordinates": [[[-15,10],[10,4],[45,7],[70,20],[76,40],[55,51],[28,53],[2,49],[-13,38],[-19,22],[-15,10]]] } },
-    { "type": "Feature", "id": "geometry.eden", "properties": { "name_id": "place.eden", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Point", "coordinates": [47.4000, 31.0000] } }
+    { "type": "Feature", "id": "geometry.eden", "properties": { "name_id": "place.eden", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Point", "coordinates": [47.4000, 31.0000] } },
+    { "type": "Feature", "id": "geometry.nod", "properties": { "name_id": "place.nod", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Point", "coordinates": [50.5000, 31.5000] } },
+    { "type": "Feature", "id": "geometry.ararat", "properties": { "name_id": "place.ararat" }, "geometry": { "type": "Point", "coordinates": [44.3000, 39.7000] } },
+    { "type": "Feature", "id": "geometry.babel", "properties": { "name_id": "place.babel" }, "geometry": { "type": "Point", "coordinates": [44.4200, 32.5400] } }
   ]
 }

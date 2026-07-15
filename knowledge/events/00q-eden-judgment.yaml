@@ -1,0 +1,13 @@
+id: event.eden-judgment
+type: Occurrence
+# Gen 3:14-19 — God curses the serpent (the enmity/seed of 3:15), and pronounces
+# judgment on the woman (pain in childbearing) and the man (the ground cursed,
+# toil, return to dust).
+time:
+  edtf: "-4004"
+kind: curse
+participants: [person.adam, person.eve]
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.3.17

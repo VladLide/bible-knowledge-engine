@@ -1,0 +1,8 @@
+id: person.jared
+type: person
+subtype: patriarch
+# Sethite line (Gen 5): son of mahalalel.
+immutable:
+  father: person.mahalalel
+sources:
+  - reference.genesis.5.15

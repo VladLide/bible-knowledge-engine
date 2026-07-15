@@ -1,0 +1,8 @@
+id: place.ararat
+type: place
+subtype: mountain
+# The mountains of Ararat, where the ark came to rest (Gen 8:4); Noah's family
+# resettles here after the flood. Post-flood, so no pre-flood map window.
+geometry: geometry.ararat
+sources:
+  - reference.genesis.8.4

@@ -1,0 +1,8 @@
+id: person.canaan
+type: person
+# Son of Ham (Gen 10:6), cursed in Gen 9:25; eponymous ancestor of the Canaanite
+# peoples who inhabit the land of Canaan (place.canaan is that land, a distinct id).
+immutable:
+  father: person.ham
+sources:
+  - reference.genesis.10.6

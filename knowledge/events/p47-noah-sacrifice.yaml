@@ -1,0 +1,11 @@
+id: event.noah-sacrifice
+type: Occurrence
+# Gen 8:20-21 — Noah builds an altar and offers burnt offerings; the LORD resolves
+# never again to curse the ground because of man.
+time: { edtf: "-2348" }
+kind: sacrifice
+participants: [person.noah]
+place: place.ararat
+confidence: tradition
+requires: [event.ark-to-ararat]
+sources: [reference.genesis.8.20]

@@ -1,0 +1,12 @@
+id: event.cain-to-nod
+type: Migration
+# Gen 4:16 — Cain goes out from the presence of the LORD and dwells in the land of
+# Nod, east of Eden.
+time:
+  edtf: "-3899?"
+subjects: [person.cain]
+from: place.eden
+to: place.nod
+confidence: tradition
+sources:
+  - reference.genesis.4.16

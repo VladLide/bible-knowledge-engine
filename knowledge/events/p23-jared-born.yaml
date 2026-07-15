@@ -1,0 +1,11 @@
+id: event.jared-born
+type: PersonBorn
+# Gen 5:15 — born in the line from Seth; year per Ussher chronology.
+time:
+  edtf: "-3544"
+person: person.jared
+place: place.eden
+parents: [person.mahalalel]
+confidence: tradition
+sources:
+  - reference.genesis.5.15

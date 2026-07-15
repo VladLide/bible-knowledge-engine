@@ -1,0 +1,10 @@
+id: person.reu
+type: person
+subtype: patriarch
+# Son of Peleg (Gen 11:18). Genealogy-only (no dated events): the Ussher primeval dates and the
+# repo's -2166 Abraham use different anchors, so this line connects the graph
+# without asserting a conflicting chronology.
+immutable:
+  father: person.peleg
+sources:
+  - reference.genesis.11.18

@@ -1,0 +1,10 @@
+id: person.seth
+type: person
+subtype: patriarch
+# Third named son of Adam and Eve, appointed "instead of Abel" (Gen 4:25); the
+# line through which the genealogy of Gen 5 runs to Noah.
+immutable:
+  father: person.adam
+  mother: person.eve
+sources:
+  - reference.genesis.4.25

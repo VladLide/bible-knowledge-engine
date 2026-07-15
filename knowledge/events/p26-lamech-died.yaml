@@ -1,0 +1,10 @@
+id: event.lamech-died
+type: PersonDied
+# Gen 5:31 — died full of years (Ussher).
+time:
+  edtf: "-2353"
+person: person.lamech
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.5.31

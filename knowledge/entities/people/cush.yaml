@@ -1,0 +1,8 @@
+id: person.cush
+type: person
+# Son of Ham (Gen 10:6), father of Nimrod. (The land/region Cush of Gen 2:13 is a
+# separate matter; here Cush is the man.)
+immutable:
+  father: person.ham
+sources:
+  - reference.genesis.10.6

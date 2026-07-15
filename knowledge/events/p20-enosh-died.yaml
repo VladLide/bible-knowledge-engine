@@ -1,0 +1,10 @@
+id: event.enosh-died
+type: PersonDied
+# Gen 5:11 — died full of years (Ussher).
+time:
+  edtf: "-2864"
+person: person.enosh
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.5.11

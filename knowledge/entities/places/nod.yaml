@@ -1,0 +1,8 @@
+id: place.nod
+type: place
+subtype: land
+# The land of Nod ("wandering"), east of Eden, where Cain settled after his exile
+# (Gen 4:16). Antediluvian; shares the pre-flood map window.
+geometry: geometry.nod
+sources:
+  - reference.genesis.4.16

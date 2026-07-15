@@ -1,0 +1,8 @@
+id: event.noah-died
+type: PersonDied
+# Gen 9:29 — Noah lived 950 years and died. -1998 (Ussher).
+time: { edtf: "-1998" }
+person: person.noah
+place: place.ararat
+confidence: tradition
+sources: [reference.genesis.9.29]
