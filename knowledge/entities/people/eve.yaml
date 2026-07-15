@@ -1,0 +1,9 @@
+id: person.eve
+type: person
+subtype: matriarch
+# The first woman, made from the man's side — Gen 2:21-22; "the mother of all
+# living", named Eve in Gen 3:20. Called simply "woman" (ishshah) in Gen 2:23.
+immutable:
+  married_to: [person.adam]
+sources:
+  - reference.genesis.2.22

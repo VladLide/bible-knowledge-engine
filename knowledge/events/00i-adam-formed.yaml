@@ -1,0 +1,11 @@
+id: event.adam-formed
+type: PersonBorn
+# Gen 2:7 — the LORD God forms the man from the dust and breathes life into him;
+# then places him in the garden to work and keep it (Gen 2:15). Day 6, -4004.
+time:
+  edtf: "-4004"
+person: person.adam
+place: place.eden
+confidence: tradition
+sources:
+  - reference.genesis.2.7
