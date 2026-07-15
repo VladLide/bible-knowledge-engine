@@ -2,6 +2,11 @@
 
 **BKE is a compiler for a historical world.**
 
+**Live demo:** https://vladlide.github.io/bible-knowledge-engine/ — the Abraham
+slice as a map + timeline. GitHub Actions validates the canon, compiles state
+deltas, and deploys the static site; the browser only applies precompiled
+deltas — it never re-interprets events.
+
 The canonical YAML files under [`knowledge/`](knowledge/) are not a database and
 not website content. They are *source code* describing the biblical world in a
 declarative language. The compiler checks it for structural and logical
@@ -36,6 +41,7 @@ knowledge/translations one file per language: id → label
 canon/                 versification for reference IDs (reference.book.ch.v)
 schemas/               JSON Schema: entity, event base, one per event type
 compiler/              the compiler (below)
+site/                  static-site shell (source); site/data/ is generated
 tests/                 self-checks for the slice
 build/                 generated artifacts — gitignored, regenerable
 ```
