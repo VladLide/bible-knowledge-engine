@@ -29,12 +29,16 @@ from .events import REGISTRY
 SITE_DATA = ROOT / "site" / "data"
 
 
-def _person_delta(pre: dict, post: dict) -> dict:
-    """Persons whose record changed between two states → new full records."""
+NAMESPACES = ("persons", "territories")
+
+
+def _delta(pre: dict, post: dict) -> dict:
+    """Records that changed between two states, per namespace → new full records."""
     out = {}
-    for pid, rec in post["persons"].items():
-        if pre["persons"].get(pid) != rec:
-            out[pid] = copy.deepcopy(rec)   # snapshot; state keeps mutating after
+    for ns in NAMESPACES:
+        changed = {k: copy.deepcopy(v) for k, v in post[ns].items() if pre[ns].get(k) != v}
+        if changed:
+            out[ns] = changed              # snapshot; state keeps mutating after
     return out
 
 
@@ -52,13 +56,13 @@ def build_timeline(events, entities, model):
             "year": t.key(),
             "edtf": t.raw,
             "payload": ev.payload,          # for animation (from/to, place, person…)
-            "changes": _person_delta(pre, state),
+            "changes": _delta(pre, state),
         })
     years = [f["year"] for f in frames]
     return {
         "model": model,
         "years": [min(years), max(years)] if years else [0, 0],
-        "initial": initial_state(entities)["persons"],
+        "initial": initial_state(entities),   # {persons, territories}
         "frames": frames,
     }
 

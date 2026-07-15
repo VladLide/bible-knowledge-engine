@@ -24,6 +24,10 @@ def _person(state, pid):
     )
 
 
+def _territory(state, tid):
+    return state["territories"].setdefault(tid, {"active": False, "granted_to": None})
+
+
 class PersonBorn:
     schema = "PersonBorn"
 
@@ -133,9 +137,35 @@ class CovenantMade:
         return [born[p] for p in ev.payload["parties"] if p in born]
 
 
+class TerritoryGranted:
+    schema = "TerritoryGranted"
+
+    @staticmethod
+    def persons(ev: Event):
+        return [ev.payload["grantee"]]
+
+    @staticmethod
+    def check(state, ev: Event):
+        if not _person(state, ev.payload["grantee"])["alive"]:
+            return [f"{ev.id}: grantee {ev.payload['grantee']} is not alive"]
+        return []
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        t = _territory(state, ev.payload["territory"])
+        t["active"] = True
+        t["granted_to"] = ev.payload["grantee"]
+
+    @staticmethod
+    def deps(ev: Event, born):
+        b = born.get(ev.payload["grantee"])
+        return [b] if b else []
+
+
 REGISTRY = {
     "PersonBorn": PersonBorn,
     "PersonDied": PersonDied,
     "Migration": Migration,
     "CovenantMade": CovenantMade,
+    "TerritoryGranted": TerritoryGranted,
 }

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:TerritoryGranted",
+  "title": "TerritoryGranted",
+  "description": "A territory (a place of subtype region) is granted to a person. Reducer: territory.active=true, granted_to=grantee.",
+  "type": "object",
+  "properties": {
+    "territory": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" },
+    "grantee": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+  },
+  "required": ["territory", "grantee"]
+}

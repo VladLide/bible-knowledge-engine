@@ -1,0 +1,9 @@
+id: event.land-promise
+type: TerritoryGranted
+time:
+  edtf: "-2081?"
+territory: place.promised_land
+grantee: person.abraham
+confidence: tradition
+sources:
+  - reference.genesis.15.18

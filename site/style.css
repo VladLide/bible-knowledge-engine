@@ -28,6 +28,7 @@ select { background: #232833; color: #e8e6e1; border: 1px solid #38404c; border-
 .dot.alive { background: #4a9eff; }
 .dot.dead { background: #6b7280; }
 .dot.route { background: #e0a03a; }
+.dot.territory { background: #7bd88f; }
 .foot { font-size: 11px; color: #6b7280; line-height: 1.4; }
 
 main { flex: 1; display: flex; flex-direction: column; min-width: 0; }

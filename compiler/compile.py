@@ -159,7 +159,7 @@ def validate(entities, events, canon, translations, geometry_ids):
         for pid in (handler.persons(ev) if handler else []):
             if pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
-        for key in ("place", "from", "to"):
+        for key in ("place", "from", "to", "territory"):
             pid = ev.payload.get(key)
             if pid and pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
@@ -242,12 +242,14 @@ def dependency_graph(events, entities, model):
 # ---------------------------------------------------------------- reduction
 
 def initial_state(entities) -> dict:
-    persons = {}
+    persons, territories = {}, {}
     for e in entities.values():
         if e.type == "person":
             presumed = bool(e.immutable.get("presumed_existing"))
             persons[e.id] = {"alive": presumed, "location": None, "covenants": []}
-    return {"persons": persons}
+        elif e.type == "place" and e.subtype == "region":
+            territories[e.id] = {"active": False, "granted_to": None}
+    return {"persons": persons, "territories": territories}
 
 
 def ordered_events(events, model) -> list[Event]:
@@ -350,6 +352,11 @@ def _fmt_state(state, entities, labels):
         loc = labels.get("en", {}).get(p["location"], p["location"]) if p["location"] else "—"
         cov = f" covenants={p['covenants']}" if p["covenants"] else ""
         lines.append(f"  {name:<10} {status:<5} at {loc}{cov}")
+    for tid, t in sorted(state.get("territories", {}).items()):
+        if t["active"]:
+            name = labels.get("en", {}).get(tid, tid)
+            to = labels.get("en", {}).get(t["granted_to"], t["granted_to"])
+            lines.append(f"  [territory] {name} granted to {to}")
     return "\n".join(lines)
 
 

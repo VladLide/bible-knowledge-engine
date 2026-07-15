@@ -108,6 +108,25 @@ def test_rejects_death_before_birth():
     assert any("occurs later" in e for e in errors), errors
 
 
+def test_territory_granted():
+    """The Promised Land is inactive until the grant event, then held by Abraham."""
+    events, entities = load_events(), load_entities()
+    terr = lambda y: state_at_year(events, entities, "conservative", y)["territories"]
+    assert terr(-2100)["place.promised_land"]["active"] is False   # before grant
+    granted = terr(-2075)["place.promised_land"]                   # after -2081 grant
+    assert granted["active"] is True
+    assert granted["granted_to"] == "person.abraham"
+
+
+def test_rejects_grant_to_unborn():
+    entities = {"person.x": _ent("person.x"),
+                "place.land": Entity("place.land", "place", "region", None, {})}
+    ev = _ev("event.g", "TerritoryGranted", {"edtf": "-2000"},
+             territory="place.land", grantee="person.x")   # x never born
+    _, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert any("not alive" in e for e in errors), errors
+
+
 def test_detects_dependency_cycle():
     entities = {"person.x": _ent("person.x", presumed_existing=True)}
     a = _ev("event.a", "Migration", {"edtf": "-2000"})
