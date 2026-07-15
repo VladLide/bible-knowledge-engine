@@ -1,11 +1,12 @@
-name: Build & deploy to GitHub Pages
+name: Build & publish data API to GitHub Pages
 
+# Repo A publishes the canonical data as a static, versioned, CORS-enabled JSON
+# API. The web app (repo: bke-web) and any third party consume it from here.
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
-# GitHub Pages only serves precompiled artifacts — all computation happens here.
 permissions:
   contents: read
   pages: write
@@ -26,11 +27,13 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Validate canon (fails the build on any error)
         run: python -m compiler check
-      - name: Compile site data (site/data/ is git-ignored, generated here)
+      - name: Compile data API (public/ is git-ignored, generated here)
         run: python -m compiler site
+        env:
+          BKE_BUILD_REV: ${{ github.sha }}
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: public
 
   deploy:
     needs: build

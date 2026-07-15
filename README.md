@@ -2,10 +2,18 @@
 
 **BKE is a compiler for a historical world.**
 
-**Live demo:** https://vladlide.github.io/bible-knowledge-engine/ — the Abraham
-slice as a map + timeline. GitHub Actions validates the canon, compiles state
-deltas, and deploys the static site; the browser only applies precompiled
-deltas — it never re-interprets events.
+This repo holds the **canonical data + compiler**. It publishes a versioned,
+CORS-enabled JSON **data API** that anyone can consume:
+
+- **Data API:** https://vladlide.github.io/bible-knowledge-engine/v1/ (start at
+  [`manifest.json`](https://vladlide.github.io/bible-knowledge-engine/v1/manifest.json))
+- **Web app** (map · timeline · knowledge graph): https://vladlide.github.io/bke-web/
+  — a separate repo ([bke-web](https://github.com/VladLide/bke-web)) and just one
+  client of the API.
+
+The split keeps the data reusable on its own: the web app, a mobile app, a
+notebook, or a third party all read the same URLs. The browser applies
+precompiled state deltas — it never re-interprets events.
 
 The canonical YAML files under [`knowledge/`](knowledge/) are not a database and
 not website content. They are *source code* describing the biblical world in a
@@ -41,10 +49,12 @@ knowledge/translations one file per language: id → label
 canon/                 versification for reference IDs (reference.book.ch.v)
 schemas/               JSON Schema: entity, event base, one per event type
 compiler/              the compiler (below)
-site/                  static-site shell (source); site/data/ is generated
 tests/                 self-checks for the slice
+public/                generated data API (gitignored) — deployed to Pages as /v1
 build/                 generated artifacts — gitignored, regenerable
 ```
+
+The web app lives in a separate repo, [bke-web](https://github.com/VladLide/bke-web).
 
 ## The compiler
 
@@ -81,7 +91,26 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 
 .venv/bin/python -m compiler check                 # validate only
 .venv/bin/python -m compiler build                 # validate + compile → build/
+.venv/bin/python -m compiler site                  # build the data API → public/v1/
 .venv/bin/python -m compiler state -2000           # world state at 2000 BC
 .venv/bin/python -m compiler state -2140 --model critical
 .venv/bin/python tests/test_slice.py               # self-checks
 ```
+
+## The data API
+
+`python -m compiler site` emits `public/v1/`, deployed to this repo's Pages.
+Clients read `manifest.json` first, then fetch the artifacts it lists:
+
+```
+manifest.json          schema_version, model, years, and the index of everything below
+timeline/initial.json  world state before any event
+timeline/<era>.json    per-era frame chunks (state deltas), keyed by 1000-year buckets
+graph.json             knowledge graph: nodes (entities) + edges (relations)
+places.geojson         geometry layer
+labels.json            translations, all languages
+```
+
+The timeline is chunked by era so it scales to 100k+ events without a huge single
+file; clients reassemble via the manifest, so growing the chunk count needs no
+client change. Breaking schema changes move to `/v2`, leaving `/v1` stable.
