@@ -316,6 +316,28 @@ def test_new_event_graph_edges():
     assert ("person.isaac", "present_at", "place.moriah") in edges
 
 
+def test_creation_act_creates_entities():
+    """CreationAct brings a place into existence (created) and mankind to life;
+    `kinds` (untracked categories) produce no state."""
+    entities = {"person.mankind": _ent("person.mankind"),
+                "place.earth": _place_ent("place.earth", "cosmos")}
+    ev = _ev("event.day", "CreationAct", {"edtf": "-4004"}, day=3,
+             creates=["place.earth", "person.mankind"], kinds=["vegetation"])
+    state, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert not errors, errors
+    assert state["persons"]["person.mankind"]["alive"] is True
+    assert state["places"]["place.earth"].get("created") is True
+
+
+def test_creation_act_rejects_double_creation():
+    """Creating an already-living entity a second time is an error."""
+    entities = {"person.mankind": _ent("person.mankind")}
+    e1 = _ev("event.d6", "CreationAct", {"edtf": "-4004"}, creates=["person.mankind"])
+    e2 = _ev("event.d6b", "CreationAct", {"edtf": "-4003"}, creates=["person.mankind"])
+    _, _, errors, _ = build_timeline([e1, e2], entities, "conservative")
+    assert any("already exists" in e for e in errors), errors
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0

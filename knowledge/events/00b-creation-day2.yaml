@@ -1,0 +1,10 @@
+id: event.creation-day2
+type: CreationAct
+# Gen 1:6-8. The expanse divides the waters; God names it "heaven".
+time:
+  edtf: "-4004"
+day: 2
+creates: [place.heavens]
+confidence: tradition
+sources:
+  - reference.genesis.1.8

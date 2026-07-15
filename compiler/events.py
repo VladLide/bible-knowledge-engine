@@ -238,6 +238,44 @@ class LandAcquired:
         return [born[p] for p in LandAcquired.persons(ev) if p in born]
 
 
+class CreationAct:
+    """Genesis 1 creation week: brings cosmic entities into existence. A created
+    place gets `created = True`; the created person (mankind) becomes alive so
+    later events on it (life/location) behave like any other person. `kinds` are
+    categories of created life not tracked as entities and have no reducer effect
+    (like an Occurrence tag). Depends on nothing — it is the beginning."""
+    schema = "CreationAct"
+
+    @staticmethod
+    def persons(ev: Event):
+        # every created entity id (persons + cosmic places); the validator only
+        # checks these exist, so returning places here catches dangling `creates`.
+        return list(ev.payload.get("creates", []))
+
+    @staticmethod
+    def check(state, ev: Event):
+        errs = []
+        for cid in ev.payload.get("creates", []):
+            if cid.startswith("person."):
+                if _person(state, cid)["alive"]:
+                    errs.append(f"{ev.id}: {cid} created but already exists")
+            elif _place(state, cid).get("created"):
+                errs.append(f"WARN {ev.id}: {cid} already created")
+        return errs
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        for cid in ev.payload.get("creates", []):
+            if cid.startswith("person."):
+                _person(state, cid)["alive"] = True
+            else:
+                _place(state, cid)["created"] = True
+
+    @staticmethod
+    def deps(ev: Event, born):
+        return []  # creation depends on nothing
+
+
 class Occurrence:
     """Escape hatch — records a cited event that changes no tracked state, so it
     still lives in the timeline and graph. No reducer effect by design."""
@@ -271,5 +309,6 @@ REGISTRY = {
     "TerritoryGranted": TerritoryGranted,
     "CityDestroyed": CityDestroyed,
     "LandAcquired": LandAcquired,
+    "CreationAct": CreationAct,
     "Occurrence": Occurrence,
 }

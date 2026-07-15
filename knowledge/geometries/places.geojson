@@ -12,6 +12,7 @@
     { "type": "Feature", "id": "geometry.zoar",      "properties": { "name_id": "place.zoar" },      "geometry": { "type": "Point", "coordinates": [35.5000, 31.0500] } },
     { "type": "Feature", "id": "geometry.moriah",    "properties": { "name_id": "place.moriah" },    "geometry": { "type": "Point", "coordinates": [35.2354, 31.7780] } },
     { "type": "Feature", "id": "geometry.machpelah", "properties": { "name_id": "place.machpelah" }, "geometry": { "type": "Point", "coordinates": [35.1050, 31.5245] } },
-    { "type": "Feature", "id": "geometry.beersheba", "properties": { "name_id": "place.beersheba" }, "geometry": { "type": "Point", "coordinates": [34.7913, 31.2518] } }
+    { "type": "Feature", "id": "geometry.beersheba", "properties": { "name_id": "place.beersheba" }, "geometry": { "type": "Point", "coordinates": [34.7913, 31.2518] } },
+    { "type": "Feature", "id": "geometry.earth-preflood", "properties": { "name_id": "place.earth", "valid_from": "-4004", "valid_until": "-2348" }, "geometry": { "type": "Polygon", "coordinates": [[[-15,10],[10,4],[45,7],[70,20],[76,40],[55,51],[28,53],[2,49],[-13,38],[-19,22],[-15,10]]] } }
   ]
 }
