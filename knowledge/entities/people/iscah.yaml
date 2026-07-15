@@ -1,0 +1,6 @@
+id: person.iscah
+type: person
+immutable:
+  father: person.haran
+sources:
+  - reference.genesis.11.29

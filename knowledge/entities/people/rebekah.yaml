@@ -5,3 +5,6 @@ immutable:
   presumed_existing: true
   father: person.bethuel
   married_to: [person.isaac]
+sources:
+  - reference.genesis.24.24
+  - reference.genesis.24.67

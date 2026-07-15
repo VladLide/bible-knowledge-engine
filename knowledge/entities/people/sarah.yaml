@@ -3,5 +3,8 @@ type: person
 subtype: matriarch
 immutable:
   presumed_existing: true
+  father: person.terah          # Abraham's half-sister (Gen 20:12)
   married_to: [person.abraham]
   mother_of: [person.isaac]
+sources:
+  - reference.genesis.20.12

@@ -1,7 +1,9 @@
 id: person.bethuel
 type: person
 immutable:
-  presumed_existing: true
   father: person.nahor
   mother: person.milcah
-  father_of: [person.rebekah]
+  father_of: [person.rebekah, person.laban]
+sources:
+  - reference.genesis.24.15
+  - reference.genesis.24.29

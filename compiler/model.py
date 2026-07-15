@@ -54,6 +54,7 @@ class Entity:
     subtype: str | None
     geometry: str | None
     immutable: dict[str, Any]
+    sources: tuple[str, ...] = ()
 
 
 @dataclass

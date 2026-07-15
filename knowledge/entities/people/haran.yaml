@@ -4,5 +4,7 @@
 id: person.haran
 type: person
 immutable:
-  presumed_existing: true
-  father_of: [person.lot]
+  father_of: [person.lot, person.milcah, person.iscah]
+sources:
+  - reference.genesis.11.29
+

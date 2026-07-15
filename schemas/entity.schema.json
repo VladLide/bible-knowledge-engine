@@ -20,6 +20,14 @@
       "type": "object",
       "description": "Timeless attributes only. No dates, no status, no location.",
       "additionalProperties": true
+    },
+    "sources": {
+      "type": "array",
+      "description": "References backing this entity's existence and its immutable relations. A genealogical fact still needs a source.",
+      "items": {
+        "type": "string",
+        "pattern": "^(reference|source)\\.[a-z0-9_.:-]+$"
+      }
     }
   },
   "additionalProperties": false

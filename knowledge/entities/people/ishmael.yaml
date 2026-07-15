@@ -1,0 +1,9 @@
+id: person.ishmael
+type: person
+# Genealogy-only for now: no events, so he doesn't appear on the map — only in
+# the graph. Add birth/dwelling events later to place him (Gen 16:15, 21:21).
+immutable:
+  father: person.abraham
+  mother: person.hagar
+sources:
+  - reference.genesis.16.15

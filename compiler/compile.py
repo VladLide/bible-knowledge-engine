@@ -55,6 +55,7 @@ def load_entities() -> dict[str, Entity]:
         e = Entity(
             id=d["id"], type=d["type"], subtype=d.get("subtype"),
             geometry=d.get("geometry"), immutable=d.get("immutable") or {},
+            sources=tuple(d.get("sources") or ()),
         )
         if e.id in out:
             raise BuildError(f"duplicate entity id: {e.id} ({path})")
@@ -133,6 +134,7 @@ def validate(entities, events, canon, translations, geometry_ids):
         if e.subtype: raw["subtype"] = e.subtype
         if e.geometry: raw["geometry"] = e.geometry
         if e.immutable: raw["immutable"] = e.immutable
+        if e.sources: raw["sources"] = list(e.sources)
         for err in entity_v.iter_errors(raw):
             errors.append(f"schema {e.id}: {err.message}")
 
@@ -176,6 +178,8 @@ def validate(entities, events, canon, translations, geometry_ids):
             for target in (val if isinstance(val, list) else [val] if val else []):
                 if target not in entities:
                     errors.append(f"{e.id}: relation '{key}' -> unknown entity {target}")
+        for src in e.sources:                       # genealogy needs sources too
+            errors.extend(_check_source(e.id, src, canon))
 
     # 4. translations — missing labels are warnings, not errors
     for lang, labels in translations.items():

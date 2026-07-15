@@ -1,0 +1,7 @@
+id: person.laban
+type: person
+# Rebekah's brother; becomes central in Jacob's narrative (Gen 29).
+immutable:
+  father: person.bethuel
+sources:
+  - reference.genesis.24.29

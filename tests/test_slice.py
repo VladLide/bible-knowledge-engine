@@ -165,6 +165,34 @@ def test_graph_relations():
     assert ("person.lot", "died_at", "place.sodom") not in edges       # Lot never dies in slice
 
 
+def test_graph_genealogy():
+    """Sourced genealogy (no events) shows up in the graph."""
+    from compiler.site import build_graph
+    g = build_graph(load_entities(), load_events())
+    edges = {(e["source"], e["rel"], e["target"]) for e in g["edges"]}
+    for parent, child in [("person.abraham", "person.ishmael"),
+                          ("person.hagar", "person.ishmael"),
+                          ("person.bethuel", "person.laban"),
+                          ("person.haran", "person.milcah"),
+                          ("person.terah", "person.sarah")]:
+        assert (parent, "parent_of", child) in edges, (parent, child)
+
+
+def test_genealogy_stays_off_the_map():
+    """Event-less people (not presumed_existing) never get a location → not on map."""
+    events, entities = load_events(), load_entities()
+    persons = state_at_year(events, entities, "conservative", -1900)["persons"]
+    for pid in ["person.ishmael", "person.laban", "person.nahor", "person.haran"]:
+        assert persons[pid]["location"] is None, pid
+
+
+def test_rejects_bad_entity_source():
+    entities = {"person.x": Entity("person.x", "person", None, None, {},
+                                   ("reference.genesis.99.1",))}
+    errors, _ = _validate_only(entities, [])
+    assert any("chapter 99" in e or "out of range" in e for e in errors), errors
+
+
 def test_rejects_dangling_relation():
     entities = {"person.a": _ent("person.a", father_of=["person.ghost"])}
     errors, _ = _validate_only(entities, [])
