@@ -257,7 +257,7 @@ def initial_state(entities) -> dict:
     for e in entities.values():
         if e.type == "person":
             presumed = bool(e.immutable.get("presumed_existing"))
-            persons[e.id] = {"alive": presumed, "location": None, "covenants": []}
+            persons[e.id] = {"alive": presumed, "location": None, "covenants": [], "spouse": None}
         elif e.type == "place" and e.subtype == "region":
             territories[e.id] = {"active": False, "granted_to": None}
     return {"persons": persons, "territories": territories}
@@ -362,7 +362,8 @@ def _fmt_state(state, entities, labels):
         status = "alive" if p["alive"] else ("dead" if p["location"] else "unborn")
         loc = labels.get("en", {}).get(p["location"], p["location"]) if p["location"] else "—"
         cov = f" covenants={p['covenants']}" if p["covenants"] else ""
-        lines.append(f"  {name:<10} {status:<5} at {loc}{cov}")
+        wed = f" ⚭ {labels.get('en', {}).get(p['spouse'], p['spouse'])}" if p.get("spouse") else ""
+        lines.append(f"  {name:<10} {status:<5} at {loc}{wed}{cov}")
     for tid, t in sorted(state.get("territories", {}).items()):
         if t["active"]:
             name = labels.get("en", {}).get(tid, tid)

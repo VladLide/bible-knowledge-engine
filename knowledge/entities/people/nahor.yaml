@@ -2,3 +2,5 @@ id: person.nahor
 type: person
 immutable:
   presumed_existing: true
+  married_to: [person.milcah]
+  father_of: [person.bethuel]

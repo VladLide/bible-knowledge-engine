@@ -1,0 +1,11 @@
+id: event.isaac-marries-rebekah
+type: Marriage
+# Gen 24:67; Isaac was forty (Gen 25:20) → c. 40 years after his birth (-2066).
+time:
+  edtf: "-2026?"
+spouses: [person.isaac, person.rebekah]
+place: place.hebron
+confidence: tradition
+sources:
+  - reference.genesis.24.67
+  - reference.genesis.25.20

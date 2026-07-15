@@ -1,0 +1,7 @@
+id: person.rebekah
+type: person
+subtype: matriarch
+immutable:
+  presumed_existing: true
+  father: person.bethuel
+  married_to: [person.isaac]

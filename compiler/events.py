@@ -20,7 +20,7 @@ from .model import Event
 
 def _person(state, pid):
     return state["persons"].setdefault(
-        pid, {"alive": False, "location": None, "covenants": []}
+        pid, {"alive": False, "location": None, "covenants": [], "spouse": None}
     )
 
 
@@ -137,6 +137,32 @@ class CovenantMade:
         return [born[p] for p in ev.payload["parties"] if p in born]
 
 
+class Marriage:
+    schema = "Marriage"
+
+    @staticmethod
+    def persons(ev: Event):
+        return list(ev.payload["spouses"])
+
+    @staticmethod
+    def check(state, ev: Event):
+        errs = []
+        for pid in ev.payload["spouses"]:
+            if not _person(state, pid)["alive"]:
+                errs.append(f"{ev.id}: spouse {pid} is not alive")
+        return errs
+
+    @staticmethod
+    def reduce(state, ev: Event):
+        a, b = ev.payload["spouses"]
+        _person(state, a)["spouse"] = b
+        _person(state, b)["spouse"] = a
+
+    @staticmethod
+    def deps(ev: Event, born):
+        return [born[p] for p in ev.payload["spouses"] if p in born]
+
+
 class TerritoryGranted:
     schema = "TerritoryGranted"
 
@@ -167,5 +193,6 @@ REGISTRY = {
     "PersonDied": PersonDied,
     "Migration": Migration,
     "CovenantMade": CovenantMade,
+    "Marriage": Marriage,
     "TerritoryGranted": TerritoryGranted,
 }

@@ -4,3 +4,4 @@ subtype: patriarch
 immutable:
   father: person.abraham
   mother: person.sarah
+  married_to: [person.rebekah]

@@ -1,0 +1,6 @@
+id: person.milcah
+type: person
+immutable:
+  presumed_existing: true
+  married_to: [person.nahor]
+  mother_of: [person.bethuel]

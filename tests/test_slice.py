@@ -118,6 +118,25 @@ def test_territory_granted():
     assert granted["granted_to"] == "person.abraham"
 
 
+def test_marriage():
+    """After Gen 24, Isaac and Rebekah are each other's spouse in world state."""
+    events, entities = load_events(), load_entities()
+    at = lambda y: state_at_year(events, entities, "conservative", y)["persons"]
+    assert at(-2030)["person.isaac"]["spouse"] is None          # before marriage
+    end = at(-2020)
+    assert end["person.isaac"]["spouse"] == "person.rebekah"    # after -2026
+    assert end["person.rebekah"]["spouse"] == "person.isaac"
+
+
+def test_rejects_marriage_to_unborn():
+    entities = {"person.a": _ent("person.a", presumed_existing=True),
+                "person.b": _ent("person.b")}   # b never born, not presumed
+    ev = _ev("event.wed", "Marriage", {"edtf": "-2000"})
+    ev.payload = {"spouses": ["person.a", "person.b"]}
+    _, _, errors, _ = build_timeline([ev], entities, "conservative")
+    assert any("not alive" in e for e in errors), errors
+
+
 def test_rejects_grant_to_unborn():
     entities = {"person.x": _ent("person.x"),
                 "place.land": Entity("place.land", "place", "region", None, {})}

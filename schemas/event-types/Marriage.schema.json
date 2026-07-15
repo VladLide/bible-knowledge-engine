@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bke:event-type:Marriage",
+  "title": "Marriage",
+  "description": "Two people marry. Reducer: each spouse's `spouse` becomes the other. The timeless married_to relation lives on the entities; this event dates the union.",
+  "type": "object",
+  "properties": {
+    "spouses": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": { "type": "string", "pattern": "^person\\.[a-z0-9_-]+$" }
+    },
+    "place": { "type": "string", "pattern": "^place\\.[a-z0-9_-]+$" }
+  },
+  "required": ["spouses"]
+}
