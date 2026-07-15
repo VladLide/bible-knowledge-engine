@@ -1,0 +1,13 @@
+id: event.lot-separates
+type: Migration
+# Gen 13: after returning from Egypt, Lot parts from Abram and settles toward
+# Sodom in the Jordan plain, while Abram stays in Canaan (Hebron/Mamre).
+# Simplified: the split is modelled as a Lot-only migration from Hebron to Sodom.
+time:
+  edtf: "-2084?"
+subjects: [person.lot]
+from: place.hebron
+to: place.sodom
+confidence: possible
+sources:
+  - reference.genesis.13.11

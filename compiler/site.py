@@ -67,6 +67,44 @@ def build_timeline(events, entities, model):
     }
 
 
+def build_graph(entities, events):
+    """Knowledge-graph projection: nodes = entities, edges = relations.
+
+    Edges come from two sources — immutable entity relations (genealogy) and
+    event participation — but the graph itself re-interprets nothing; it reads
+    the same canonical data the map does. Undirected relations are de-duplicated
+    by ordering the endpoints.
+    """
+    nodes = [{"id": e.id, "type": e.type, "subtype": e.subtype} for e in entities.values()]
+    edges = set()  # (source, target, rel)
+
+    for e in entities.values():
+        for child in (e.immutable.get("father_of") or []) + (e.immutable.get("mother_of") or []):
+            edges.add((e.id, child, "parent_of"))
+        for key in ("father", "mother"):
+            if e.immutable.get(key):
+                edges.add((e.immutable[key], e.id, "parent_of"))
+        for spouse in (e.immutable.get("married_to") or []):
+            a, b = sorted((e.id, spouse))          # symmetric → canonical order dedupes
+            edges.add((a, b, "spouse"))
+
+    verb = {"PersonBorn": ("person", "place", "born_at"),
+            "PersonDied": ("person", "place", "died_at"),
+            "TerritoryGranted": ("grantee", "territory", "granted")}
+    for ev in events:
+        if ev.type in verb:
+            src_k, dst_k, rel = verb[ev.type]
+            edges.add((ev.payload[src_k], ev.payload[dst_k], rel))
+        if ev.type == "Migration":
+            for s in ev.payload["subjects"]:           # deduped per (person, place)
+                edges.add((s, ev.payload["to"], "traveled_to"))
+
+    return {
+        "nodes": nodes,
+        "edges": [{"source": s, "target": t, "rel": r} for s, t, r in sorted(edges)],
+    }
+
+
 def build_site_data(model="conservative"):
     entities = load_entities()
     events = load_events()
@@ -78,6 +116,8 @@ def build_site_data(model="conservative"):
         encoding="utf-8")
     (SITE_DATA / "labels.json").write_text(
         json.dumps(translations, ensure_ascii=False, indent=2), encoding="utf-8")
+    (SITE_DATA / "graph.json").write_text(
+        json.dumps(build_graph(entities, events), ensure_ascii=False, indent=2), encoding="utf-8")
 
     # geometry layer: concatenate every .geojson into one FeatureCollection
     features = []

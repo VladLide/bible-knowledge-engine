@@ -33,6 +33,9 @@ SCHEMA_VERSION = 1
 
 REF_RE = re.compile(r"^reference\.([a-z0-9_]+)\.(\d+)\.(\d+)$")
 
+# immutable relation keys whose values are person ids (scalar or list)
+RELATION_KEYS = ("father_of", "mother_of", "married_to", "father", "mother")
+
 
 class BuildError(Exception):
     pass
@@ -165,6 +168,14 @@ def validate(entities, events, canon, translations, geometry_ids):
                 errors.append(f"{ev.id}: references unknown entity {pid}")
         for src in ev.sources:
             errors.extend(_check_source(ev.id, src, canon))
+
+    # 3b. entity relation targets must resolve (catches genealogy typos)
+    for e in entities.values():
+        for key in RELATION_KEYS:
+            val = e.immutable.get(key)
+            for target in (val if isinstance(val, list) else [val] if val else []):
+                if target not in entities:
+                    errors.append(f"{e.id}: relation '{key}' -> unknown entity {target}")
 
     # 4. translations — missing labels are warnings, not errors
     for lang, labels in translations.items():

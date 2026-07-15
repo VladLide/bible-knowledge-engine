@@ -127,6 +127,31 @@ def test_rejects_grant_to_unborn():
     assert any("not alive" in e for e in errors), errors
 
 
+def test_lot_separates_to_sodom():
+    """After Gen 13, Lot ends at Sodom — not with Abraham at Hebron."""
+    events, entities = load_events(), load_entities()
+    end = state_at_year(events, entities, "conservative", -1991)["persons"]
+    assert end["person.lot"]["location"] == "place.sodom"
+    assert end["person.abraham"]["location"] == "place.hebron"
+
+
+def test_graph_relations():
+    from compiler.site import build_graph
+    g = build_graph(load_entities(), load_events())
+    edges = {(e["source"], e["rel"], e["target"]) for e in g["edges"]}
+    assert ("person.abraham", "parent_of", "person.isaac") in edges
+    assert ("person.abraham", "spouse", "person.sarah") in edges     # deduped, ordered
+    assert ("person.abraham", "granted", "place.promised_land") in edges
+    assert ("person.lot", "traveled_to", "place.sodom") in edges       # separation edge
+    assert ("person.lot", "died_at", "place.sodom") not in edges       # Lot never dies in slice
+
+
+def test_rejects_dangling_relation():
+    entities = {"person.a": _ent("person.a", father_of=["person.ghost"])}
+    errors, _ = _validate_only(entities, [])
+    assert any("person.ghost" in e and "relation" in e for e in errors), errors
+
+
 def test_detects_dependency_cycle():
     entities = {"person.x": _ent("person.x", presumed_existing=True)}
     a = _ev("event.a", "Migration", {"edtf": "-2000"})
