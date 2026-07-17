@@ -316,6 +316,27 @@ def test_new_event_graph_edges():
     assert ("person.isaac", "present_at", "place.moriah") in edges
 
 
+def test_rejects_unknown_source_id():
+    """A source.* citation must resolve to the registry in knowledge/sources/."""
+    entities = {"person.a": _ent("person.a", presumed_existing=True)}
+    ev = _ev("event.x", "Occurrence", {"edtf": "-2000"}, kind="test",
+             participants=["person.a"])
+    ev.sources = ["source.bogus"]
+    errors, _ = validate(entities, [ev], load_canon(), {}, load_geometry_ids(),
+                         sources={"source.real": {"id": "source.real"}})
+    assert any("unknown source source.bogus" in e for e in errors), errors
+
+
+def test_source_registry_loads():
+    """The registry parses and canonical ids are present."""
+    from compiler.compile import load_source_registry
+    reg = load_source_registry()
+    assert "source.ohienko-uk" in reg and "source.cuv-uk" in reg
+    oh = reg["source.ohienko-uk"]
+    assert oh["location"] == "remote" and "{chapter}" in oh["url_template"]
+    assert oh["verse_map"].get("reference.numbers.17.8") == "17:23"
+
+
 def test_creation_act_creates_entities():
     """CreationAct brings a place into existence (created) and mankind to life;
     `kinds` (untracked categories) produce no state."""

@@ -22,7 +22,7 @@ import os
 
 from .compile import (
     ROOT, KNOW, SCHEMA_VERSION, load_entities, load_events, load_translations,
-    ordered_events, initial_state,
+    load_source_registry, ordered_events, initial_state,
 )
 from .events import REGISTRY
 
@@ -127,7 +127,7 @@ def build_graph(entities, events):
 def _write(rel: str, obj) -> None:
     path = DIST / rel
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
 
 
 def build_site_data(model="conservative"):
@@ -157,6 +157,12 @@ def build_site_data(model="conservative"):
     _write("graph.json", build_graph(entities, events))
     _write("labels.json", translations)
 
+    # source registry: WHERE facts come from. Remote sources carry url_template
+    # + verse_map so the client can fetch and correctly address verse text;
+    # the canonical join key is the reference id. Texts themselves are not
+    # published here (they live with the source: external API / future corpus repo).
+    _write("sources.json", load_source_registry())
+
     features = []
     for path in sorted((KNOW / "geometries").glob("*.geojson")):
         features += json.loads(path.read_text(encoding="utf-8")).get("features", [])
@@ -170,6 +176,7 @@ def build_site_data(model="conservative"):
         "graph": "graph.json",
         "geometry": "places.geojson",
         "labels": "labels.json",
+        "sources": "sources.json",
     }
     rev = os.environ.get("BKE_BUILD_REV")   # CI stamps the commit; absent → deterministic
     if rev:

@@ -1,0 +1,29 @@
+id: source.ohienko-uk
+type: bible-translation
+title: Біблія у перекладі Івана Огієнка (1962)
+language: uk
+license: public domain
+# Texts are NOT stored in this repo (yet). `location: remote` = the client
+# fetches verse text live from url_template (CORS-enabled). When the corpus
+# moves to our own repo/server, only location/url change — the canonical join
+# key is always reference.<book>.<ch>.<v>, and verse_map still re-addresses
+# the few references whose versification differs in this source.
+location: remote
+url_template: "https://api.getbible.net/v2/ukrogienko/{book_nr}/{chapter}.json"
+books:            # canonical book id -> this source's book number
+  genesis: 1
+  exodus: 2
+  leviticus: 3
+  numbers: 4
+  deuteronomy: 5
+retrieved: 2026-07-17
+# Ohienko follows Masoretic-style versification in places; canonical reference
+# IDs follow canon/protestant.yaml (English-style). Only divergent cited refs
+# are mapped ("<chapter>:<verse>" in THIS source's numbering).
+verse_map:
+  # Jacob wrestles / renamed Israel / Peniel: Masoretic ch. 32 is +1 vs English
+  reference.genesis.32.24: "32:25"
+  reference.genesis.32.28: "32:29"
+  reference.genesis.32.30: "32:31"
+  # Aaron's rod buds: English 17:8 = Masoretic 17:23
+  reference.numbers.17.8: "17:23"

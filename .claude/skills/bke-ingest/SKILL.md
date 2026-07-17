@@ -135,6 +135,18 @@ meaning.
 - Cite verses; if a chapter isn't in `canon/protestant.yaml`, add it with its real
   verse count.
 
+### 5b. Sources are first-class — register them
+Every ingest names its source(s) in `knowledge/sources/<id>.yaml` (one file per
+source): `id: source.<id>`, `type`, `title`, `language`, `license`, `location`
+(`remote` = texts fetched live from `url_template` + `books` map; `none` =
+registry-only, e.g. copyrighted translations), and `verse_map` re-addressing any
+cited canonical reference whose versification differs in that source
+(`reference.genesis.32.24: "32:25"`). Verse TEXTS are not stored in this repo —
+the client shows them live from the source; the canonical join key is always
+`reference.<book>.<ch>.<v>`. A `source.*` citation that is not in the registry
+is a build error. When two sources genuinely disagree about one event, keep one
+event and record the divergent testimony (claims) — do not fork the event.
+
 ### 6. Decision rules to apply while writing
 - **Grouped vs separate movement:** put all subjects in one `Migration` only if
   they truly moved together (a clan). Model separations/divergences as their own

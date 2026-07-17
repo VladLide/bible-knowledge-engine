@@ -1,0 +1,11 @@
+id: source.cuv-uk
+type: bible-translation
+title: Біблія, Сучасний переклад (CUV)
+language: uk
+license: copyrighted — texts NOT stored in this public repo (registry entry only)
+location: none
+url: https://www.bible.com/uk/bible/3786
+retrieved: 2026-07-17
+# The ingest passes for Genesis-Numbers read this translation; events cite
+# canonical reference IDs. Its verse text is not stored here for copyright
+# reasons — the Ohienko witness supplies the displayable text.

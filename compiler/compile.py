@@ -100,6 +100,30 @@ def load_translations() -> dict[str, dict[str, str]]:
     return out
 
 
+def load_source_registry() -> dict[str, dict]:
+    """Source registry: knowledge/sources/*.yaml, one source per file.
+
+    A source is WHERE a fact comes from (a translation, Josephus, a dig report).
+    Texts are not required to live in this repo: `location: remote` sources
+    carry a url_template the client fetches verse text from; `verse_map`
+    re-addresses canonical references whose versification differs in that
+    source. The canonical join key is always reference.<book>.<ch>.<v>.
+    """
+    out: dict[str, dict] = {}
+    src_dir = KNOW / "sources"
+    if not src_dir.is_dir():
+        return out
+    for path in sorted(src_dir.glob("*.yaml")):
+        d = _load_yaml(path)
+        sid = d.get("id", "")
+        if not sid.startswith("source."):
+            raise BuildError(f"{path}: source id must start with 'source.' (got {sid!r})")
+        if sid in out:
+            raise BuildError(f"duplicate source id: {sid} ({path})")
+        out[sid] = d
+    return out
+
+
 def load_geometry_ids() -> set[str]:
     ids: set[str] = set()
     for path in sorted((KNOW / "geometries").glob("*.geojson")):
@@ -122,8 +146,9 @@ def _validators():
     return entity_v, event_v, type_v
 
 
-def validate(entities, events, canon, translations, geometry_ids):
-    """Return (errors, warnings). Errors fail the build."""
+def validate(entities, events, canon, translations, geometry_ids, sources=None):
+    """Return (errors, warnings). Errors fail the build.
+    `sources` = the source registry; None (tests) skips source.* id checks."""
     errors: list[str] = []
     warnings: list[str] = []
     entity_v, event_v, type_v = _validators()
@@ -169,7 +194,7 @@ def validate(entities, events, canon, translations, geometry_ids):
             if pid and pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
         for src in ev.sources:
-            errors.extend(_check_source(ev.id, src, canon))
+            errors.extend(_check_source(ev.id, src, canon, sources))
 
     # 3b. entity relation targets must resolve (catches genealogy typos)
     for e in entities.values():
@@ -179,7 +204,7 @@ def validate(entities, events, canon, translations, geometry_ids):
                 if target not in entities:
                     errors.append(f"{e.id}: relation '{key}' -> unknown entity {target}")
         for src in e.sources:                       # genealogy needs sources too
-            errors.extend(_check_source(e.id, src, canon))
+            errors.extend(_check_source(e.id, src, canon, sources))
 
     # 4. translations — missing labels are warnings, not errors
     for lang, labels in translations.items():
@@ -189,9 +214,11 @@ def validate(entities, events, canon, translations, geometry_ids):
     return errors, warnings
 
 
-def _check_source(ev_id, src, canon) -> list[str]:
+def _check_source(ev_id, src, canon, sources=None) -> list[str]:
     if src.startswith("source."):
-        return []  # non-biblical sources live in knowledge/sources (not validated here)
+        if sources is not None and src not in sources:
+            return [f"{ev_id}: cites unknown source {src} (not in knowledge/sources/)"]
+        return []
     m = REF_RE.match(src)
     if not m:
         return [f"{ev_id}: malformed reference {src}"]
@@ -310,8 +337,9 @@ def compile_all(model=DEFAULT_MODEL, strict=True):
     canon = load_canon()
     translations = load_translations()
     geometry_ids = load_geometry_ids()
+    sources = load_source_registry()
 
-    errors, warnings = validate(entities, events, canon, translations, geometry_ids)
+    errors, warnings = validate(entities, events, canon, translations, geometry_ids, sources)
     de, dw = dependency_graph(events, entities, model)
     errors += de; warnings += dw
 
@@ -327,7 +355,7 @@ def compile_all(model=DEFAULT_MODEL, strict=True):
 
     return {
         "entities": entities, "events": events, "canon": canon,
-        "translations": translations, "geometry_ids": geometry_ids,
+        "translations": translations, "geometry_ids": geometry_ids, "sources": sources,
         "final_state": final, "keyframes": keyframes,
         "errors": errors, "warnings": warnings, "model": model,
     }
