@@ -1,0 +1,7 @@
+id: person.milcah-daughter
+type: person
+# A daughter of Zelophehad (Num 27:1; 36:11).
+immutable:
+  presumed_existing: true
+  father: person.zelophehad
+sources: [reference.numbers.27.1]

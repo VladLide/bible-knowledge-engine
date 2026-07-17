@@ -1,0 +1,6 @@
+id: place.mount-hor
+type: place
+subtype: mountain
+# Mount Hor, on the edge of Edom, where Aaron died (Num 20:28).
+geometry: geometry.mount-hor
+sources: [reference.numbers.22.1]

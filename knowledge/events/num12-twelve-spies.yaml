@@ -1,0 +1,12 @@
+id: event.twelve-spies-rebellion
+type: Occurrence
+# Num 13-14 — twelve spies scout Canaan for forty days; ten give a fearful report
+# and the people rebel. Only Caleb and Joshua trust God; the LORD decrees forty
+# years in the wilderness until that generation dies, and the ten spies die by plague.
+time: { edtf: "-1444" }
+kind: rebellion
+participants: [person.moses, person.aaron, person.caleb, person.joshua]
+place: place.kadesh
+confidence: tradition
+requires: [event.depart-sinai]
+sources: [reference.numbers.14.34]

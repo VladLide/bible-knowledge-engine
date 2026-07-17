@@ -1,0 +1,11 @@
+id: event.phinehas-covenant
+type: CovenantMade
+# Num 25:10-13 — for his zeal the LORD grants Phinehas his covenant of peace, a
+# perpetual priesthood for him and his descendants.
+time: { edtf: "-1406" }
+parties: [person.phinehas]
+place: place.moab
+name: priesthood-of-peace
+confidence: tradition
+requires: [event.baal-peor]
+sources: [reference.numbers.25.13]

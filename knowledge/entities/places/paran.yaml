@@ -1,0 +1,7 @@
+id: place.paran
+type: place
+subtype: wilderness
+# The wilderness of Paran, where Israel camped after leaving Sinai and from which
+# the spies were sent (Num 10:12; 13:3). (subtype avoids the territory reducer.)
+geometry: geometry.paran
+sources: [reference.numbers.10.12]

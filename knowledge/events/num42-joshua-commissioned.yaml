@@ -1,0 +1,10 @@
+id: event.joshua-commissioned
+type: Occurrence
+# Num 27:12-23 — since Moses may not enter the land, the LORD appoints Joshua son of
+# Nun, and Moses lays his hands on him before Eleazar and the congregation.
+time: { edtf: "-1406" }
+kind: commission
+participants: [person.moses, person.joshua, person.eleazar]
+place: place.moab
+confidence: tradition
+sources: [reference.numbers.27.23]

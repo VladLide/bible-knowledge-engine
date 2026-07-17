@@ -1,0 +1,9 @@
+id: event.miriam-died
+type: PersonDied
+# Num 20:1 — in the first month the people come to Kadesh in the wilderness of Zin,
+# and Miriam dies and is buried there. Year 40 (-1407).
+time: { edtf: "-1407" }
+person: person.miriam
+place: place.kadesh
+confidence: tradition
+sources: [reference.numbers.20.1]

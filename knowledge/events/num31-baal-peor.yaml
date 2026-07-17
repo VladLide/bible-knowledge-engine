@@ -1,0 +1,12 @@
+id: event.baal-peor
+type: Occurrence
+# Num 25 — Israel joins in the worship of Baal of Peor with Moabite and Midianite
+# women; a plague kills 24,000 until Phinehas kills Zimri and Cozbi and turns away
+# God's wrath.
+time: { edtf: "-1406" }
+kind: apostasy
+participants: [person.moses, person.phinehas]
+place: place.moab
+confidence: tradition
+requires: [event.to-plains-of-moab]
+sources: [reference.numbers.25.3]

@@ -1,0 +1,6 @@
+id: place.heshbon
+type: place
+subtype: city
+# Heshbon, city of Sihon king of the Amorites, taken by Israel (Num 21:25).
+geometry: geometry.heshbon
+sources: [reference.numbers.22.1]

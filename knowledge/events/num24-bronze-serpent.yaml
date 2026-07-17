@@ -1,0 +1,11 @@
+id: event.bronze-serpent
+type: Occurrence
+# Num 21:4-9 — impatient on the way around Edom, the people are bitten by fiery
+# serpents; whoever looks at the bronze serpent Moses lifts up on a pole lives.
+time: { edtf: "-1407" }
+kind: healing
+participants: [person.moses]
+place: place.mount-hor
+confidence: tradition
+requires: [event.aaron-died]
+sources: [reference.numbers.21.9]

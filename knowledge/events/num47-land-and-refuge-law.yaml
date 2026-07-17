@@ -1,0 +1,10 @@
+id: event.land-and-refuge-law
+type: Occurrence
+# Num 34-35 — the boundaries of Canaan for the nine and a half tribes; forty-eight
+# Levitical cities; and six cities of refuge for the manslayer.
+time: { edtf: "-1406" }
+kind: law
+participants: [person.moses, person.eleazar]
+place: place.moab
+confidence: tradition
+sources: [reference.numbers.35.13]

@@ -1,0 +1,11 @@
+id: event.og-defeated
+type: Occurrence
+# Num 21:33-35 — Og king of Bashan comes out against Israel at Edrei; the LORD gives
+# him over, and Israel strikes him and his sons and possesses his land.
+time: { edtf: "-1407" }
+kind: battle
+participants: [person.moses, person.og]
+place: place.bashan
+confidence: tradition
+requires: [event.sihon-defeated]
+sources: [reference.numbers.21.35]

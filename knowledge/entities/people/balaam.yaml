@@ -1,0 +1,6 @@
+id: person.balaam
+type: person
+# The seer of Pethor who blessed Israel and later died in the Midian war (Num 31:8) (Num 22:5).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.22.5]

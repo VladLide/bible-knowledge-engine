@@ -1,0 +1,11 @@
+id: event.transjordan-settlement
+type: Occurrence
+# Num 32 — Reuben, Gad, and half of Manasseh, having much cattle, ask for the land
+# of Jazer and Gilead east of the Jordan; Moses grants it on condition they help
+# their brothers conquer Canaan.
+time: { edtf: "-1406" }
+kind: settlement
+participants: [person.moses]
+place: place.heshbon
+confidence: tradition
+sources: [reference.numbers.32.33]

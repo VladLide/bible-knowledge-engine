@@ -1,0 +1,7 @@
+id: person.korah
+type: person
+# A Kohathite Levite who led a rebellion against Moses and Aaron's authority; the
+# earth opened and swallowed him and his fellows (Num 16).
+immutable:
+  presumed_existing: true
+sources: [reference.numbers.16.1]

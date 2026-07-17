@@ -428,6 +428,90 @@
           28.75
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.paran",
+      "properties": {
+        "name_id": "place.paran"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.4,
+          30.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.kadesh",
+      "properties": {
+        "name_id": "place.kadesh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.42,
+          30.65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.mount-hor",
+      "properties": {
+        "name_id": "place.mount-hor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.4,
+          30.3
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.heshbon",
+      "properties": {
+        "name_id": "place.heshbon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.8,
+          31.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.bashan",
+      "properties": {
+        "name_id": "place.bashan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.0,
+          32.8
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.moab",
+      "properties": {
+        "name_id": "place.moab"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.62,
+          31.85
+        ]
+      }
     }
   ]
 }
