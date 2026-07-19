@@ -1,0 +1,189 @@
+id: source.ohienko-uk
+type: bible-translation
+title: Біблія у перекладі Івана Огієнка (1962)
+language: uk
+license: public domain
+# Texts are NOT stored in this repo (yet). `location: remote` = the client
+# fetches verse text live from url_template (CORS-enabled). When the corpus
+# moves to our own repo/server, only location/url change — the canonical join
+# key is always reference.<book>.<ch>.<v>, and verse_map still re-addresses
+# the few references whose versification differs in this source.
+location: remote
+url_template: "https://api.getbible.net/v2/ukrogienko/{book_nr}/{chapter}.json"
+books:            # canonical book id -> this source's book number
+  genesis: 1
+  exodus: 2
+  leviticus: 3
+  numbers: 4
+  deuteronomy: 5
+retrieved: 2026-07-17
+# Ohienko follows Masoretic-style versification in places; canonical reference
+# IDs follow canon/protestant.yaml (English-style). Only divergent cited refs
+# are mapped ("<chapter>:<verse>" in THIS source's numbering).
+verse_map:
+  # Jacob wrestles / renamed Israel / Peniel: Masoretic ch. 32 is +1 vs canonical
+  reference.genesis.32.24: "32:25"
+  reference.genesis.32.28: "32:29"
+  reference.genesis.32.30: "32:31"
+  # Aaron's rod buds: canonical 17:8 = Masoretic 17:23
+  reference.numbers.17.8: "17:23"
+# Власний довідник версифікації цього джерела (нативна нумерація Огієнка).
+# Використовується для перевірки цілей verse_map і, в майбутньому, текстів у texts/.
+versification:
+  genesis:
+    1: 31
+    2: 25
+    3: 24
+    4: 26
+    5: 32
+    6: 22
+    7: 24
+    8: 22
+    9: 29
+    10: 32
+    11: 32
+    12: 20
+    13: 18
+    14: 24
+    15: 21
+    16: 16
+    17: 27
+    18: 33
+    19: 38
+    20: 18
+    21: 34
+    22: 24
+    23: 20
+    24: 67
+    25: 34
+    26: 35
+    27: 46
+    28: 22
+    29: 35
+    30: 43
+    31: 53
+    32: 33
+    33: 20
+    34: 31
+    35: 29
+    36: 43
+    37: 36
+    38: 30
+    39: 23
+    40: 23
+    41: 57
+    42: 37
+    43: 34
+    44: 34
+    45: 28
+    46: 32
+    47: 31
+    48: 22
+    49: 33
+    50: 26
+  exodus:
+    1: 22
+    2: 25
+    3: 22
+    4: 31
+    5: 23
+    6: 30
+    7: 29
+    8: 28
+    9: 35
+    10: 29
+    11: 10
+    12: 51
+    13: 22
+    14: 31
+    15: 27
+    16: 36
+    17: 16
+    18: 27
+    19: 25
+    20: 26
+    21: 36
+    22: 30
+    23: 33
+    24: 18
+    25: 40
+    26: 37
+    27: 21
+    28: 43
+    29: 46
+    30: 38
+    31: 18
+    32: 35
+    33: 23
+    34: 35
+    35: 35
+    36: 38
+    37: 21
+    38: 29
+    39: 23
+    40: 38
+  leviticus:
+    1: 17
+    2: 16
+    3: 17
+    4: 35
+    5: 26
+    6: 23
+    7: 38
+    8: 36
+    9: 24
+    10: 20
+    11: 47
+    12: 8
+    13: 59
+    14: 57
+    15: 33
+    16: 34
+    17: 16
+    18: 30
+    19: 37
+    20: 27
+    21: 24
+    22: 33
+    23: 44
+    24: 23
+    25: 55
+    26: 46
+    27: 33
+  numbers:
+    1: 54
+    2: 34
+    3: 51
+    4: 49
+    5: 31
+    6: 27
+    7: 89
+    8: 26
+    9: 23
+    10: 36
+    11: 35
+    12: 16
+    13: 33
+    14: 45
+    15: 41
+    16: 35
+    17: 28
+    18: 32
+    19: 22
+    20: 29
+    21: 35
+    22: 41
+    23: 30
+    24: 25
+    25: 18
+    26: 65
+    27: 23
+    28: 31
+    29: 39
+    30: 17
+    31: 53
+    32: 42
+    33: 56
+    34: 29
+    35: 34
+    36: 13

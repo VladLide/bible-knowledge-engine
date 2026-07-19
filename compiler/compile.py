@@ -83,13 +83,14 @@ def load_events() -> list[Event]:
 
 
 def load_canon() -> dict[str, dict[int, int]]:
-    """Merge every canon file's versification: book -> {chapter: verse_count}."""
-    canon: dict[str, dict[int, int]] = {}
-    for path in sorted((ROOT / "canon").glob("*.yaml")):
-        d = _load_yaml(path)
-        for book, chapters in (d.get("books") or {}).items():
-            canon.setdefault(book, {}).update({int(c): int(v) for c, v in chapters.items()})
-    return canon
+    """The reference address space: the versification of the ONE source marked
+    `canonical: true`. IDs are forever, so the flag must never move to a source
+    with different numbering — divergent sources use verse_map instead."""
+    canonical = [d for d in load_source_registry().values() if d.get("canonical")]
+    if len(canonical) != 1:
+        raise BuildError(f"exactly one source must have canonical: true (found {len(canonical)})")
+    vers = canonical[0].get("versification") or {}
+    return {book: {int(c): int(v) for c, v in chs.items()} for book, chs in vers.items()}
 
 
 def load_translations() -> dict[str, dict[str, str]]:
@@ -97,6 +98,31 @@ def load_translations() -> dict[str, dict[str, str]]:
     for path in sorted((KNOW / "translations").glob("*.yaml")):
         d = _load_yaml(path)
         out[d["lang"]] = d.get("labels") or {}
+    return out
+
+
+def load_source_registry() -> dict[str, dict]:
+    """Source registry: sources/<resource>/source.yaml, one folder per resource.
+
+    A source is WHERE a fact comes from (a translation, Josephus, a dig report).
+    Its folder holds the main file (link, license, its own versification guide,
+    verse_map) and, in the future, the texts themselves. `location: remote`
+    sources carry a url_template the client fetches verse text from. The
+    canonical join key is always reference.<book>.<ch>.<v> — the address space
+    is the versification of the single source marked `canonical: true`.
+    """
+    out: dict[str, dict] = {}
+    src_dir = ROOT / "sources"
+    if not src_dir.is_dir():
+        return out
+    for path in sorted(src_dir.glob("*/source.yaml")):
+        d = _load_yaml(path)
+        sid = d.get("id", "")
+        if not sid.startswith("source."):
+            raise BuildError(f"{path}: source id must start with 'source.' (got {sid!r})")
+        if sid in out:
+            raise BuildError(f"duplicate source id: {sid} ({path})")
+        out[sid] = d
     return out
 
 
@@ -122,8 +148,9 @@ def _validators():
     return entity_v, event_v, type_v
 
 
-def validate(entities, events, canon, translations, geometry_ids):
-    """Return (errors, warnings). Errors fail the build."""
+def validate(entities, events, canon, translations, geometry_ids, sources=None):
+    """Return (errors, warnings). Errors fail the build.
+    `sources` = the source registry; None (tests) skips source.* id checks."""
     errors: list[str] = []
     warnings: list[str] = []
     entity_v, event_v, type_v = _validators()
@@ -169,7 +196,7 @@ def validate(entities, events, canon, translations, geometry_ids):
             if pid and pid not in entities:
                 errors.append(f"{ev.id}: references unknown entity {pid}")
         for src in ev.sources:
-            errors.extend(_check_source(ev.id, src, canon))
+            errors.extend(_check_source(ev.id, src, canon, sources))
 
     # 3b. entity relation targets must resolve (catches genealogy typos)
     for e in entities.values():
@@ -179,7 +206,22 @@ def validate(entities, events, canon, translations, geometry_ids):
                 if target not in entities:
                     errors.append(f"{e.id}: relation '{key}' -> unknown entity {target}")
         for src in e.sources:                       # genealogy needs sources too
-            errors.extend(_check_source(e.id, src, canon))
+            errors.extend(_check_source(e.id, src, canon, sources))
+
+    # 3c. verse_map targets must exist in the source's own versification
+    for sid, rec in (sources or {}).items():
+        vers = rec.get("versification") or {}
+        for ref, tgt in (rec.get("verse_map") or {}).items():
+            m = REF_RE.match(ref)
+            if not m:
+                errors.append(f"{sid}: verse_map key {ref} is not a reference id"); continue
+            try:
+                ch, v = (int(x) for x in str(tgt).split(":"))
+            except ValueError:
+                errors.append(f"{sid}: verse_map target {tgt!r} must be '<ch>:<v>'"); continue
+            book_vers = {int(c): int(n) for c, n in (vers.get(m.group(1)) or {}).items()}
+            if book_vers and not (1 <= v <= book_vers.get(ch, 0)):
+                errors.append(f"{sid}: verse_map {ref} -> {tgt} outside its versification")
 
     # 4. translations — missing labels are warnings, not errors
     for lang, labels in translations.items():
@@ -189,9 +231,11 @@ def validate(entities, events, canon, translations, geometry_ids):
     return errors, warnings
 
 
-def _check_source(ev_id, src, canon) -> list[str]:
+def _check_source(ev_id, src, canon, sources=None) -> list[str]:
     if src.startswith("source."):
-        return []  # non-biblical sources live in knowledge/sources (not validated here)
+        if sources is not None and src not in sources:
+            return [f"{ev_id}: cites unknown source {src} (not in sources/)"]
+        return []
     m = REF_RE.match(src)
     if not m:
         return [f"{ev_id}: malformed reference {src}"]
@@ -310,8 +354,9 @@ def compile_all(model=DEFAULT_MODEL, strict=True):
     canon = load_canon()
     translations = load_translations()
     geometry_ids = load_geometry_ids()
+    sources = load_source_registry()
 
-    errors, warnings = validate(entities, events, canon, translations, geometry_ids)
+    errors, warnings = validate(entities, events, canon, translations, geometry_ids, sources)
     de, dw = dependency_graph(events, entities, model)
     errors += de; warnings += dw
 
@@ -327,7 +372,7 @@ def compile_all(model=DEFAULT_MODEL, strict=True):
 
     return {
         "entities": entities, "events": events, "canon": canon,
-        "translations": translations, "geometry_ids": geometry_ids,
+        "translations": translations, "geometry_ids": geometry_ids, "sources": sources,
         "final_state": final, "keyframes": keyframes,
         "errors": errors, "warnings": warnings, "model": model,
     }

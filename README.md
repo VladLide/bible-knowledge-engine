@@ -46,7 +46,8 @@ knowledge/entities/    immutable objects (people, places, …), one file each
 knowledge/events/      typed events — the only place history lives
 knowledge/geometries/  GeoJSON, separate from entities
 knowledge/translations one file per language: id → label
-canon/                 versification for reference IDs (reference.book.ch.v)
+sources/               one folder per resource: registry, versification, (future) texts;
+                       the source marked canonical: true defines reference IDs
 schemas/               JSON Schema: entity, event base, one per event type
 compiler/              the compiler (below)
 tests/                 self-checks for the slice
