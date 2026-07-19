@@ -1,8 +1,0 @@
-id: person.issachar
-type: person
-subtype: patriarch
-# Child of Jacob by leah (Gen 30:18).
-immutable:
-  father: person.jacob
-  mother: person.leah
-sources: [reference.genesis.30.18]

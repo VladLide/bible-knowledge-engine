@@ -1,9 +1,0 @@
-id: event.joseph-marries-asenath
-type: Marriage
-# Gen 41:45 — Pharaoh gives Joseph Asenath, daughter of Potiphera priest of On.
-time: { edtf: "-1885?" }
-spouses: [person.joseph, person.asenath]
-place: place.egypt
-confidence: tradition
-requires: [event.joseph-exalted]
-sources: [reference.genesis.41.45]

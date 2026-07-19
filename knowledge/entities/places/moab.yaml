@@ -1,6 +1,0 @@
-id: place.moab
-type: place
-subtype: land
-# The plains of Moab by the Jordan opposite Jericho, Israel's last camp (Num 22:1).
-geometry: geometry.moab
-sources: [reference.numbers.22.1]

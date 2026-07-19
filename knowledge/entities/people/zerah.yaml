@@ -1,8 +1,0 @@
-id: person.zerah
-type: person
-subtype: patriarch
-# Son of judah by tamar (Gen 38:30).
-immutable:
-  father: person.judah
-  mother: person.tamar
-sources: [reference.genesis.38.30]

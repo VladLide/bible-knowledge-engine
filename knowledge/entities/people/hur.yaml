@@ -1,7 +1,0 @@
-id: person.hur
-type: person
-# With Aaron, held up Moses' hands during the battle with Amalek (Ex 17:12); left
-# with Aaron to judge the people while Moses was on the mountain.
-immutable:
-  presumed_existing: true
-sources: [reference.exodus.17.10]

@@ -1,9 +1,0 @@
-id: event.isaac-died
-type: PersonDied
-# Gen 35:28-29 — Isaac lived 180 years and died at Hebron; Esau and Jacob buried
-# him. -1886 (born -2066 + 180).
-time: { edtf: "-1886" }
-person: person.isaac
-place: place.hebron
-confidence: tradition
-sources: [reference.genesis.35.29]

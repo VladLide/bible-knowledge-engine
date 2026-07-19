@@ -1,8 +1,0 @@
-id: person.milcah
-type: person
-immutable:
-  father: person.haran          # Nahor married his niece (Gen 11:29)
-  married_to: [person.nahor]
-  mother_of: [person.bethuel]
-sources:
-  - reference.genesis.11.29

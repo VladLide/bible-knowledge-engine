@@ -1,6 +1,0 @@
-id: place.bashan
-type: place
-subtype: land
-# Bashan, the northern kingdom of Og (Num 21:33).
-geometry: geometry.bashan
-sources: [reference.numbers.22.1]

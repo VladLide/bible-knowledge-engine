@@ -1,9 +1,0 @@
-id: event.ham-born
-type: PersonBorn
-# Gen 5:32 — a son of Noah, father of Cush, Egypt, Put, and Canaan. c. -2444.
-time: { edtf: "-2444?" }
-person: person.ham
-place: place.eden
-parents: [person.noah]
-confidence: tradition
-sources: [reference.genesis.5.32]

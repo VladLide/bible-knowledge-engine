@@ -1,9 +1,0 @@
-id: person.miriam
-type: person
-subtype: prophet
-# Sister of Aaron and Moses (Ex 15:20; Num 26:59), a prophetess who led the women
-# in the song at the sea.
-immutable:
-  father: person.amram
-  mother: person.jochebed
-sources: [reference.exodus.15.20]

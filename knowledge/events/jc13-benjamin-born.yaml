@@ -1,9 +1,0 @@
-id: event.benjamin-born
-type: PersonBorn
-# Gen 35:18 — born to Jacob and rachel.
-time: { edtf: "-1900?" }
-person: person.benjamin
-place: place.bethlehem
-parents: [person.jacob, person.rachel]
-confidence: tradition
-sources: [reference.genesis.35.18]

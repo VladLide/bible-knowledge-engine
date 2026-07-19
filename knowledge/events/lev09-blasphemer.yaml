@@ -1,9 +1,0 @@
-id: event.blasphemer-stoned
-type: Occurrence
-# Lev 24:10-23 — the son of an Israelite woman (Shelomith) and an Egyptian blasphemes
-# the Name in a quarrel; at the LORD's word he is stoned by the congregation.
-time: { edtf: "-1445" }
-kind: execution
-place: place.sinai
-confidence: tradition
-sources: [reference.leviticus.24.23]

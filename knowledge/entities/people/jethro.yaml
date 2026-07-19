@@ -1,8 +1,0 @@
-id: person.jethro
-type: person
-subtype: priest
-# The priest of Midian (also called Reuel, Ex 2:18), Moses' father-in-law, whose
-# counsel established Israel's judges (Ex 18).
-immutable:
-  presumed_existing: true
-sources: [reference.exodus.3.1]

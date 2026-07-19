@@ -1,9 +1,0 @@
-id: event.terah-died
-type: PersonDied
-time:
-  edtf: "-2091?"
-person: person.terah
-place: place.haran
-confidence: tradition
-sources:
-  - reference.genesis.11.32

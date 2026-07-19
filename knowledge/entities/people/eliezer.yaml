@@ -1,7 +1,0 @@
-id: person.eliezer
-type: person
-# Second son of Moses and Zipporah: "the God of my father was my help" (Ex 18:4).
-immutable:
-  father: person.moses
-  mother: person.zipporah
-sources: [reference.exodus.18.4]

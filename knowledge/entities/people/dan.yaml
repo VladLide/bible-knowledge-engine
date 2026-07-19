@@ -1,8 +1,0 @@
-id: person.dan
-type: person
-subtype: patriarch
-# Child of Jacob by bilhah (Gen 30:6).
-immutable:
-  father: person.jacob
-  mother: person.bilhah
-sources: [reference.genesis.30.6]

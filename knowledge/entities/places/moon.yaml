@@ -1,6 +1,0 @@
-id: place.moon
-type: place
-subtype: celestial
-# The lesser light, to rule the night — Gen 1:16.
-sources:
-  - reference.genesis.1.16

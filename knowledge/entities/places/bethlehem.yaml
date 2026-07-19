@@ -1,7 +1,0 @@
-id: place.bethlehem
-type: place
-subtype: city
-# Bethlehem (Ephrath), on the way to which Rachel died bearing Benjamin and was
-# buried (Gen 35:19).
-geometry: geometry.bethlehem
-sources: [reference.genesis.35.19]

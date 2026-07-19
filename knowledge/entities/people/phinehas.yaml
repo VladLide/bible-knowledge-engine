@@ -1,9 +1,0 @@
-id: person.phinehas
-type: person
-subtype: priest
-# Son of Eleazar, grandson of Aaron; his zeal against idolatry at Peor stayed the
-# plague and won a covenant of perpetual priesthood (Num 25:7-13).
-immutable:
-  presumed_existing: true
-  father: person.eleazar
-sources: [reference.numbers.25.7]

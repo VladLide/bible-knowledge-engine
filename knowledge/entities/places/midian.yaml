@@ -1,7 +1,0 @@
-id: place.midian
-type: place
-subtype: land
-# The land of Midian (north-west Arabia, east of the Gulf of Aqaba), where Moses
-# fled and kept Jethro's flocks (Ex 2:15).
-geometry: geometry.midian
-sources: [reference.exodus.2.15]

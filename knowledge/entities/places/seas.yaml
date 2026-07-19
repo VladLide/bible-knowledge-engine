@@ -1,6 +1,0 @@
-id: place.seas
-type: place
-subtype: cosmos
-# The gathered waters, named "seas" — Gen 1:10. Cosmic; no point geometry.
-sources:
-  - reference.genesis.1.10

@@ -1,9 +1,0 @@
-id: event.balaam-died
-type: PersonDied
-# Num 31:8 — Balaam son of Beor is slain by the sword among the Midianites.
-time: { edtf: "-1406" }
-person: person.balaam
-place: place.midian
-confidence: tradition
-requires: [event.midian-war]
-sources: [reference.numbers.31.8]

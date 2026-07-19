@@ -1,8 +1,0 @@
-id: person.abel
-type: person
-# Second son of Adam and Eve; a keeper of sheep, slain by his brother Cain (Gen 4:8).
-immutable:
-  father: person.adam
-  mother: person.eve
-sources:
-  - reference.genesis.4.2

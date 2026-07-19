@@ -1,7 +1,0 @@
-id: person.nahor
-type: person
-immutable:
-  married_to: [person.milcah]
-  father_of: [person.bethuel]
-sources:
-  - reference.genesis.11.29

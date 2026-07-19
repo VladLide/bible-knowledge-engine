@@ -1,9 +1,0 @@
-id: event.gomorrah-destroyed
-type: CityDestroyed
-# Gen 19:24-25 — Gomorrah overthrown with Sodom.
-time:
-  edtf: "-2067?"
-city: place.gomorrah
-confidence: tradition
-sources:
-  - reference.genesis.19.24

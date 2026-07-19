@@ -1,8 +1,0 @@
-id: person.asenath
-type: person
-# Daughter of Potiphera priest of On; given to Joseph as wife (Gen 41:45); mother
-# of Manasseh and Ephraim.
-immutable:
-  presumed_existing: true
-  married_to: [person.joseph]
-sources: [reference.genesis.41.45]

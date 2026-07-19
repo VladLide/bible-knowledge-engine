@@ -1,8 +1,0 @@
-id: person.pharaoh-oppression
-type: person
-subtype: king
-# "A new king over Egypt, who did not know Joseph" (Ex 1:8); he enslaved Israel and
-# ordered the male infants killed, and died while Moses was in Midian (Ex 2:23).
-immutable:
-  presumed_existing: true
-sources: [reference.exodus.1.8]

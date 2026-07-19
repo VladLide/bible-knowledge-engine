@@ -1,7 +1,0 @@
-id: place.kadesh
-type: place
-subtype: place
-# Kadesh (Kadesh-barnea) in the wilderness of Zin/Paran, Israel's base from which
-# the spies were sent and where they rebelled (Num 13:26; 20:1).
-geometry: geometry.kadesh
-sources: [reference.numbers.13.26]

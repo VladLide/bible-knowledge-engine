@@ -1,9 +1,0 @@
-id: person.melchizedek
-type: person
-subtype: king
-# King of Salem and priest of God Most High, who blessed Abram and received his
-# tithe (Gen 14:18-20). No genealogy given.
-immutable:
-  presumed_existing: true
-sources:
-  - reference.genesis.14.18

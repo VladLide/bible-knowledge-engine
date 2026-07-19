@@ -49,37 +49,15 @@ def _load_yaml(path: Path):
 
 
 def load_entities() -> dict[str, Entity]:
-    out: dict[str, Entity] = {}
-    for path in sorted((KNOW / "entities").rglob("*.yaml")):
-        d = _load_yaml(path)
-        e = Entity(
-            id=d["id"], type=d["type"], subtype=d.get("subtype"),
-            geometry=d.get("geometry"), immutable=d.get("immutable") or {},
-            sources=tuple(d.get("sources") or ()),
-        )
-        if e.id in out:
-            raise BuildError(f"duplicate entity id: {e.id} ({path})")
-        out[e.id] = e
-    return out
+    """Canon lives in bke.sqlite (items/statements); see compiler/db.py."""
+    from .db import load_entities_db
+    return load_entities_db()
 
 
 def load_events() -> list[Event]:
-    events: list[Event] = []
-    seen: set[str] = set()
-    for path in sorted((KNOW / "events").glob("*.yaml")):
-        d = _load_yaml(path)
-        base = {"id", "type", "time", "sources", "confidence", "models", "requires"}
-        ev = Event(
-            id=d["id"], type=d["type"], time_raw=d["time"], sources=d["sources"],
-            confidence=d.get("confidence", "probable"),
-            models=d.get("models"), requires=d.get("requires") or [],
-            payload={k: v for k, v in d.items() if k not in base},
-        )
-        if ev.id in seen:
-            raise BuildError(f"duplicate event id: {ev.id} ({path})")
-        seen.add(ev.id)
-        events.append(ev)
-    return events
+    """Canon lives in bke.sqlite; order = items.pos (same-date tie-break)."""
+    from .db import load_events_db
+    return load_events_db()
 
 
 def load_canon() -> dict[str, dict[int, int]]:
@@ -94,11 +72,9 @@ def load_canon() -> dict[str, dict[int, int]]:
 
 
 def load_translations() -> dict[str, dict[str, str]]:
-    out: dict[str, dict[str, str]] = {}
-    for path in sorted((KNOW / "translations").glob("*.yaml")):
-        d = _load_yaml(path)
-        out[d["lang"]] = d.get("labels") or {}
-    return out
+    """Labels live on items in bke.sqlite."""
+    from .db import load_labels_db
+    return load_labels_db()
 
 
 def load_source_registry() -> dict[str, dict]:
@@ -461,6 +437,48 @@ def main(argv):
         print(f"World state at year {year} (model: {model}):")
         print(_fmt_state(state, result["entities"], result["translations"]))
         return 0
+
+    if cmd == "q":                              # SQL до канону: compiler q "SELECT ..."
+        from .db import connect
+        con = connect()
+        for row in con.execute(argv[1]):
+            print("\t".join("" if v is None else str(v) for v in row))
+        con.close(); return 0
+
+    if cmd == "put":                            # upsert item з JSON (файл або '-')
+        from .db import connect, put_item, dump
+        import json as _json
+        raw = sys.stdin.read() if argv[1] == "-" else Path(argv[1]).read_text(encoding="utf-8")
+        recs = _json.loads(raw)
+        recs = recs if isinstance(recs, list) else [recs]
+        con = connect()
+        for rec in recs:
+            put_item(con, rec)
+        con.commit()
+        n = dump(con); con.close()
+        print(f"OK — {len(recs)} item(s) записано; дамп {n}")
+        return 0
+
+    if cmd == "dump":
+        from .db import dump
+        print(f"OK — дамп {dump()} items → dump/items.jsonl"); return 0
+
+    if cmd == "restore":
+        from .db import restore
+        print(f"OK — відновлено {restore()} items → bke.sqlite"); return 0
+
+    if cmd == "verify":                         # дамп == база (для CI)
+        from .db import verify
+        if verify():
+            print("OK — dump і bke.sqlite еквівалентні"); return 0
+        print("FAIL — dump/items.jsonl не відповідає bke.sqlite (запустіть dump)",
+              file=sys.stderr)
+        return 1
+
+    if cmd == "edit":
+        from .editor import serve
+        port = int(argv[argv.index("--port") + 1]) if "--port" in argv else 8100
+        return serve(port)
 
     print(__doc__)
     return 2

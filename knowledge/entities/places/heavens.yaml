@@ -1,7 +1,0 @@
-id: place.heavens
-type: place
-subtype: cosmos
-# The expanse/firmament (небозвід), named "heaven" — Gen 1:6-8. Cosmic, not
-# map-locatable, so no geometry: it lives in the timeline and graph only.
-sources:
-  - reference.genesis.1.8

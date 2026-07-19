@@ -1,9 +1,0 @@
-id: event.abiram-died
-type: PersonDied
-# Num 16:33 — swallowed alive by the earth in the rebellion against Moses and Aaron.
-time: { edtf: "-1443" }
-person: person.abiram
-place: place.paran
-confidence: tradition
-requires: [event.korah-rebellion]
-sources: [reference.numbers.16.33]

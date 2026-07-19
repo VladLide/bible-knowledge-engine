@@ -16,7 +16,11 @@ or a typed event, backed by a citation, expressed only with stable IDs. Your job
 is to translate the source into that form **without breaking any invariant**, and
 to prove it with the compiler.
 
-Work on a branch. Nothing is done until `python -m compiler check` passes.
+The canon is **bke.sqlite** (items/statements, Wikidata-style) + its committed
+text dump `dump/items.jsonl`. Work directly on `main` (no branches/PRs — the
+user reviews through the local editor `python -m compiler edit`). Read with SQL,
+write with `put`, never by editing files. Nothing is done until
+`python -m compiler check` passes and `compiler verify` confirms the dump.
 
 ## Invariants (never violate)
 
@@ -36,16 +40,32 @@ Work on a branch. Nothing is done until `python -m compiler check` passes.
 
 ## The model, concretely
 
-Files (one entity / one event per file):
+Storage (SQLite canon + files for the few file-shaped things):
 
 ```
-knowledge/entities/people/<name>.yaml     type: person
-knowledge/entities/places/<name>.yaml     type: place  (subtype: city|land|region|…)
-knowledge/events/NN-<slug>.yaml           numeric prefix orders ties
-knowledge/geometries/*.geojson            Feature id=geometry.<name>, properties.name_id=place.<id>
-knowledge/translations/{uk,en,he}.yaml    labels: <id>: <text>
-sources/<resource>/source.yaml            registry + versification (canonical: true = address space)
+bke.sqlite                     THE canon: items, labels, statements, refs, models
+dump/items.jsonl               committed text mirror (compiler dump / restore / verify)
+knowledge/geometries/*.geojson Feature id=geometry.<name>, properties.name_id=place.<id>
+sources/<resource>/source.yaml registry + versification (canonical: true = address space)
 ```
+
+Item shape (what `put` accepts; same as a dump line):
+```json
+{"id":"person.x","kind":"person","subtype":"patriarch",
+ "labels":{"uk":"…","en":"…","he":"…"},
+ "statements":[{"prop":"father","value":"person.y"},
+               {"prop":"married_to","value":"person.z","ord":0}],
+ "refs":["reference.genesis.1.1"]}
+{"id":"event.x","kind":"event","subtype":"Migration","confidence":"tradition",
+ "statements":[{"prop":"point-in-time","value":"-2091?"},
+               {"prop":"subjects","value":"person.a","ord":0},
+               {"prop":"from","value":"place.u"},{"prop":"to","value":"place.v"}],
+ "refs":["reference.genesis.12.6"]}
+```
+Event `pos` is assigned automatically (insertion order breaks same-date ties).
+List payload props repeat the statement with `ord`. Divergent multi-source
+testimony = parallel statements on ONE event with `rank`/`models`/`refs` —
+never a forked event.
 
 Registered event types and their payloads (see `schemas/event-types/`):
 
@@ -94,12 +114,16 @@ reason. Also enumerate every **named person and place** and every **relationship
 stated in the passage — those are data too (this is how Laban and Ishmael's birth
 got missed before). Keep the ledger; it goes in the PR as the coverage record.
 
-### 2. Inventory what exists — never duplicate
+### 2. Inventory what exists — never duplicate (SQL, not file reads)
 ```
-ls knowledge/entities/people knowledge/entities/places
-grep -rl "person.<name>\|place.<name>" knowledge/
+python -m compiler q "SELECT id FROM items WHERE id LIKE '%name%'"
+python -m compiler q "SELECT item_id,value FROM labels WHERE value LIKE '%Ім`я%'"
+python -m compiler q "SELECT * FROM statements WHERE value='person.x'"
 ```
 Reuse existing IDs. New IDs must be unique and follow the naming pattern.
+Namesakes get an anchored slug: `<name>-ben-<father>` → `<name>-<role|epoch>`
+→ `<name>-of-<place>` → `<name>-<book><ch>` (bare slugs only for unique,
+famous figures).
 
 ### 3. Map each fact to the model
 - A person/place not yet present → a new entity file (+ translations, + geometry
@@ -126,12 +150,13 @@ Decide in this order:
 Never invent a new payload field on an existing type to smuggle in a different
 meaning.
 
-### 5. Write the YAML
-- Entities: `id`, `type`, opt `subtype`, opt `geometry`, opt `immutable:` block.
-- Events: `id`, `type`, `time:` (`edtf:` or `variants:`), `sources:` (≥1),
-  `confidence:`, plus the type payload. Optional `models:`, `requires:`.
-- Add uk/en/he labels for every new id. Add a geometry Feature for every new place
-  (points `[lon, lat]`; regions as `Polygon`).
+### 5. Write items via `put`
+- Build item-records (shape above; geometry = statement `{"prop":"geometry",...}`,
+  presumed-existing = statement value "true", event time = `point-in-time`
+  statement(s), per-model dates = one statement per variant with `models`).
+- `python -m compiler put items.json` (accepts one record or a list).
+- Every new id gets uk/en/he labels on the item. Every new place still gets a
+  geometry Feature in knowledge/geometries (points `[lon, lat]`).
 - Cite verses; if a chapter isn't in the canonical source's `versification:`
   (`sources/cuv-uk/source.yaml`), add it with its real verse count.
 
@@ -175,11 +200,11 @@ death-before-birth or a dependency cycle.
 For anything visual (new place, route, region), spot-check with the headless
 browser (see `memory: bke-browser-verify`) before finishing.
 
-### 9. Commit on a branch, open a PR
-Every contribution is a PR — that's how corrections stay visible in history.
-Branch, commit the YAML (never the generated `public/`/`build/`), summarise what
-was added and the sources, and open a PR for review. Scholarly claims are the
-user's to approve — present, don't merge silently.
+### 9. Dump and commit to main
+`python -m compiler dump` (put does it automatically), then commit **both**
+`bke.sqlite` and `dump/items.jsonl` (never `public/`/`build/`) directly to
+`main` with a message naming the passage and sources. The user reviews through
+the editor; flag scholarly judgment calls in your summary.
 
 ## Definition of done
 - [ ] **coverage:** every verse-range of the source is a row in the ledger — mapped
@@ -189,4 +214,4 @@ user's to approve — present, don't merge silently.
 - [ ] every new entity has uk/en/he labels; every new place has geometry
 - [ ] every event cites ≥1 valid source; new chapters added to canon
 - [ ] `compiler site` regenerates cleanly
-- [ ] changes on a branch, PR opened for review
+- [ ] `compiler verify` green; bke.sqlite + dump committed to main

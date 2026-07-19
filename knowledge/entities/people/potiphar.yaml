@@ -1,6 +1,0 @@
-id: person.potiphar
-type: person
-# Officer of Pharaoh, captain of the guard, Joseph's master in Egypt (Gen 39:1).
-immutable:
-  presumed_existing: true
-sources: [reference.genesis.39.1]

@@ -1,9 +1,0 @@
-id: event.joseph-born
-type: PersonBorn
-# Gen 30:24 — born to Jacob and rachel.
-time: { edtf: "-1915?" }
-person: person.joseph
-place: place.haran
-parents: [person.jacob, person.rachel]
-confidence: tradition
-sources: [reference.genesis.30.24]

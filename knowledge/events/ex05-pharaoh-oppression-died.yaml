@@ -1,9 +1,0 @@
-id: event.pharaoh-oppression-died
-type: PersonDied
-# Ex 2:23 — in the course of those many years the king of Egypt died, while Moses
-# was in Midian; Israel groaned and God heard.
-time: { edtf: "-1490?" }
-person: person.pharaoh-oppression
-place: place.egypt
-confidence: tradition
-sources: [reference.exodus.2.23]

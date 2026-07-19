@@ -1,8 +1,0 @@
-id: event.cozbi-died
-type: PersonDied
-time: { edtf: "-1406" }
-person: person.cozbi
-place: place.moab
-confidence: tradition
-requires: [event.baal-peor]
-sources: [reference.numbers.25.15]

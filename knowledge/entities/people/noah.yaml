@@ -1,8 +1,0 @@
-id: person.noah
-type: person
-subtype: patriarch
-# Sethite line (Gen 5): son of lamech.
-immutable:
-  father: person.lamech
-sources:
-  - reference.genesis.5.28

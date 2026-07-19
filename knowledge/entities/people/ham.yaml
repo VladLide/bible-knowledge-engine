@@ -1,8 +1,0 @@
-id: person.ham
-type: person
-subtype: patriarch
-# Son of Noah (Gen 6:10); from Noah's three sons the whole earth was repopulated.
-immutable:
-  father: person.noah
-sources:
-  - reference.genesis.6.10

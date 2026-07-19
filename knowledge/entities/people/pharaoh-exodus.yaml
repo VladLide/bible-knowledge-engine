@@ -1,9 +1,0 @@
-id: person.pharaoh-exodus
-type: person
-subtype: king
-# The Pharaoh who confronted Moses and refused to let Israel go through the ten
-# plagues (Ex 5-14); his army was drowned in the sea. Distinct id from Joseph's
-# and the oppression Pharaoh.
-immutable:
-  presumed_existing: true
-sources: [reference.exodus.5.1]

@@ -1,9 +1,0 @@
-id: event.egypt-famine
-type: Occurrence
-# Gen 41:54-57 — after seven years of plenty the famine grips the whole land; all
-# the earth comes to Egypt to buy grain from Joseph.
-time: { edtf: "-1878?" }
-kind: famine
-place: place.egypt
-confidence: tradition
-sources: [reference.genesis.41.54]

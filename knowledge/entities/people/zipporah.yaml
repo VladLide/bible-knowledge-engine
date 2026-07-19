@@ -1,9 +1,0 @@
-id: person.zipporah
-type: person
-# Daughter of Jethro of Midian, Moses' wife (Ex 2:21); mother of Gershom and
-# Eliezer.
-immutable:
-  presumed_existing: true
-  father: person.jethro
-  married_to: [person.moses]
-sources: [reference.exodus.2.21]

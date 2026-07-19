@@ -1,9 +1,0 @@
-id: place.eden
-type: place
-subtype: garden
-# The garden God planted eastward in Eden — Gen 2:8. Located (traditionally) in
-# southern Mesopotamia near the Tigris-Euphrates; the four-river geography of
-# Gen 2:10-14 is deferred to a dedicated pass.
-geometry: geometry.eden
-sources:
-  - reference.genesis.2.8

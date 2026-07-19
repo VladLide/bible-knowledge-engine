@@ -1,6 +1,0 @@
-id: person.sihon
-type: person
-# King of the Amorites at Heshbon (Num 21:21).
-immutable:
-  presumed_existing: true
-sources: [reference.numbers.21.21]

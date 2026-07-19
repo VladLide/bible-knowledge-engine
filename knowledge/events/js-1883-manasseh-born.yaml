@@ -1,9 +1,0 @@
-id: event.manasseh-born
-type: PersonBorn
-# Gen 41:51 — born to joseph and asenath.
-time: { edtf: "-1883?" }
-person: person.manasseh
-place: place.egypt
-parents: [person.joseph, person.asenath]
-confidence: tradition
-sources: [reference.genesis.41.51]

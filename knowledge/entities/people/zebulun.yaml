@@ -1,8 +1,0 @@
-id: person.zebulun
-type: person
-subtype: patriarch
-# Child of Jacob by leah (Gen 30:20).
-immutable:
-  father: person.jacob
-  mother: person.leah
-sources: [reference.genesis.30.20]

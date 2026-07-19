@@ -1,7 +1,0 @@
-id: place.rephidim
-type: place
-subtype: place
-# Rephidim, a camp in the wilderness before Sinai: water from the rock (Massah and
-# Meribah) and the battle with Amalek (Ex 17).
-geometry: geometry.rephidim
-sources: [reference.exodus.17.1]

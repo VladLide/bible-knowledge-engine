@@ -1,7 +1,0 @@
-id: place.bethel
-type: place
-subtype: city
-# Bethel ("house of God"), where Jacob dreamed of the ladder and set up a pillar
-# (Gen 28:19); he returns and God confirms the name Israel (Gen 35).
-geometry: geometry.bethel
-sources: [reference.genesis.28.19]

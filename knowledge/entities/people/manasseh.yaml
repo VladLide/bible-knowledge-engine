@@ -1,8 +1,0 @@
-id: person.manasseh
-type: person
-subtype: patriarch
-# Son of joseph by asenath (Gen 41:51).
-immutable:
-  father: person.joseph
-  mother: person.asenath
-sources: [reference.genesis.41.51]

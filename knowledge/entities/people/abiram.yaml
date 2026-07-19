@@ -1,6 +1,0 @@
-id: person.abiram
-type: person
-# A Reubenite, brother of Dathan, who joined Korah's rebellion and perished (Num 16).
-immutable:
-  presumed_existing: true
-sources: [reference.numbers.16.1]

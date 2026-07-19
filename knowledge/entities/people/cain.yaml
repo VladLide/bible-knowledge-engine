@@ -1,9 +1,0 @@
-id: person.cain
-type: person
-# Firstborn of Adam and Eve; a tiller of the ground who murdered his brother Abel
-# (Gen 4). His line (Gen 4:17-24) is deferred — it ends at the flood.
-immutable:
-  father: person.adam
-  mother: person.eve
-sources:
-  - reference.genesis.4.1

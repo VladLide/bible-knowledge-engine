@@ -1,8 +1,0 @@
-id: place.babel
-type: place
-subtype: city
-# Babel, in the plain of Shinar — the city and tower of Gen 11:1-9, where the
-# LORD confused the one language and scattered mankind. Post-flood.
-geometry: geometry.babel
-sources:
-  - reference.genesis.11.9

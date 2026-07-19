@@ -1,7 +1,0 @@
-id: person.dathan
-type: person
-# A Reubenite, son of Eliab, who joined Korah's rebellion and was swallowed by the
-# earth (Num 16).
-immutable:
-  presumed_existing: true
-sources: [reference.numbers.16.1]

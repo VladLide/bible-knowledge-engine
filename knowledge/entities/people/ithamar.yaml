@@ -1,8 +1,0 @@
-id: person.ithamar
-type: person
-subtype: priest
-# Son of Aaron (Ex 6:23; 28:1), of the priestly line.
-immutable:
-  presumed_existing: true
-  father: person.aaron
-sources: [reference.exodus.6.23]

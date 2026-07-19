@@ -1,7 +1,0 @@
-id: place.sinai
-type: place
-subtype: mountain
-# Mount Sinai (Horeb), the mountain of God where Moses saw the burning bush (Ex 3)
-# and where the covenant and Law were given (Ex 19-24).
-geometry: geometry.sinai
-sources: [reference.exodus.3.1]

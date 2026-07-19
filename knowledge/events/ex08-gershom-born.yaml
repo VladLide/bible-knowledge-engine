@@ -1,9 +1,0 @@
-id: event.gershom-born
-type: PersonBorn
-# Ex 2:22 — Zipporah bears Moses a son, Gershom, in Midian.
-time: { edtf: "-1484?" }
-person: person.gershom
-place: place.midian
-parents: [person.moses, person.zipporah]
-confidence: tradition
-sources: [reference.exodus.2.22]

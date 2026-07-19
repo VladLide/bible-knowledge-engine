@@ -1,6 +1,0 @@
-id: place.stars
-type: place
-subtype: celestial
-# The stars, set in the expanse — Gen 1:16. One collective created-thing.
-sources:
-  - reference.genesis.1.16

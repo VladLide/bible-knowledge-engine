@@ -1,9 +1,0 @@
-id: person.aaron
-type: person
-subtype: priest
-# Elder brother of Moses (Ex 6:20; 7:7), his spokesman and Israel's first high
-# priest.
-immutable:
-  father: person.amram
-  mother: person.jochebed
-sources: [reference.exodus.6.20]

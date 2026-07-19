@@ -1,9 +1,0 @@
-id: event.japheth-born
-type: PersonBorn
-# Gen 5:32; 10:21 — a son of Noah, the elder. c. -2448 (Ussher).
-time: { edtf: "-2448?" }
-person: person.japheth
-place: place.eden
-parents: [person.noah]
-confidence: tradition
-sources: [reference.genesis.5.32]

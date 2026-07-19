@@ -1,8 +1,0 @@
-id: person.joseph
-type: person
-subtype: patriarch
-# Child of Jacob by rachel (Gen 30:24).
-immutable:
-  father: person.jacob
-  mother: person.rachel
-sources: [reference.genesis.30.24]

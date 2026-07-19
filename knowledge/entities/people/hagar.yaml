@@ -1,6 +1,0 @@
-id: person.hagar
-type: person
-immutable:
-  mother_of: [person.ishmael]
-sources:
-  - reference.genesis.16.1

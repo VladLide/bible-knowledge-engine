@@ -1,7 +1,0 @@
-id: person.caleb
-type: person
-# Caleb son of Jephunneh, of Judah; with Joshua one of the two faithful spies who
-# urged Israel to take the land (Num 13:6,30; 14:24).
-immutable:
-  presumed_existing: true
-sources: [reference.numbers.13.6]

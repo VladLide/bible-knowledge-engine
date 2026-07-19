@@ -1,6 +1,0 @@
-id: place.sun
-type: place
-subtype: celestial
-# The greater light, to rule the day — Gen 1:16.
-sources:
-  - reference.genesis.1.16
