@@ -83,13 +83,14 @@ def load_events() -> list[Event]:
 
 
 def load_canon() -> dict[str, dict[int, int]]:
-    """Merge every canon file's versification: book -> {chapter: verse_count}."""
-    canon: dict[str, dict[int, int]] = {}
-    for path in sorted((ROOT / "canon").glob("*.yaml")):
-        d = _load_yaml(path)
-        for book, chapters in (d.get("books") or {}).items():
-            canon.setdefault(book, {}).update({int(c): int(v) for c, v in chapters.items()})
-    return canon
+    """The reference address space: the versification of the ONE source marked
+    `canonical: true`. IDs are forever, so the flag must never move to a source
+    with different numbering — divergent sources use verse_map instead."""
+    canonical = [d for d in load_source_registry().values() if d.get("canonical")]
+    if len(canonical) != 1:
+        raise BuildError(f"exactly one source must have canonical: true (found {len(canonical)})")
+    vers = canonical[0].get("versification") or {}
+    return {book: {int(c): int(v) for c, v in chs.items()} for book, chs in vers.items()}
 
 
 def load_translations() -> dict[str, dict[str, str]]:
@@ -101,19 +102,20 @@ def load_translations() -> dict[str, dict[str, str]]:
 
 
 def load_source_registry() -> dict[str, dict]:
-    """Source registry: knowledge/sources/*.yaml, one source per file.
+    """Source registry: sources/<resource>/source.yaml, one folder per resource.
 
     A source is WHERE a fact comes from (a translation, Josephus, a dig report).
-    Texts are not required to live in this repo: `location: remote` sources
-    carry a url_template the client fetches verse text from; `verse_map`
-    re-addresses canonical references whose versification differs in that
-    source. The canonical join key is always reference.<book>.<ch>.<v>.
+    Its folder holds the main file (link, license, its own versification guide,
+    verse_map) and, in the future, the texts themselves. `location: remote`
+    sources carry a url_template the client fetches verse text from. The
+    canonical join key is always reference.<book>.<ch>.<v> — the address space
+    is the versification of the single source marked `canonical: true`.
     """
     out: dict[str, dict] = {}
-    src_dir = KNOW / "sources"
+    src_dir = ROOT / "sources"
     if not src_dir.is_dir():
         return out
-    for path in sorted(src_dir.glob("*.yaml")):
+    for path in sorted(src_dir.glob("*/source.yaml")):
         d = _load_yaml(path)
         sid = d.get("id", "")
         if not sid.startswith("source."):
@@ -206,6 +208,21 @@ def validate(entities, events, canon, translations, geometry_ids, sources=None):
         for src in e.sources:                       # genealogy needs sources too
             errors.extend(_check_source(e.id, src, canon, sources))
 
+    # 3c. verse_map targets must exist in the source's own versification
+    for sid, rec in (sources or {}).items():
+        vers = rec.get("versification") or {}
+        for ref, tgt in (rec.get("verse_map") or {}).items():
+            m = REF_RE.match(ref)
+            if not m:
+                errors.append(f"{sid}: verse_map key {ref} is not a reference id"); continue
+            try:
+                ch, v = (int(x) for x in str(tgt).split(":"))
+            except ValueError:
+                errors.append(f"{sid}: verse_map target {tgt!r} must be '<ch>:<v>'"); continue
+            book_vers = {int(c): int(n) for c, n in (vers.get(m.group(1)) or {}).items()}
+            if book_vers and not (1 <= v <= book_vers.get(ch, 0)):
+                errors.append(f"{sid}: verse_map {ref} -> {tgt} outside its versification")
+
     # 4. translations — missing labels are warnings, not errors
     for lang, labels in translations.items():
         for e in entities.values():
@@ -217,7 +234,7 @@ def validate(entities, events, canon, translations, geometry_ids, sources=None):
 def _check_source(ev_id, src, canon, sources=None) -> list[str]:
     if src.startswith("source."):
         if sources is not None and src not in sources:
-            return [f"{ev_id}: cites unknown source {src} (not in knowledge/sources/)"]
+            return [f"{ev_id}: cites unknown source {src} (not in sources/)"]
         return []
     m = REF_RE.match(src)
     if not m:

@@ -317,7 +317,7 @@ def test_new_event_graph_edges():
 
 
 def test_rejects_unknown_source_id():
-    """A source.* citation must resolve to the registry in knowledge/sources/."""
+    """A source.* citation must resolve to the registry in sources/."""
     entities = {"person.a": _ent("person.a", presumed_existing=True)}
     ev = _ev("event.x", "Occurrence", {"edtf": "-2000"}, kind="test",
              participants=["person.a"])

@@ -25,7 +25,7 @@ Work on a branch. Nothing is done until `python -m compiler check` passes.
    Names live only in translations. `person.haran` (a man) and `place.haran` (a
    city) are different objects — collisions are a non-issue, that's the point.
 2. **Every fact needs a source.** No source → the fact is invalid. Biblical:
-   `reference.<book>.<ch>.<v>` (must exist in `canon/`). Other: `source.<id>`.
+   `reference.<book>.<ch>.<v>` (must exist in the canonical source's versification). Other: `source.<id>`.
 3. **Entities are immutable; history lives only in events.** An entity carries
    timeless attributes (relations, geometry) — no dates, no location, no status.
 4. **Events are typed.** Each event is one of the registered types with its own
@@ -44,7 +44,7 @@ knowledge/entities/places/<name>.yaml     type: place  (subtype: city|land|regio
 knowledge/events/NN-<slug>.yaml           numeric prefix orders ties
 knowledge/geometries/*.geojson            Feature id=geometry.<name>, properties.name_id=place.<id>
 knowledge/translations/{uk,en,he}.yaml    labels: <id>: <text>
-canon/protestant.yaml                     books: <book>: {<chapter>: <verse_count>}
+sources/<resource>/source.yaml            registry + versification (canonical: true = address space)
 ```
 
 Registered event types and their payloads (see `schemas/event-types/`):
@@ -132,12 +132,12 @@ meaning.
   `confidence:`, plus the type payload. Optional `models:`, `requires:`.
 - Add uk/en/he labels for every new id. Add a geometry Feature for every new place
   (points `[lon, lat]`; regions as `Polygon`).
-- Cite verses; if a chapter isn't in `canon/protestant.yaml`, add it with its real
-  verse count.
+- Cite verses; if a chapter isn't in the canonical source's `versification:`
+  (`sources/cuv-uk/source.yaml`), add it with its real verse count.
 
 ### 5b. Sources are first-class — register them
-Every ingest names its source(s) in `knowledge/sources/<id>.yaml` (one file per
-source): `id: source.<id>`, `type`, `title`, `language`, `license`, `location`
+Every ingest names its source(s) in `sources/<resource>/source.yaml` (one folder
+per resource — the folder will also hold its texts later): `id: source.<id>`, `type`, `title`, `language`, `license`, `location`
 (`remote` = texts fetched live from `url_template` + `books` map; `none` =
 registry-only, e.g. copyrighted translations), and `verse_map` re-addressing any
 cited canonical reference whose versification differs in that source
@@ -165,7 +165,7 @@ event and record the divergent testimony (claims) — do not fork the event.
 .venv/bin/python -m compiler state <year>          # eyeball the world state
 ```
 Fix every error. Common ones: dangling reference/relation, verse out of range
-(extend canon), death without birth (add birth or `presumed_existing`),
+(extend the canonical versification), death without birth (add birth or `presumed_existing`),
 death-before-birth or a dependency cycle.
 
 ### 8. Regenerate the API and (optionally) look

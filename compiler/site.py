@@ -161,7 +161,9 @@ def build_site_data(model="conservative"):
     # + verse_map so the client can fetch and correctly address verse text;
     # the canonical join key is the reference id. Texts themselves are not
     # published here (they live with the source: external API / future corpus repo).
-    _write("sources.json", load_source_registry())
+    registry = {sid: {k: v for k, v in rec.items() if k != "versification"}
+                for sid, rec in load_source_registry().items()}
+    _write("sources.json", registry)
 
     features = []
     for path in sorted((KNOW / "geometries").glob("*.geojson")):
