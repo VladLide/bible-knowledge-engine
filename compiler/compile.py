@@ -49,13 +49,13 @@ def _load_yaml(path: Path):
 
 
 def load_entities() -> dict[str, Entity]:
-    """Canon lives in bke.sqlite (items/statements); see compiler/db.py."""
+    """The master store is bke.sqlite (items/statements); see compiler/db.py."""
     from .db import load_entities_db
     return load_entities_db()
 
 
 def load_events() -> list[Event]:
-    """Canon lives in bke.sqlite; order = items.pos (same-date tie-break)."""
+    """The master store is bke.sqlite; order = items.pos (same-date tie-break)."""
     from .db import load_events_db
     return load_events_db()
 

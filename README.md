@@ -2,7 +2,7 @@
 
 **BKE is a compiler for a historical world.**
 
-This repo holds the **canonical data + compiler**. It publishes a versioned,
+This repo holds the **master knowledge store + compiler**. It publishes a versioned,
 CORS-enabled JSON **data API** that anyone can consume:
 
 - **Data API:** https://vladlide.github.io/bible-knowledge-engine/v1/ (start at
@@ -15,12 +15,16 @@ The split keeps the data reusable on its own: the web app, a mobile app, a
 notebook, or a third party all read the same URLs. The browser applies
 precompiled state deltas — it never re-interprets events.
 
-The canonical YAML files under [`knowledge/`](knowledge/) are not a database and
-not website content. They are *source code* describing the biblical world in a
-declarative language. The compiler checks it for structural and logical
-correctness, reduces typed events to canonical world state, and emits build
-artifacts — a map, a timeline, a knowledge graph, search indices, an API. Every
-interface is just one projection of the same canonical model.
+The master store is **`bke.sqlite`** — a Wikidata-style item/statement base
+(every person, place, and event is an item; every fact is a statement carrying
+its sources, rank, and historiographical models). A deterministic text dump
+(`dump/items.jsonl`, committed) mirrors it for longevity and readable history;
+`compiler verify` proves they match. The compiler checks the store for
+structural and logical correctness, reduces typed events to world state, and
+emits build artifacts — a map, a timeline, a knowledge graph, an API. Every
+interface is just one projection of the same model. ("Canon"/"canonical" in
+this repo refers only to the *biblical* canon — the versification that defines
+reference IDs — never to the storage.)
 
 This repository currently contains a **vertical slice** — the Abraham narrative
 (Ur → Haran → Canaan → Egypt → Hebron) — that exercises every core architectural
@@ -28,28 +32,27 @@ decision on live data before the corpus grows.
 
 ## Principles (non-negotiable)
 
-- **Git is the single source of truth.** No runtime database. Every contribution
-  is a pull request; every historical correction is visible in the git history.
-- **YAML is canonical; JSON is build output** and never committed (see `build/`).
+- **The master store + its text dump are the single source of truth**, committed
+  together on `main`; `compiler verify` (also in CI) keeps them equivalent.
+  Humans edit through the local editor (`python -m compiler edit`), tools through
+  SQL/CLI. Projections (`build/`, `public/`) are never committed.
 - **Event sourcing.** Entities are immutable and carry no historical state.
   All history lives in typed events. `world_state(T) = initial_state + events ≤ T`.
 - **Stable, language-independent IDs** (`person.abraham`, `place.jerusalem`).
-  IDs never change; only translations do. Free-text names are banned in canon —
-  see [`person.haran`](knowledge/entities/people/haran.yaml) vs
-  [`place.haran`](knowledge/entities/places/haran.yaml).
+  IDs never change; only labels do. Free-text names are banned in the store —
+  `person.haran` (a man) and `place.haran` (a city) are distinct items.
 - **Every fact needs a source.** A fact with no source is invalid.
 
 ## Layout
 
 ```
-knowledge/entities/    immutable objects (people, places, …), one file each
-knowledge/events/      typed events — the only place history lives
-knowledge/geometries/  GeoJSON, separate from entities
-knowledge/translations one file per language: id → label
+bke.sqlite             the master store: items, labels, statements, refs, models
+dump/items.jsonl       committed text mirror (compiler dump / restore / verify)
+knowledge/geometries/  GeoJSON, referenced by place items
 sources/               one folder per resource: registry, versification, (future) texts;
                        the source marked canonical: true defines reference IDs
 schemas/               JSON Schema: entity, event base, one per event type
-compiler/              the compiler (below)
+compiler/              the compiler + db layer + local web editor
 tests/                 self-checks for the slice
 public/                generated data API (gitignored) — deployed to Pages as /v1
 build/                 generated artifacts — gitignored, regenerable
@@ -60,7 +63,7 @@ The web app lives in a separate repo, [bke-web](https://github.com/VladLide/bke-
 ## The compiler
 
 ```
-YAML ─▶ typed model ─▶ validate ─▶ reduce events to world state ─▶ keyframes ─▶ artifacts
+bke.sqlite ─▶ typed model ─▶ validate ─▶ reduce events to world state ─▶ keyframes ─▶ artifacts
 ```
 
 - [`model.py`](compiler/model.py) — typed internal model + EDTF time parser.
@@ -81,7 +84,8 @@ YAML ─▶ typed model ─▶ validate ─▶ reduce events to world state ─�
   never canonical (a test asserts keyframe replay == full replay).
 - **EDTF** (ISO 8601-2) for time, including per-model dating *variants* on a
   single event (conservative vs critical) — not duplicate events.
-- **Canon module** validates verse references without materialising 31,000 files.
+- **Versification module** validates verse references against the canonical
+  source's chapter/verse counts without materialising 31,000 files.
 - **Layered validation**: unknown reference, out-of-range verse, death without
   birth, death dated before birth, and dependency cycles are all build errors.
 
@@ -96,6 +100,11 @@ python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python -m compiler state -2000           # world state at 2000 BC
 .venv/bin/python -m compiler state -2140 --model critical
 .venv/bin/python tests/test_slice.py               # self-checks
+
+.venv/bin/python -m compiler edit                  # local web editor (127.0.0.1:8100)
+.venv/bin/python -m compiler q "SELECT ..."        # SQL over the master store
+.venv/bin/python -m compiler put items.json        # insert/update items (+auto dump)
+.venv/bin/python -m compiler dump | restore | verify   # text mirror round-trip
 ```
 
 ## The data API

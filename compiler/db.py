@@ -1,7 +1,7 @@
-"""SQLite canon — the Wikidata-style item/statement store.
+"""SQLite master store (еталон) — the Wikidata-style item/statement store.
 
-The database `bke.sqlite` (repo root, committed) is the CANONICAL knowledge
-store: humans edit it through the local web editor, Claude through SQL/CLI.
+The database `bke.sqlite` (repo root, committed) is the MASTER knowledge
+store — the single source of truth: humans edit it through the local web editor, Claude through SQL/CLI.
 A deterministic text dump (`dump/items.jsonl`, committed) mirrors it for
 longevity, readable git history, and recovery; `verify` proves they match.
 

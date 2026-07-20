@@ -1,11 +1,11 @@
-"""Minimal local web editor over the SQLite canon.
+"""Minimal local web editor over the SQLite master store.
 
     python -m compiler edit          → http://127.0.0.1:8100
 
 Search / view / edit items and statements; buttons run validation and the text
 dump in-process. Localhost only, stdlib only, one file. Deliberately small:
 the reducers/validators remain the single guard — the editor never bypasses
-`compiler check`, it just makes the canon browsable and editable by a human.
+`compiler check`, it just makes the master store browsable and editable by a human.
 """
 from __future__ import annotations
 import html

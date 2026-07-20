@@ -2,21 +2,21 @@
 name: bke-ingest
 description: >
   Turn a source (a Bible passage, Josephus, an article, archaeology) into
-  canonical BKE YAML — entities, typed events, translations, geometry, sources —
+  BKE master-store items — entities, typed events, labels, geometry, sources —
   that passes `compiler check`. Use when the user provides a source and wants the
   knowledge base extended or filled. Triggers: "add <passage>", "ingest this
   source", "fill the database from …", "/bke-ingest".
 ---
 
-# BKE Ingest — a source in, canonical YAML out
+# BKE Ingest — a source in, master-store items out
 
-You are extending the Bible Knowledge Engine's canonical data from a source. The
+You are extending the Bible Knowledge Engine's master store from a source. The
 data is *source code for a historical world*: every fact is an immutable entity
 or a typed event, backed by a citation, expressed only with stable IDs. Your job
 is to translate the source into that form **without breaking any invariant**, and
 to prove it with the compiler.
 
-The canon is **bke.sqlite** (items/statements, Wikidata-style) + its committed
+The master store (еталон) is **bke.sqlite** (items/statements, Wikidata-style) + its committed
 text dump `dump/items.jsonl`. Work directly on `main` (no branches/PRs — the
 user reviews through the local editor `python -m compiler edit`). Read with SQL,
 write with `put`, never by editing files. Nothing is done until
@@ -40,10 +40,10 @@ write with `put`, never by editing files. Nothing is done until
 
 ## The model, concretely
 
-Storage (SQLite canon + files for the few file-shaped things):
+Storage (SQLite master store + files for the few file-shaped things):
 
 ```
-bke.sqlite                     THE canon: items, labels, statements, refs, models
+bke.sqlite                     THE master store: items, labels, statements, refs, models
 dump/items.jsonl               committed text mirror (compiler dump / restore / verify)
 knowledge/geometries/*.geojson Feature id=geometry.<name>, properties.name_id=place.<id>
 sources/<resource>/source.yaml registry + versification (canonical: true = address space)
@@ -212,6 +212,7 @@ the editor; flag scholarly judgment calls in your summary.
 - [ ] `compiler check` passes (default **and** every declared model)
 - [ ] `tests/test_slice.py` passes
 - [ ] every new entity has uk/en/he labels; every new place has geometry
-- [ ] every event cites ≥1 valid source; new chapters added to canon
+- [ ] every event cites ≥1 valid source; new chapters added to the canonical
+      source's versification
 - [ ] `compiler site` regenerates cleanly
 - [ ] `compiler verify` green; bke.sqlite + dump committed to main

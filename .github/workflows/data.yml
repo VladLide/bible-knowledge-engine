@@ -25,15 +25,15 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install -r requirements.txt
-      - name: Verify text dump matches the SQLite canon
+      - name: Verify text dump matches the SQLite master store
         run: python -m compiler verify
-      - name: Validate canon (fails the build on any error)
+      - name: Validate the knowledge base (fails the build on any error)
         run: python -m compiler check
       - name: Compile data API (public/ is git-ignored, generated here)
         run: python -m compiler site
         env:
           BKE_BUILD_REV: ${{ github.sha }}
-      - name: Publish the SQLite canon alongside the JSON API
+      - name: Publish bke.sqlite alongside the JSON API
         run: cp bke.sqlite public/v1/bke.sqlite
       - uses: actions/upload-pages-artifact@v3
         with:

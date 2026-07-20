@@ -2,7 +2,7 @@
     .venv/bin/python -m pytest tests/          # if pytest installed
     .venv/bin/python tests/test_slice.py       # plain, no framework
 
-Covers the load-bearing invariants: the canon data compiles clean under every
+Covers the load-bearing invariants: the master data compiles clean under every
 declared model, world-state-at-T is correct, keyframe replay equals full replay,
 and each validation layer rejects the mistake it exists to catch.
 """
@@ -30,7 +30,7 @@ def _ev(id, type, time, **payload):
                  confidence="probable", models=None, requires=[], payload=payload)
 
 
-def test_canon_builds_green_all_models():
+def test_master_builds_green_all_models():
     for model in ("conservative", "critical"):
         r = compile_all(model=model, strict=False)
         assert not r["errors"], f"{model}: {r['errors']}"
