@@ -10,7 +10,9 @@
       "Bash(.venv/bin/python -m compiler q \"SELECT s.item_id, s.value FROM statements s WHERE s.prop='city'\")",
       "Bash(.venv/bin/python -c \"import json;m=json.load\\(open\\('public/v1/manifest.json'\\)\\);print\\('роки:',m['years']\\)\")",
       "Bash(.venv/bin/python -m compiler q \"SELECT kind, COUNT\\(*\\) FROM items GROUP BY kind\")",
-      "Bash(NODE_PATH=/usr/share/code/resources/app/node_modules node verify_full.js)"
+      "Bash(NODE_PATH=/usr/share/code/resources/app/node_modules node verify_full.js)",
+      "Bash(.venv/bin/python -m compiler q ' *)",
+      "Bash(.venv/bin/python -m compiler q \"SELECT pos, id, kind FROM items WHERE pos BETWEEN 170 AND 224 ORDER BY pos\")"
     ]
   }
 }

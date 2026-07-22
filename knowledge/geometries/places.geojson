@@ -666,6 +666,20 @@
           31.7683
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gerizim",
+      "properties": {
+        "name_id": "place.gerizim"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.273,
+          32.2
+        ]
+      }
     }
   ]
 }
