@@ -512,6 +512,160 @@
           31.85
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.nebo",
+      "properties": {
+        "name_id": "place.nebo"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.725,
+          31.768
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.jordan",
+      "properties": {
+        "name_id": "place.jordan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.54,
+          31.85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gilgal",
+      "properties": {
+        "name_id": "place.gilgal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.5,
+          31.87
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.jericho",
+      "properties": {
+        "name_id": "place.jericho"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.444,
+          31.871
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.ai",
+      "properties": {
+        "name_id": "place.ai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.26,
+          31.92
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gibeon",
+      "properties": {
+        "name_id": "place.gibeon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.185,
+          31.846
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.hazor",
+      "properties": {
+        "name_id": "place.hazor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.568,
+          33.017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.ebal",
+      "properties": {
+        "name_id": "place.ebal"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.28,
+          32.23
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.shiloh",
+      "properties": {
+        "name_id": "place.shiloh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.289,
+          32.056
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.timnath-serah",
+      "properties": {
+        "name_id": "place.timnath-serah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.18,
+          32.1
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.jerusalem",
+      "properties": {
+        "name_id": "place.jerusalem"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.2137,
+          31.7683
+        ]
+      }
     }
   ]
 }

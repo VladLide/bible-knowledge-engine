@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/bin/python -m compiler q \"SELECT id, kind, subtype FROM items WHERE id IN \\('person.joshua','person.eleazar','person.phinehas','person.caleb','person.rahab'\\)\")",
+      "Bash(.venv/bin/python -m compiler q \"SELECT DISTINCT ref FROM item_refs WHERE ref LIKE 'source.%'\")",
+      "Bash(sed -n '/^books:/,/^retrieved/p' sources/ohienko-uk/source.yaml)",
+      "Bash(.venv/bin/python -m compiler q \"SELECT COUNT\\(*\\) FROM item_refs WHERE ref LIKE 'reference.deuteronomy%'\")",
+      "Bash(.venv/bin/python -m compiler state -1400)",
+      "Bash(.venv/bin/python -m compiler state -1375)",
+      "Bash(.venv/bin/python -m compiler q \"SELECT s.item_id, s.value FROM statements s WHERE s.prop='city'\")",
+      "Bash(.venv/bin/python -c \"import json;m=json.load\\(open\\('public/v1/manifest.json'\\)\\);print\\('роки:',m['years']\\)\")",
+      "Bash(.venv/bin/python -m compiler q \"SELECT kind, COUNT\\(*\\) FROM items GROUP BY kind\")",
+      "Bash(NODE_PATH=/usr/share/code/resources/app/node_modules node verify_full.js)"
+    ]
+  }
+}

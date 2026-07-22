@@ -16,6 +16,7 @@ books:            # canonical book id -> this source's book number
   leviticus: 3
   numbers: 4
   deuteronomy: 5
+  joshua: 6
 retrieved: 2026-07-17
 # Ohienko follows Masoretic-style versification in places; canonical reference
 # IDs follow canon/protestant.yaml (English-style). Only divergent cited refs
