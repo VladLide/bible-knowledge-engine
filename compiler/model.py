@@ -1,7 +1,9 @@
-"""Typed internal model. Everything downstream of loading sees these objects,
-never raw YAML dicts — so a change to on-disk format touches only the loader.
-(This is the "don't feed raw YAML to projections" decision, minus an AST layer
-the single flat format doesn't need.)"""
+"""Typed internal model shared by everything downstream of loading.
+
+Downstream code sees these objects, never raw storage rows — so a change to the
+on-disk format touches only the loader (the "don't feed raw storage to
+projections" decision, minus an AST layer the flat format doesn't need).
+"""
 from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any

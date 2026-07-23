@@ -1,6 +1,5 @@
 """Bible Knowledge Engine — compiler of a historical world.
 
-Canonical YAML is the source code. This package validates it, reduces typed
-events to canonical world state, and emits build artifacts. Nothing here is a
-source of truth; everything it writes to build/ is regenerable.
+Validate the SQLite master store, reduce typed events to world state, and emit
+build artifacts to build/ — all regenerable, none a source of truth.
 """

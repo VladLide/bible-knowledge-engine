@@ -1,7 +1,7 @@
 """Compiler orchestrator + CLI.
 
-    YAML source ─▶ typed model ─▶ validate (schema, refs, structure, logic)
-                 ─▶ reduce typed events to world state ─▶ keyframes ─▶ artifacts
+    bke.sqlite ─▶ typed model ─▶ validate (schema, refs, structure, logic)
+               ─▶ reduce typed events to world state ─▶ keyframes ─▶ artifacts
 
 Run:
     python -m compiler build            # validate + compile + write build/
@@ -49,21 +49,24 @@ def _load_yaml(path: Path):
 
 
 def load_entities() -> dict[str, Entity]:
-    """The master store is bke.sqlite (items/statements); see compiler/db.py."""
+    """Load all entities from the SQLite master store; see compiler/db.py."""
     from .db import load_entities_db
     return load_entities_db()
 
 
 def load_events() -> list[Event]:
-    """The master store is bke.sqlite; order = items.pos (same-date tie-break)."""
+    """Load all events in items.pos order (the same-date tie-break)."""
     from .db import load_events_db
     return load_events_db()
 
 
 def load_canon() -> dict[str, dict[int, int]]:
-    """The reference address space: the versification of the ONE source marked
-    `canonical: true`. IDs are forever, so the flag must never move to a source
-    with different numbering — divergent sources use verse_map instead."""
+    """Resolve the reference address space from the source marked `canonical: true`.
+
+    Its versification defines every reference id. IDs are forever, so the flag
+    must never move to a source with different numbering — divergent sources use
+    verse_map instead.
+    """
     canonical = [d for d in load_source_registry().values() if d.get("canonical")]
     if len(canonical) != 1:
         raise BuildError(f"exactly one source must have canonical: true (found {len(canonical)})")
@@ -72,13 +75,13 @@ def load_canon() -> dict[str, dict[int, int]]:
 
 
 def load_translations() -> dict[str, dict[str, str]]:
-    """Labels live on items in bke.sqlite."""
+    """Load per-language id→label maps from item labels."""
     from .db import load_labels_db
     return load_labels_db()
 
 
 def load_source_registry() -> dict[str, dict]:
-    """Source registry: sources/<resource>/source.yaml, one folder per resource.
+    """Load the source registry, one folder per resource under sources/.
 
     A source is WHERE a fact comes from (a translation, Josephus, a dig report).
     Its folder holds the main file (link, license, its own versification guide,
@@ -125,8 +128,9 @@ def _validators():
 
 
 def validate(entities, events, canon, translations, geometry_ids, sources=None):
-    """Return (errors, warnings). Errors fail the build.
-    `sources` = the source registry; None (tests) skips source.* id checks."""
+    """Check items and events against schema, references, structure, and logic.
+    Returns (errors, warnings); errors fail the build. `sources` is the registry;
+    None (in tests) skips source.* id checks."""
     errors: list[str] = []
     warnings: list[str] = []
     entity_v, event_v, type_v = _validators()
