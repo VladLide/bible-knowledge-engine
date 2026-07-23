@@ -680,6 +680,146 @@
           32.2
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.tabor",
+      "properties": {
+        "name_id": "place.tabor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.39,
+          32.687
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.ophrah",
+      "properties": {
+        "name_id": "place.ophrah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.27,
+          32.6
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.thebez",
+      "properties": {
+        "name_id": "place.thebez"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.28,
+          32.32
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.mizpah-gilead",
+      "properties": {
+        "name_id": "place.mizpah-gilead"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.73,
+          32.31
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.zorah",
+      "properties": {
+        "name_id": "place.zorah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.98,
+          31.77
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.timnah",
+      "properties": {
+        "name_id": "place.timnah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.95,
+          31.77
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gaza",
+      "properties": {
+        "name_id": "place.gaza"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.47,
+          31.5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.dan",
+      "properties": {
+        "name_id": "place.dan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.652,
+          33.249
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.gibeah",
+      "properties": {
+        "name_id": "place.gibeah"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.23,
+          31.82
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "geometry.jabesh-gilead",
+      "properties": {
+        "name_id": "place.jabesh-gilead"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.68,
+          32.43
+        ]
+      }
     }
   ]
 }

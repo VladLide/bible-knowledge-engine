@@ -17,6 +17,7 @@ books:            # canonical book id -> this source's book number
   numbers: 4
   deuteronomy: 5
   joshua: 6
+  judges: 7
 retrieved: 2026-07-17
 # Ohienko follows Masoretic-style versification in places; canonical reference
 # IDs follow canon/protestant.yaml (English-style). Only divergent cited refs

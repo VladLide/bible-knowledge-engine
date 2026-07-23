@@ -12,7 +12,8 @@
       "Bash(.venv/bin/python -m compiler q \"SELECT kind, COUNT\\(*\\) FROM items GROUP BY kind\")",
       "Bash(NODE_PATH=/usr/share/code/resources/app/node_modules node verify_full.js)",
       "Bash(.venv/bin/python -m compiler q ' *)",
-      "Bash(.venv/bin/python -m compiler q \"SELECT pos, id, kind FROM items WHERE pos BETWEEN 170 AND 224 ORDER BY pos\")"
+      "Bash(.venv/bin/python -m compiler q \"SELECT pos, id, kind FROM items WHERE pos BETWEEN 170 AND 224 ORDER BY pos\")",
+      "Bash(fuser -k 8099/tcp)"
     ]
   }
 }
